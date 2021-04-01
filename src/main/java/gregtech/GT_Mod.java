@@ -27,7 +27,6 @@ import gregtech.loaders.load.GT_FuelLoader;
 import gregtech.loaders.load.GT_ItemIterator;
 import gregtech.loaders.load.GT_SonictronLoader;
 import gregtech.loaders.misc.GT_Achievements;
-import gregtech.loaders.misc.GT_Bees;
 import gregtech.loaders.misc.GT_CoverLoader;
 import gregtech.loaders.postload.*;
 import gregtech.loaders.preload.*;
@@ -544,33 +543,6 @@ public class GT_Mod implements IGT_Mod {
         new GT_CoverBehaviorLoader().run();
         new GT_SonictronLoader().run();
 
-        double outputMultiplier = Math.min(GregTech_API.sOPStuff.get(ConfigCategories.Recipes.gregtechrecipes, "StoneDustOutputMultiplier", 0.6), 1.0);
-        if (GregTech_API.sOPStuff.get(ConfigCategories.Recipes.gregtechrecipes, "StoneDustCentrifugation", false)) {
-            int fullChance = (int) (10000 * outputMultiplier);
-            int[] chances = new int[]{fullChance, fullChance, fullChance, fullChance, fullChance, (int) (5500 * outputMultiplier)};
-            GT_Values.RA.addCentrifugeRecipe(Materials.Stone.getDust(1), GT_Values.NI, GT_Values.NF, GT_Values.NF,
-                    Materials.Quartzite.getDustSmall(1), Materials.PotassiumFeldspar.getDustSmall(1), Materials.Marble.getDustTiny(2),
-                    Materials.Biotite.getDustTiny(1), Materials.MetalMixture.getDustTiny(1), Materials.Sodalite.getDustTiny(1),
-                    chances, 500, 72);
-            GT_Values.RA.addCentrifugeRecipe(Materials.MetalMixture.getDust(1), GT_Values.NI, GT_Values.NF, GT_Values.NF,
-                    Materials.BandedIron.getDustSmall(1), Materials.Bauxite.getDustSmall(1), Materials.Pyrolusite.getDustTiny(2),
-                    Materials.Barite.getDustTiny(1), Materials.Chromite.getDustTiny(1), Materials.Ilmenite.getDustTiny(1),
-                    new int[]{10000, 10000, 10000, 10000, 10000, 6000}, 500, 120);
-        }
-        double ashOutputMultiplier = Math.min(GregTech_API.sOPStuff.get(ConfigCategories.Recipes.gregtechrecipes, "AshOutputMultiplier", 1.0), 1.0);
-        if (GregTech_API.sOPStuff.get(ConfigCategories.Recipes.gregtechrecipes, "AshYieldsAlkaliMetalOxides", true)) {
-            int[] outputChances = new int[]{(int) (9900 * ashOutputMultiplier), (int) (6400 * ashOutputMultiplier),
-                    (int) (6000 * ashOutputMultiplier), (int) (500 * ashOutputMultiplier),
-                    (int) (5000 * ashOutputMultiplier), (int) (2500 * ashOutputMultiplier)};
-            GT_Values.RA.addCentrifugeRecipe(Materials.Ash.getDust(1), GT_Values.NI, GT_Values.NF, GT_Values.NF,
-                    Materials.Quicklime.getDustSmall(2), Materials.Potash.getDustSmall(1), Materials.Magnesia.getDustSmall(1),
-                    Materials.PhosphorousPentoxide.getDustTiny(1), Materials.SodaAsh.getDustTiny(1), Materials.BandedIron.getDustTiny(1),
-                    outputChances, 240, 30);
-        } else {
-            GT_Values.RA.addCentrifugeRecipe(Materials.Ash.getDust(1), GT_Values.NI, GT_Values.NF, GT_Values.NF,
-                    Materials.Carbon.getDust(1), GT_Values.NI, GT_Values.NI, GT_Values.NI, GT_Values.NI, GT_Values.NI,
-                    new int[]{(int) (10000 * ashOutputMultiplier), 0, 0, 0, 0, 0}, 40, 16);
-        }
         if (gregtechproxy.mSortToTheEnd) {
             try {
                 GT_Log.out.println("GT_Mod: Sorting GregTech to the end of the Mod List for further processing.");
@@ -623,8 +595,6 @@ public class GT_Mod implements IGT_Mod {
         } catch (Throwable e) {
             e.printStackTrace(GT_Log.err);
         }
-
-        new GT_Bees();
 
         //Disable Low Grav regardless of config if Cleanroom is disabled.
         if (!gregtechproxy.mEnableCleanroom) {
@@ -1238,30 +1208,6 @@ public class GT_Mod implements IGT_Mod {
     }
 
     private void addSolidFakeLargeBoilerFuels() {
-        GT_Recipe.GT_Recipe_Map.sLargeBoilerFakeFuels.addSolidRecipes(
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Charcoal, 1),
-                GT_OreDictUnificator.get(OrePrefixes.gem, Materials.Charcoal, 1),
-                GT_OreDictUnificator.get(OrePrefixes.block, Materials.Charcoal, 1),
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Coal, 1),
-                GT_OreDictUnificator.get(OrePrefixes.gem, Materials.Coal, 1),
-                GT_OreDictUnificator.get(OrePrefixes.block, Materials.Coal, 1),
-                GT_OreDictUnificator.get(OrePrefixes.crushed, Materials.Coal, 1),
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Lignite, 1),
-                GT_OreDictUnificator.get(OrePrefixes.gem, Materials.Lignite, 1),
-                GT_OreDictUnificator.get(OrePrefixes.block, Materials.Lignite, 1),
-                GT_OreDictUnificator.get(OrePrefixes.crushed, Materials.Lignite, 1),
-                GT_OreDictUnificator.get(OrePrefixes.log, Materials.Wood, 1),
-                GT_OreDictUnificator.get(OrePrefixes.plank, Materials.Wood, 1),
-                GT_OreDictUnificator.get(OrePrefixes.stick, Materials.Wood, 1),
-                GT_OreDictUnificator.get(OrePrefixes.slab, Materials.Wood, 1),
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Wood, 1),
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Sodium, 1),
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Lithium, 1),
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Caesium, 1),
-                GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Sulfur, 1),
-                GT_OreDictUnificator.get(ItemList.Block_SSFUEL.get(1)),
-                GT_OreDictUnificator.get(ItemList.Block_MSSFUEL.get(1)),
-                GT_OreDictUnificator.get(OrePrefixes.rod, Materials.Blaze, 1));
     }
 
     public static int calculateTotalGTVersion(int minorVersion) {

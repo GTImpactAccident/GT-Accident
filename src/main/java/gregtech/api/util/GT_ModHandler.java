@@ -13,15 +13,13 @@ import gregtech.api.interfaces.internal.IGT_CraftingRecipe;
 import gregtech.api.objects.GT_HashSet;
 import gregtech.api.objects.GT_ItemStack;
 import gregtech.api.objects.ItemData;
-import gregtech.common.items.*;
+import gregtech.common.items.GT_MetaGenerated_Item_01;
+import gregtech.common.items.GT_MetaGenerated_Item_02;
+import gregtech.common.items.GT_MetaGenerated_Item_03;
+import gregtech.common.items.GT_MetaGenerated_Tool_01;
 import gregtech.loaders.load.GT_ItemIterator;
-import gregtech.loaders.oreprocessing.*;
 import gregtech.loaders.postload.GT_CraftingRecipeLoader;
 import gregtech.loaders.postload.GT_MachineRecipeLoader;
-import gregtech.loaders.postload.recipes.GT_ForestryRecipesLoader;
-import gregtech.loaders.postload.recipes.GT_GraviSuiteRecipesLoader;
-import gregtech.loaders.postload.recipes.GT_IndustialCraftRecipesLoader;
-import gregtech.loaders.postload.recipes.GT_RailcraftRecipesLoader;
 import gregtech.loaders.preload.GT_Loader_MetaTileEntities;
 import ic2.api.item.IBoxable;
 import ic2.api.item.IC2Items;
@@ -66,29 +64,16 @@ import static gregtech.api.enums.GT_Values.*;
  * Due to the many imports, this File can cause compile Problems if not all the APIs are installed
  */
 public class GT_ModHandler {
-    public static final List<IRecipe> sSingleNonBlockDamagableRecipeList = new ArrayList<IRecipe>(1000);
-    private static final Map<String, ItemStack> sIC2ItemMap = new HashMap<String, ItemStack>();
-    private static final List<IRecipe> sAllRecipeList = /*Collections.synchronizedList(*/new ArrayList<IRecipe>(5000)/*)*/, sBufferRecipeList = new ArrayList<IRecipe>(1000);
+    public static final List<IRecipe> sSingleNonBlockDamagableRecipeList = new ArrayList<>(1000);
+    private static final Map<String, ItemStack> sIC2ItemMap = new HashMap<>();
+    private static final List<IRecipe> sAllRecipeList = /*Collections.synchronizedList(*/new ArrayList<>(5000)/*)*/, sBufferRecipeList = new ArrayList<IRecipe>(1000);
     public static volatile int VERSION = 509;
-    public static Collection<String> sNativeRecipeClasses = new HashSet<String>(), sSpecialRecipeClasses = new HashSet<String>();
-    public static GT_HashSet<GT_ItemStack> sNonReplaceableItems = new GT_HashSet<GT_ItemStack>();
+    public static Collection<String> sNativeRecipeClasses = new HashSet<String>(), sSpecialRecipeClasses = new HashSet<>();
+    public static GT_HashSet<GT_ItemStack> sNonReplaceableItems = new GT_HashSet<>();
     public static Object sBoxableWrapper = GT_Utility.callConstructor("gregtechmod.api.util.GT_IBoxableWrapper", 0, null, false);
 
     public static final List<Class> sRecipeLoaderClasses = Arrays.asList(GT_MetaGenerated_Item_01.class, GT_MetaGenerated_Item_02.class,
             GT_MetaGenerated_Item_03.class, GT_MetaGenerated_Tool_01.class, GT_CraftingRecipeLoader.class, GT_MachineRecipeLoader.class,
-            GT_ForestryRecipesLoader.class, GT_RailcraftRecipesLoader.class, GT_IndustialCraftRecipesLoader.class, GT_GraviSuiteRecipesLoader.class,
-            ProcessingAll.class, ProcessingArrows.class, ProcessingBeans.class, ProcessingBlock.class, ProcessingBolt.class,
-            ProcessingCell.class, ProcessingCircuit.class, ProcessingCompressed.class, ProcessingCrafting.class,
-            ProcessingCrate.class, ProcessingCrop.class, ProcessingCrushedOre.class, ProcessingCrystallized.class,
-            ProcessingDirty.class, ProcessingDust.class, ProcessingDye.class, ProcessingFineWire.class, ProcessingFoil.class,
-            ProcessingFood.class, ProcessingGear.class, ProcessingGem.class, ProcessingIngot.class, ProcessingItem.class,
-            ProcessingLens.class, ProcessingLog.class, ProcessingNugget.class, ProcessingOre.class, ProcessingOrePoor.class,
-            ProcessingOreSmelting.class, ProcessingPipe.class, ProcessingPlank.class, ProcessingPlate.class,
-            ProcessingPure.class, ProcessingRecycling.class, ProcessingRotor.class, ProcessingRound.class,
-            ProcessingSand.class, ProcessingSaplings.class, ProcessingScrew.class, ProcessingShaping.class,
-            ProcessingSlab.class, ProcessingStick.class, ProcessingStickLong.class, ProcessingStone.class,
-            ProcessingStoneCobble.class, ProcessingStoneVarious.class, ProcessingToolHead.class, ProcessingToolOther.class,
-            ProcessingTransforming.class, ProcessingWax.class, ProcessingWire.class, ItemComb.class,
             GT_ItemIterator.class, GT_ModHandler.class, GT_Mod.class,
             GT_Loader_MetaTileEntities.class);
     public static List<String> sRecipeLoadersNames = sRecipeLoaderClasses.stream().map(Class::getName).collect(Collectors.toList());
@@ -105,7 +90,7 @@ public class GT_ModHandler {
     private static final ItemStack sMt1 = new ItemStack(Blocks.dirt, 1, 0), sMt2 = new ItemStack(Blocks.dirt, 1, 0);
     private static final String s_H = "h", s_F = "f", s_I = "I", s_P = "P", s_R = "R";
     private static final ItemStack[][]
-            sShapes1 = new ItemStack[][]{
+            sShapes1 = new ItemStack[][] {
             {sMt1, null, sMt1, sMt1, sMt1, sMt1, null, sMt1, null},
             {sMt1, null, sMt1, sMt1, null, sMt1, sMt1, sMt1, sMt1},
             {null, sMt1, null, sMt1, sMt1, sMt1, sMt1, null, sMt1},
@@ -151,11 +136,11 @@ public class GT_ModHandler {
             {sMt1, sMt1, null, sMt2, null, sMt1, sMt2, null, null},
             {null, sMt1, sMt1, sMt1, null, sMt2, null, null, sMt2}
     };
-    public static List<Integer> sSingleNonBlockDamagableRecipeList_validsShapes1 = new ArrayList<Integer>(44);
+    public static List<Integer> sSingleNonBlockDamagableRecipeList_validsShapes1 = new ArrayList<>(44);
     public static boolean sSingleNonBlockDamagableRecipeList_validsShapes1_update = false;
-    public static List<Integer> sSingleNonBlockDamagableRecipeList_warntOutput = new ArrayList<Integer>(50);
-    public static List<Integer> sVanillaRecipeList_warntOutput = new ArrayList<Integer>(50);
-    public static final List<IRecipe> sSingleNonBlockDamagableRecipeList_verified = new ArrayList<IRecipe>(1000);
+    public static List<Integer> sSingleNonBlockDamagableRecipeList_warntOutput = new ArrayList<>(50);
+    public static List<Integer> sVanillaRecipeList_warntOutput = new ArrayList<>(50);
+    public static final List<IRecipe> sSingleNonBlockDamagableRecipeList_verified = new ArrayList<>(1000);
     private static final Cache<GT_ItemStack, ItemStack> sSmeltingRecipeCache = CacheBuilder.newBuilder().maximumSize(1000).build();
 
     static {

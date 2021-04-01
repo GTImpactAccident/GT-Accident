@@ -16,43 +16,13 @@ public class GT_MetaGenerated_Item_03
         int tLastID = 0;
         Object[] o = new Object[0];
 
-        /*
-         * circuit boards tier 1-7:
-         * coated circuit board / wood plate + resin
-         * Plastic Circuit Board / Plastic + Copper Foil + Sulfuric Acid
-         * phenolic circuit board /carton+glue+chemical bath
-         * epoxy circuit board /epoxy plate + copper foil + sulfuric acid
-         * fiberglass circuit board (simple + multilayer) / glass + plastic + electrum foil + sulfurci acid
-         * wetware lifesupport board / fiberglass CB + teflon +
-         */
-//        ItemList.Circuit_Board_Coated.set(addItem(tLastID = 1, "Coated Circuit Board", "A basic Board", o));
-//        ItemList.Circuit_Board_Phenolic.set(addItem(tLastID = 2, "Phenolic Circuit Board", "A good Board", o));
-//        ItemList.Circuit_Board_Epoxy.set(addItem(tLastID = 3, "Epoxy Circuit Board", "An advanced Board", o));
-//        ItemList.Circuit_Board_Fiberglass.set(addItem(tLastID = 4, "Fiberglass Circuit Board", "An advanced Board", o));
-//        ItemList.Circuit_Board_Multifiberglass.set(addItem(tLastID = 5, "Multilayer Fiberglass Circuit Board", "A elite Board", o));
         ItemList.Circuit_Board_Wetware.set(addItem(tLastID = 6, "Wetware Lifesupport Circuit Board", "The Board that keeps life", o));
         ItemList.Circuit_Board_Plastic.set(addItem(tLastID = 7, "Plastic Circuit Board", "A Good Board", o));
-
-        /*
-         * electronic components:
-         * vacuum tube (glass tube + red alloy cables)
-         * basic electronic circuits normal+smd
-         * coils
-         * diodes normal+smd
-         * transistors normal+smd
-         * capacitors normal+smd
-         * Glass Fibers
-         */
-//        ItemList.Circuit_Parts_Resistor.set(addItem(tLastID = 10, "Resistor", "Basic Electronic Component", o)); //wiring mv
         ItemList.Circuit_Parts_ResistorSMD.set(addItem(tLastID = 11, "SMD Resistor", "Electronic Component", o));
         ItemList.Circuit_Parts_Glass_Tube.set(addItem(tLastID = 12, "Glass Tube", "", o));
-//        ItemList.Circuit_Parts_Vacuum_Tube.set(addItem(tLastID = 13, "Vacuum Tube", "Basic Electronic Component", o)); //Circuit_Primitive
         ItemList.Circuit_Parts_Coil.set(addItem(tLastID = 14, "Small Coil", "Basic Electronic Component", o));
-//        ItemList.Circuit_Parts_Diode.set(addItem(tLastID = 15, "Diode", "Basic Electronic Component", o));
         ItemList.Circuit_Parts_DiodeSMD.set(addItem(tLastID = 16, "SMD Diode", "Electronic Component", o));
-//        ItemList.Circuit_Parts_Transistor.set(addItem(tLastID = 17, "Transistor", "Basic Electronic Component", o)); //wiring hv
         ItemList.Circuit_Parts_TransistorSMD.set(addItem(tLastID = 18, "SMD Transistor", "Electronic Component", o));
-//        ItemList.Circuit_Parts_Capacitor.set(addItem(tLastID = 19, "Capacitor", "Electronic Component", o)); //wiring ev
         ItemList.Circuit_Parts_CapacitorSMD.set(addItem(tLastID = 20, "SMD Capacitor", "Electronic Component", o));
         ItemList.Circuit_Parts_GlassFiber.set(addItem(tLastID = 21, "Glass Fiber", Materials.BorosilicateGlass.mChemicalFormula, o));
         ItemList.Circuit_Parts_PetriDish.set(addItem(tLastID = 22, "Petri Dish", "For cultivating cells", o));
@@ -60,25 +30,6 @@ public class GT_MetaGenerated_Item_03
         ItemList.SimpleFluidFilterItem.set(addItem(tLastID = 24, "Simple Fluid Filter", "Used to filter water", o));
         ItemList.FluidFilterItem.set(addItem(tLastID = 25, "Fluid Filter", "Used to filter water", o));
 
-
-        /*
-         * ICs
-         * Lenses made from perfect crystals first instead of plates
-         * Monocrystalline silicon ingot (normal+glowstone+naquadah) EBF, normal silicon no EBF need anymore
-         * wafer(normal+glowstone+naquadah) cut mono silicon ingot in cutting machine
-         *
-         * Integrated Logic Circuit(8bit DIP)
-         * RAM
-         * NAND Memory
-         * NOR Memory
-         * CPU (4 sizes)
-         * SoCs(2 sizes, high tier cheap low tech component)
-         * Power IC/High Power IC
-         *
-         * nanotube interconnected circuit (H-IC + nanotubes)
-         *
-         * quantum chips
-         */
         ItemList.Circuit_Silicon_Ingot.set(addItem(tLastID = 30, "Monocrystalline Silicon Boule", "Raw Circuit", o));
         ItemList.Circuit_Silicon_Ingot2.set(addItem(tLastID = 31, "Glowstone doped Monocrystalline Silicon Boule", "Raw Circuit", o));
         ItemList.Circuit_Silicon_Ingot3.set(addItem(tLastID = 32, "Naquadah doped Monocrystalline Silicon Boule", "Raw Circuit", o));

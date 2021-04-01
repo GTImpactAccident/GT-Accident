@@ -8,7 +8,6 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.objects.GT_CopiedBlockTexture;
 import gregtech.api.util.GT_LanguageManager;
-import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_LargeTurbine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -117,123 +116,6 @@ public class GT_Block_Casings4 extends GT_Block_Casings_Abstract {
             return getIcon(aSide, tMeta);
         }
         int tStartIndex = tMeta == 6 ? 1 : 13;
-        if ((tMeta == 9) || (tMeta == 10) || (tMeta == 11) || (tMeta == 12)) {
-            if ((aSide == 2) || (aSide == 3)) {
-                TileEntity tTileEntity;
-                IMetaTileEntity tMetaTileEntity;
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord + (aSide == 3 ? 1 : -1), yCoord - 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 0, true);
-                    }
-                    return getTurbineCasing(tMeta, 0, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord + (aSide == 3 ? 1 : -1), yCoord, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 3, true);
-                    }
-                    return getTurbineCasing(tMeta, 3, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord + (aSide == 3 ? 1 : -1), yCoord + 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 6, true);
-                    }
-                    return getTurbineCasing(tMeta, 6, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord - 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 1, true);
-                    }
-                    return getTurbineCasing(tMeta, 1, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord + 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 7, true);
-                    }
-                    return getTurbineCasing(tMeta, 7, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord + (aSide == 2 ? 1 : -1), yCoord + 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 8, true);
-                    }
-                    return getTurbineCasing(tMeta, 8, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord + (aSide == 2 ? 1 : -1), yCoord, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 5, true);
-                    }
-                    return getTurbineCasing(tMeta, 5, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord + (aSide == 2 ? 1 : -1), yCoord - 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 2, true);
-                    }
-                    return getTurbineCasing(tMeta, 2, false);
-                }
-            } else if ((aSide == 4) || (aSide == 5)) {
-                TileEntity tTileEntity;
-                Object tMetaTileEntity;
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord - 1, zCoord + (aSide == 4 ? 1 : -1)))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 0, true);
-                    }
-                    return getTurbineCasing(tMeta, 0, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord, zCoord + (aSide == 4 ? 1 : -1)))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 3, true);
-                    }
-                    return getTurbineCasing(tMeta, 3, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord + 1, zCoord + (aSide == 4 ? 1 : -1)))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 6, true);
-                    }
-                    return getTurbineCasing(tMeta, 6, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord - 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 1, true);
-                    }
-                    return getTurbineCasing(tMeta, 1, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord + 1, zCoord))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 7, true);
-                    }
-                    return getTurbineCasing(tMeta, 7, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord + 1, zCoord + (aSide == 5 ? 1 : -1)))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 8, true);
-                    }
-                    return getTurbineCasing(tMeta, 8, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord, zCoord + (aSide == 5 ? 1 : -1)))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 5, true);
-                    }
-                    return getTurbineCasing(tMeta, 5, false);
-                }
-                if ((null != (tTileEntity = aWorld.getTileEntity(xCoord, yCoord - 1, zCoord + (aSide == 5 ? 1 : -1)))) && ((tTileEntity instanceof IGregTechTileEntity)) && (((IGregTechTileEntity) tTileEntity).getFrontFacing() == aSide) && (null != (tMetaTileEntity = ((IGregTechTileEntity) tTileEntity).getMetaTileEntity())) && ((tMetaTileEntity instanceof GT_MetaTileEntity_LargeTurbine))) {
-                    if (((IGregTechTileEntity) tTileEntity).isActive()) {
-                        return getTurbineCasing(tMeta, 2, true);
-                    }
-                    return getTurbineCasing(tMeta, 2, false);
-                }
-            }
-            switch (tMeta) {
-                case 9:
-                    return Textures.BlockIcons.MACHINE_CASING_SOLID_STEEL.getIcon();
-                case 10:
-                    return Textures.BlockIcons.MACHINE_CASING_CLEAN_STAINLESSSTEEL.getIcon();
-                case 11:
-                    return Textures.BlockIcons.MACHINE_CASING_STABLE_TITANIUM.getIcon();
-                case 12:
-                    return Textures.BlockIcons.MACHINE_CASING_ROBUST_TUNGSTENSTEEL.getIcon();
-                default:
-                    return Textures.BlockIcons.MACHINE_CASING_SOLID_STEEL.getIcon();
-            }
-        }
         boolean[] tConnectedSides = {(aWorld.getBlock(xCoord, yCoord - 1, zCoord) == this) && (aWorld.getBlockMetadata(xCoord, yCoord - 1, zCoord) == tMeta), (aWorld.getBlock(xCoord, yCoord + 1, zCoord) == this) && (aWorld.getBlockMetadata(xCoord, yCoord + 1, zCoord) == tMeta), (aWorld.getBlock(xCoord + 1, yCoord, zCoord) == this) && (aWorld.getBlockMetadata(xCoord + 1, yCoord, zCoord) == tMeta), (aWorld.getBlock(xCoord, yCoord, zCoord + 1) == this) && (aWorld.getBlockMetadata(xCoord, yCoord, zCoord + 1) == tMeta), (aWorld.getBlock(xCoord - 1, yCoord, zCoord) == this) && (aWorld.getBlockMetadata(xCoord - 1, yCoord, zCoord) == tMeta), (aWorld.getBlock(xCoord, yCoord, zCoord - 1) == this) && (aWorld.getBlockMetadata(xCoord, yCoord, zCoord - 1) == tMeta)};
         switch (aSide) {
             case 0:

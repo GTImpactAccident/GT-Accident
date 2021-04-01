@@ -17,8 +17,6 @@ import gregtech.api.gui.GT_GUIContainer_BasicMachine;
 import gregtech.api.objects.GT_NEIItemStack;
 import gregtech.api.objects.ItemData;
 import gregtech.api.util.*;
-import gregtech.common.gui.GT_GUIContainer_FusionReactor;
-import gregtech.common.gui.GT_GUIContainer_PrimitiveBlastFurnace;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Blocks;
@@ -333,18 +331,12 @@ public class GT_NEI_DefaultHandler
         }
 
         public boolean canHandle(GuiContainer gui) {
-            return (gui instanceof GT_GUIContainer_BasicMachine && GT_Utility.isStringValid(((GT_GUIContainer_BasicMachine) gui).mNEI))
-                    || (gui instanceof GT_GUIContainer_FusionReactor && GT_Utility.isStringValid(((GT_GUIContainer_FusionReactor) gui).mNEI))
-                    || (gui instanceof GT_GUIContainer_PrimitiveBlastFurnace && GT_Utility.isStringValid(((GT_GUIContainer_PrimitiveBlastFurnace) gui).mNEI));
+            return (gui instanceof GT_GUIContainer_BasicMachine && GT_Utility.isStringValid(((GT_GUIContainer_BasicMachine) gui).mNEI));
         }
 
         public List<String> handleTooltip(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
             if ((canHandle(gui)) && (currenttip.isEmpty())) {
                 if (gui instanceof GT_GUIContainer_BasicMachine && new Rectangle(65, 13, 36, 18).contains(new Point(GuiDraw.getMousePosition().x - ((GT_GUIContainer_BasicMachine) gui).getLeft() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[0], GuiDraw.getMousePosition().y - ((GT_GUIContainer_BasicMachine) gui).getTop() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[1]))) {
-                    currenttip.add("Recipes");
-                } else if (gui instanceof GT_GUIContainer_FusionReactor && new Rectangle(145, 0, 24, 24).contains(new Point(GuiDraw.getMousePosition().x - ((GT_GUIContainer_FusionReactor) gui).getLeft() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[0], GuiDraw.getMousePosition().y - ((GT_GUIContainer_FusionReactor) gui).getTop() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[1]))) {
-                    currenttip.add("Recipes");
-                } else if (gui instanceof GT_GUIContainer_PrimitiveBlastFurnace && new Rectangle(51, 10, 24, 24).contains(new Point(GuiDraw.getMousePosition().x - ((GT_GUIContainer_PrimitiveBlastFurnace) gui).getLeft() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[0], GuiDraw.getMousePosition().y - ((GT_GUIContainer_PrimitiveBlastFurnace) gui).getTop() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[1]))) {
                     currenttip.add("Recipes");
                 }
 
@@ -355,10 +347,6 @@ public class GT_NEI_DefaultHandler
         private boolean transferRect(GuiContainer gui, boolean usage) {
             if (gui instanceof GT_GUIContainer_BasicMachine) {
                 return (canHandle(gui)) && (new Rectangle(65, 13, 36, 18).contains(new Point(GuiDraw.getMousePosition().x - ((GT_GUIContainer_BasicMachine) gui).getLeft() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[0], GuiDraw.getMousePosition().y - ((GT_GUIContainer_BasicMachine) gui).getTop() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[1]))) && (usage ? GuiUsageRecipe.openRecipeGui(((GT_GUIContainer_BasicMachine) gui).mNEI) : GuiCraftingRecipe.openRecipeGui(((GT_GUIContainer_BasicMachine) gui).mNEI));
-            } else if (gui instanceof GT_GUIContainer_FusionReactor) {
-                return (canHandle(gui)) && (new Rectangle(145, 0, 24, 24).contains(new Point(GuiDraw.getMousePosition().x - ((GT_GUIContainer_FusionReactor) gui).getLeft() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[0], GuiDraw.getMousePosition().y - ((GT_GUIContainer_FusionReactor) gui).getTop() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[1]))) && (usage ? GuiUsageRecipe.openRecipeGui(((GT_GUIContainer_FusionReactor) gui).mNEI) : GuiCraftingRecipe.openRecipeGui(((GT_GUIContainer_FusionReactor) gui).mNEI));
-            } else if (gui instanceof GT_GUIContainer_PrimitiveBlastFurnace) {
-                return (canHandle(gui)) && (new Rectangle(51, 10, 24, 24).contains(new Point(GuiDraw.getMousePosition().x - ((GT_GUIContainer_PrimitiveBlastFurnace) gui).getLeft() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[0], GuiDraw.getMousePosition().y - ((GT_GUIContainer_PrimitiveBlastFurnace) gui).getTop() - codechicken.nei.recipe.RecipeInfo.getGuiOffset(gui)[1]))) && (usage ? GuiUsageRecipe.openRecipeGui(((GT_GUIContainer_PrimitiveBlastFurnace) gui).mNEI) : GuiCraftingRecipe.openRecipeGui(((GT_GUIContainer_PrimitiveBlastFurnace) gui).mNEI));
             }
             return false;
         }
@@ -457,8 +445,8 @@ public class GT_NEI_DefaultHandler
                 return;
             }
 
-            mOutputs = new ArrayList<PositionedStack>();
-            mInputs = new ArrayList<PositionedStack>();
+            mOutputs = new ArrayList<>();
+            mInputs = new ArrayList<>();
 
             int tStartIndex = 0;
             switch (GT_NEI_DefaultHandler.this.mRecipeMap.mUsualInputCount) {

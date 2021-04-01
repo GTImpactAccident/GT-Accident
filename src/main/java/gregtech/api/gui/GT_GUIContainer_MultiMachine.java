@@ -5,8 +5,6 @@ import gregtech.api.util.GT_LanguageManager;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.GT_MetaGenerated_Tool_01;
-import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_DrillerBase;
-import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_LargeTurbine;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -75,17 +73,6 @@ public class GT_GUIContainer_MultiMachine extends GT_GUIContainerMetaTile_Machin
                 } else {
                     fontRendererObj.drawString(trans("142", "Running perfectly."), 10, 18, 16448255);
                     fontRendererObj.drawString(trans("145", "Progress") + " " + EnumChatFormatting.GREEN + mContainer.mProgressTime / 20 + EnumChatFormatting.RESET + " / " + EnumChatFormatting.YELLOW + mContainer.mMaxProgressTime / 20 + EnumChatFormatting.RESET + " s", 10, 28, 16448255);
-                }
-                if (mContainer.mTileEntity.getMetaTileEntity() instanceof GT_MetaTileEntity_DrillerBase) {
-                    ItemStack tItem = mContainer.mTileEntity.getMetaTileEntity().getStackInSlot(1);
-                    if (tItem == null || !GT_Utility.areStacksEqual(tItem, GT_ModHandler.getIC2Item("miningPipe", 1L))) {
-                        fontRendererObj.drawString(trans("143", "Missing Mining Pipe"), 10, mContainer.mActive == 0 ? 40 : 24, 16448255);
-                    }
-                } else if (mContainer.mTileEntity.getMetaTileEntity() instanceof GT_MetaTileEntity_LargeTurbine) {
-                    ItemStack tItem = mContainer.mTileEntity.getMetaTileEntity().getStackInSlot(1);
-                    if (tItem == null || !(tItem.getItem() == GT_MetaGenerated_Tool_01.INSTANCE && tItem.getItemDamage() >= 170 && tItem.getItemDamage() <= 177)) {
-                        fontRendererObj.drawString(trans("144", "Missing Turbine Rotor"), 10, mContainer.mActive == 0 ? 40 : 24, 16448255);
-                    }
                 }
             }
         }

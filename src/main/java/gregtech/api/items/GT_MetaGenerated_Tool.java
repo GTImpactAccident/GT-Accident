@@ -12,7 +12,6 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.GregTech_API;
 import gregtech.api.enchants.Enchantment_Radioactivity;
 import gregtech.api.enums.Materials;
-import gregtech.api.enums.TC_Aspects.TC_AspectStack;
 import gregtech.api.interfaces.IDamagableItem;
 import gregtech.api.interfaces.IToolStats;
 import gregtech.api.util.GT_LanguageManager;
@@ -144,10 +143,10 @@ public abstract class GT_MetaGenerated_Tool extends GT_MetaBase_Item implements 
      * @param aEnglish                The Default Localized Name of the created Item
      * @param aToolTip                The Default ToolTip of the created Item, you can also insert null for having no ToolTip
      * @param aToolStats              The Food Value of this Item. Can be null as well.
-     * @param aOreDictNamesAndAspects The OreDict Names you want to give the Item. Also used to assign Thaumcraft Aspects.
+     * @param aOreDictNames           The OreDict Names you want to give the Item.
      * @return An ItemStack containing the newly created Item, but without specific Stats.
      */
-    public final ItemStack addTool(int aID, String aEnglish, String aToolTip, IToolStats aToolStats, Object... aOreDictNamesAndAspects) {
+    public final ItemStack addTool(int aID, String aEnglish, String aToolTip, IToolStats aToolStats, Object... aOreDictNames) {
         if (aToolTip == null) aToolTip = "";
         if (aID >= 0 && aID < 32766 && aID % 2 == 0) {
             GT_LanguageManager.addStringLocalization(getUnlocalizedName() + "." + aID + ".name", aEnglish);
@@ -158,15 +157,9 @@ public abstract class GT_MetaGenerated_Tool extends GT_MetaBase_Item implements 
             mToolStats.put((short) (aID + 1), aToolStats);
             aToolStats.onStatsAddedToTool(this, aID);
             ItemStack rStack = new ItemStack(this, 1, aID);
-            List<TC_AspectStack> tAspects = new ArrayList<TC_AspectStack>();
-            for (Object tOreDictNameOrAspect : aOreDictNamesAndAspects) {
-                if (tOreDictNameOrAspect instanceof TC_AspectStack)
-                    ((TC_AspectStack) tOreDictNameOrAspect).addToAspectList(tAspects);
-                else
-                    GT_OreDictUnificator.registerOre(tOreDictNameOrAspect, rStack);
+            for (Object tOreDictName : aOreDictNames) {
+                GT_OreDictUnificator.registerOre(tOreDictName, rStack);
             }
-            if (GregTech_API.sThaumcraftCompat != null)
-                GregTech_API.sThaumcraftCompat.registerThaumcraftAspectsToItem(rStack, tAspects, false);
             return rStack;
         }
         return null;

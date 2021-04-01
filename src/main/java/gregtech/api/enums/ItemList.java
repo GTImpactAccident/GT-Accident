@@ -628,8 +628,6 @@ public enum ItemList implements IItemContainer {
     FusionComputer_LuV, FusionComputer_ZPMV, FusionComputer_UV,
     Casing_Fusion_Coil, Casing_Fusion, Casing_Fusion2,
     Generator_Plasma_IV, Generator_Plasma_LuV, Generator_Plasma_ZPMV,
-    MagicEnergyConverter_LV, MagicEnergyConverter_MV, MagicEnergyConverter_HV,
-    MagicEnergyAbsorber_LV, MagicEnergyAbsorber_MV, MagicEnergyAbsorber_HV, MagicEnergyAbsorber_EV,
     Depleted_Thorium_1, Depleted_Thorium_2, Depleted_Thorium_4,
     Processing_Array,  Advanced_Processing_Array, Distillation_Tower, Energy_LapotronicOrb2,
     Energy_Module, Energy_Cluster,

@@ -9,7 +9,6 @@ public class ProcessingModSupport implements gregtech.api.interfaces.IMaterialHa
     public static boolean aTGregSupport = Loader.isModLoaded("TGregworks");
     public static boolean aEnablePFAAMats = Loader.isModLoaded("PFAAGeologica");
     public static boolean aEnableUBCMats = Loader.isModLoaded("UndergroundBiomes");
-    public static boolean aEnableThaumcraftMats = Loader.isModLoaded("Thaumcraft");
     public static boolean aEnableRotaryCraftMats = Loader.isModLoaded("RotaryCraft");
     public static boolean aEnableThermalFoundationMats = Loader.isModLoaded("ThermalFoundation");
     public static boolean aEnableEnderIOMats = Loader.isModLoaded("EnderIO");
@@ -107,18 +106,6 @@ public class ProcessingModSupport implements gregtech.api.interfaces.IMaterialHa
             Materials.AstralSilver.mHasParentMod = false;
             Materials.Midasium.mHasParentMod = false;
             Materials.Adamantium.mHasParentMod = false;
-        }
-        if (!aEnableThaumcraftMats) {
-            Materials.Thaumium.mHasParentMod = false;
-            Materials.InfusedGold.mHasParentMod = false;
-            Materials.InfusedAir.mHasParentMod = false;
-            Materials.InfusedFire.mHasParentMod = false;
-            Materials.InfusedEarth.mHasParentMod = false;
-            Materials.InfusedWater.mHasParentMod = false;
-            Materials.InfusedEntropy.mHasParentMod = false;
-            Materials.InfusedOrder.mHasParentMod = false;
-            Materials.InfusedVis.mHasParentMod = false;
-            Materials.InfusedDull.mHasParentMod = false;
         }
         if (!aEnableUBCMats) {
             Materials.Blueschist.mHasParentMod = false;

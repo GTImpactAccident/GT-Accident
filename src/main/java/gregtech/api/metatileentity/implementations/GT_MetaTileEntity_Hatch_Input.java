@@ -1,6 +1,5 @@
 package gregtech.api.metatileentity.implementations;
 
-import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
@@ -17,7 +16,7 @@ public class GT_MetaTileEntity_Hatch_Input extends GT_MetaTileEntity_Hatch {
     public GT_Recipe_Map mRecipeMap = null;
 
     public GT_MetaTileEntity_Hatch_Input(int aID, String aName, String aNameRegional, int aTier) {
-        super(aID, aName, aNameRegional, aTier, 3, new String[]{"Fluid Input for Multiblocks",  "Capacity: "+ 8000 * (aTier + 1) + "L"});
+        super(aID, aName, aNameRegional, aTier, 3, new String[]{"Fluid Input for Multiblocks", "Capacity: " + 8000 * (aTier + 1) + "L"});
     }
 
     public GT_MetaTileEntity_Hatch_Input(String aName, int aTier, String aDescription, ITexture[][][] aTextures) {
@@ -102,8 +101,8 @@ public class GT_MetaTileEntity_Hatch_Input extends GT_MetaTileEntity_Hatch {
 
     @Override
     public boolean isFluidInputAllowed(FluidStack aFluid) {
-        ItemStack iss = GT_ModHandler.getIC2Item("cell",1);
-        ItemStack is = GT_Utility.fillFluidContainer(aFluid, iss,false,true);
+        ItemStack iss = GT_ModHandler.getIC2Item("cell", 1);
+        ItemStack is = GT_Utility.fillFluidContainer(aFluid, iss, false, true);
         return mRecipeMap == null || mRecipeMap.containsInput(aFluid) || mRecipeMap.containsInput(is);
     }
 

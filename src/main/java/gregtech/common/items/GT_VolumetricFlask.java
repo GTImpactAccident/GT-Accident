@@ -185,6 +185,7 @@ public class GT_VolumetricFlask extends GT_Generic_Item implements IFluidContain
         return new FluidStack(fluidStack, maxDrain);
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean b) {
         super.addInformation(stack, player, info, b);
@@ -197,6 +198,7 @@ public class GT_VolumetricFlask extends GT_Generic_Item implements IFluidContain
         info.add("Rightclick on air to set volume (only while empty)");
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs creativeTabs, List itemList) {
         itemList.add(new ItemStack(this));

@@ -8,8 +8,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GT_Item_Ores
-        extends ItemBlock {
+public class GT_Item_Ores extends ItemBlock {
+
     public GT_Item_Ores(Block par1) {
         super(par1);
         setMaxDamage(0);
@@ -26,7 +26,7 @@ public class GT_Item_Ores
     }
 
     public String getItemStackDisplayName(ItemStack aStack) {
-    	return Materials.getLocalizedNameForItem(super.getItemStackDisplayName(aStack), getDamage(aStack) % 1000);
+        return Materials.getLocalizedNameForItem(super.getItemStackDisplayName(aStack), getDamage(aStack) % 1000);
     }
 
     public boolean placeBlockAt(ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int side, float hitX, float hitY, float hitZ, int aMeta) {

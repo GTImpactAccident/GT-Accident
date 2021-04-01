@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class GT_Item_Stones_Abstract
-        extends ItemBlock {
+public class GT_Item_Stones_Abstract extends ItemBlock {
+
     private final String mNoMobsToolTip = GT_LanguageManager.addStringLocalization("gt.nomobspawnsonthisblock", "Mobs cannot Spawn on this Block");
 
     public GT_Item_Stones_Abstract(Block par1) {
@@ -28,6 +28,8 @@ public class GT_Item_Stones_Abstract
         return aMeta;
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack aStack, EntityPlayer aPlayer, List aList, boolean aF3_H) {
         super.addInformation(aStack, aPlayer, aList, aF3_H);
         if (aStack.getItemDamage() % 8 >= 3) {

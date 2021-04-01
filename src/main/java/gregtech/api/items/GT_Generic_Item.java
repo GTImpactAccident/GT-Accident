@@ -90,6 +90,7 @@ public class GT_Generic_Item extends Item implements IProjectileItem {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack aStack, EntityPlayer aPlayer, List aList, boolean aF3_H) {
         if (getMaxDamage() > 0 && !getHasSubtypes())
             aList.add((aStack.getMaxDamage() - getDamage(aStack)) + " / " + aStack.getMaxDamage());
@@ -98,6 +99,7 @@ public class GT_Generic_Item extends Item implements IProjectileItem {
         addAdditionalToolTips(aList, aStack, aPlayer);
     }
 
+    @SuppressWarnings("rawtypes")
     protected void addAdditionalToolTips(List aList, ItemStack aStack, EntityPlayer aPlayer) {
         //
     }

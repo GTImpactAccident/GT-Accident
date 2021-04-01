@@ -7,8 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
-public class GT_Cover_ItemMeter
-        extends GT_CoverBehavior {
+public class GT_Cover_ItemMeter extends GT_CoverBehavior {
     public int doCoverThings(byte aSide, byte aInputRedstone, int aCoverID, int aCoverVariable, ICoverable aTileEntity, long aTimer) {
         int[] tSlots;
         if (aCoverVariable < 2) {
@@ -28,19 +27,25 @@ public class GT_Cover_ItemMeter
             }
         }
         tAll /= 14;
-        if(tAll > 0)
-            aTileEntity.setOutputRedstoneSignal(aSide, aCoverVariable == 1 ? (byte)(15 - (tFull <= 0 ? 0 : tFull / tAll + 1)) : tFull <= 0 ? 0 : (byte)(tFull / tAll + 1));
+        if (tAll > 0)
+            aTileEntity.setOutputRedstoneSignal(aSide, aCoverVariable == 1 ? (byte) (15 - (tFull <= 0 ? 0 : tFull / tAll + 1)) : tFull <= 0 ? 0 : (byte) (tFull / tAll + 1));
         else
-            aTileEntity.setOutputRedstoneSignal(aSide, ((byte)(aCoverVariable == 1 ? 15 : 0)));
+            aTileEntity.setOutputRedstoneSignal(aSide, ((byte) (aCoverVariable == 1 ? 15 : 0)));
         return aCoverVariable;
     }
 
     public int onCoverScrewdriverclick(byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking()? -1 : 1)) % (1 + aTileEntity.getSizeInventory());
-        switch(aCoverVariable) {
-            case 0: GT_Utility.sendChatToPlayer(aPlayer, trans("051", "Normal")); break;
-            case 1: GT_Utility.sendChatToPlayer(aPlayer, trans("052", "Inverted")); break;
-            default: GT_Utility.sendChatToPlayer(aPlayer, trans("053", "Slot: ") + (aCoverVariable - 2)); break;
+        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking() ? -1 : 1)) % (1 + aTileEntity.getSizeInventory());
+        switch (aCoverVariable) {
+            case 0:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("051", "Normal"));
+                break;
+            case 1:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("052", "Inverted"));
+                break;
+            default:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("053", "Slot: ") + (aCoverVariable - 2));
+                break;
         }
         return aCoverVariable;
     }

@@ -9,8 +9,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 
-import java.util.Iterator;
-
 /**
  * NEVER INCLUDE THIS FILE IN YOUR MOD!!!
  * <p/>
@@ -64,7 +62,7 @@ public class GT_ContainerMetaTile_Machine extends GT_Container {
             mSupplier = Slot::new;
         mTileEntity = aTileEntity;
 
-        if(initEvertyhing) {
+        if (initEvertyhing) {
             if (mTileEntity != null && mTileEntity.getMetaTileEntity() != null) {
                 addSlots(aInventoryPlayer);
                 if (doesBindPlayerInventory()) bindPlayerInventory(aInventoryPlayer);
@@ -217,8 +215,8 @@ public class GT_ContainerMetaTile_Machine extends GT_Container {
     public boolean canInteractWith(EntityPlayer player) {
         return mTileEntity.isUseableByPlayer(player);
     }
-    
-    public String trans(String aKey, String aEnglish){
-    	return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_"+aKey, aEnglish, false);
+
+    public String trans(String aKey, String aEnglish) {
+        return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_" + aKey, aEnglish, false);
     }
 }

@@ -4,8 +4,8 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import gregtech.GT_Mod;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.GT_Values;
-import gregtech.api.interfaces.metatileentity.IConnectable;
 import gregtech.api.enums.Materials;
+import gregtech.api.interfaces.metatileentity.IConnectable;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.*;
 import gregtech.api.util.GT_ItsNotMyFaultException;
@@ -25,13 +25,14 @@ import org.lwjgl.input.Keyboard;
 import java.util.Arrays;
 import java.util.List;
 
-public class GT_Item_Machines
-        extends ItemBlock {
+public class GT_Item_Machines extends ItemBlock {
+
     public static Item INSTANCE;
     public static byte[] mShowStructure = null;
     public static int mLastID = -1;
     private static long mTimer = 0;
     private static int mClick = 0;
+
     public GT_Item_Machines(Block par1) {
         super(par1);
         setMaxDamage(0);
@@ -41,9 +42,9 @@ public class GT_Item_Machines
     }
 
     public static void postInit() {
-        if(FMLCommonHandler.instance().getEffectiveSide().isClient()) {
+        if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
             mShowStructure = new byte[Short.MAX_VALUE];
-            for (int i = 0;  i < GregTech_API.METATILEENTITIES.length; i++) {
+            for (int i = 0; i < GregTech_API.METATILEENTITIES.length; i++) {
                 if (GregTech_API.METATILEENTITIES[i] != null && GregTech_API.METATILEENTITIES[i].getDescription().length > 5) {
                     mShowStructure[i] = 1;
                 }
@@ -105,19 +106,24 @@ public class GT_Item_Machines
                         }
                         n++;
                         if (GT_Utility.isStringValid(tDescription)) {
-                        	if(tDescription.contains("%%%")){
-                        		String[] tString = tDescription.split("%%%");
-                        		if(tString.length>=2){
-                                                StringBuffer tBuffer = new StringBuffer();
-                        			Object tRep[] = new String[tString.length / 2];
-                        			for (int j = 0; j < tString.length; j++)
-                        				if (j % 2 == 0) tBuffer.append(tString[j]);
-                        				else {tBuffer.append(" %s"); tRep[j / 2] = tString[j];}
-                                                aList.add(String.format(GT_LanguageManager.addStringLocalization("TileEntity_DESCRIPTION_" + tDamage + "_Index_" + i++, tBuffer.toString(), !GregTech_API.sPostloadFinished), tRep));
-                        		}
-                        	}else{String tTranslated = GT_LanguageManager.addStringLocalization("TileEntity_DESCRIPTION_" + tDamage + "_Index_" + i++, tDescription, !GregTech_API.sPostloadFinished );
-                            aList.add(tTranslated.equals("") ? tDescription : tTranslated);}
-                        }else i++;
+                            if (tDescription.contains("%%%")) {
+                                String[] tString = tDescription.split("%%%");
+                                if (tString.length >= 2) {
+                                    StringBuilder tBuffer = new StringBuilder();
+                                    Object[] tRep = new String[tString.length / 2];
+                                    for (int j = 0; j < tString.length; j++)
+                                        if (j % 2 == 0) tBuffer.append(tString[j]);
+                                        else {
+                                            tBuffer.append(" %s");
+                                            tRep[j / 2] = tString[j];
+                                        }
+                                    aList.add(String.format(GT_LanguageManager.addStringLocalization("TileEntity_DESCRIPTION_" + tDamage + "_Index_" + i++, tBuffer.toString(), !GregTech_API.sPostloadFinished), tRep));
+                                }
+                            } else {
+                                String tTranslated = GT_LanguageManager.addStringLocalization("TileEntity_DESCRIPTION_" + tDamage + "_Index_" + i++, tDescription, !GregTech_API.sPostloadFinished);
+                                aList.add(tTranslated.equals("") ? tDescription : tTranslated);
+                            }
+                        } else i++;
                     }
                 }
                 if (tTileEntity.getMetaTileEntity() instanceof GT_MetaTileEntity_BasicMachine_GT_Recipe) {
@@ -126,31 +132,31 @@ public class GT_Item_Machines
                 }
                 if (tTileEntity.getEUCapacity() > 0L) {
                     if (tTileEntity.getInputVoltage() > 0L) {
-                        aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_IN", "Voltage IN: ", !GregTech_API.sPostloadFinished ) + EnumChatFormatting.GREEN + tTileEntity.getInputVoltage() + " (" + GT_Values.VN[GT_Utility.getTier(tTileEntity.getInputVoltage())] + ")" + EnumChatFormatting.GRAY);
+                        aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_IN", "Voltage IN: ", !GregTech_API.sPostloadFinished) + EnumChatFormatting.GREEN + tTileEntity.getInputVoltage() + " (" + GT_Values.VN[GT_Utility.getTier(tTileEntity.getInputVoltage())] + ")" + EnumChatFormatting.GRAY);
                     }
                     if (tTileEntity.getOutputVoltage() > 0L) {
-                        aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_OUT", "Voltage OUT: ", !GregTech_API.sPostloadFinished ) + EnumChatFormatting.GREEN + tTileEntity.getOutputVoltage() + " (" + GT_Values.VN[GT_Utility.getTier(tTileEntity.getOutputVoltage())] + ")" + EnumChatFormatting.GRAY);
+                        aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_OUT", "Voltage OUT: ", !GregTech_API.sPostloadFinished) + EnumChatFormatting.GREEN + tTileEntity.getOutputVoltage() + " (" + GT_Values.VN[GT_Utility.getTier(tTileEntity.getOutputVoltage())] + ")" + EnumChatFormatting.GRAY);
                     }
                     if (tTileEntity.getOutputAmperage() > 1L) {
-                        aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_AMOUNT", "Amperage: ", !GregTech_API.sPostloadFinished ) + EnumChatFormatting.YELLOW + tTileEntity.getOutputAmperage() + EnumChatFormatting.GRAY);
+                        aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_AMOUNT", "Amperage: ", !GregTech_API.sPostloadFinished) + EnumChatFormatting.YELLOW + tTileEntity.getOutputAmperage() + EnumChatFormatting.GRAY);
                     }
-                    aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_STORE", "Capacity: ", !GregTech_API.sPostloadFinished ) + EnumChatFormatting.BLUE + tTileEntity.getEUCapacity() + EnumChatFormatting.GRAY);
+                    aList.add(GT_LanguageManager.addStringLocalization("TileEntity_EUp_STORE", "Capacity: ", !GregTech_API.sPostloadFinished) + EnumChatFormatting.BLUE + tTileEntity.getEUCapacity() + EnumChatFormatting.GRAY);
                 }
             }
             NBTTagCompound aNBT = aStack.getTagCompound();
             if (aNBT != null) {
-                if(aNBT.getBoolean("mWaterProof")){
-                    aList.add(GT_LanguageManager.addStringLocalization("GT_WATERPROOF","Is Water Proof", !GregTech_API.sPostloadFinished));
+                if (aNBT.getBoolean("mWaterProof")) {
+                    aList.add(GT_LanguageManager.addStringLocalization("GT_WATERPROOF", "Is Water Proof", !GregTech_API.sPostloadFinished));
                 }
                 if (aNBT.getBoolean("mMuffler")) {
-                    aList.add(GT_LanguageManager.addStringLocalization("GT_TileEntity_MUFFLER", "has Muffler Upgrade", !GregTech_API.sPostloadFinished ));
+                    aList.add(GT_LanguageManager.addStringLocalization("GT_TileEntity_MUFFLER", "has Muffler Upgrade", !GregTech_API.sPostloadFinished));
                 }
                 if (aNBT.getBoolean("mSteamConverter")) {
-                    aList.add(GT_LanguageManager.addStringLocalization("GT_TileEntity_STEAMCONVERTER", "has Steam Upgrade", !GregTech_API.sPostloadFinished ));
+                    aList.add(GT_LanguageManager.addStringLocalization("GT_TileEntity_STEAMCONVERTER", "has Steam Upgrade", !GregTech_API.sPostloadFinished));
                 }
                 int tAmount = 0;
                 if ((tAmount = aNBT.getByte("mSteamTanks")) > 0) {
-                    aList.add(tAmount + " " + GT_LanguageManager.addStringLocalization("GT_TileEntity_STEAMTANKS", "Steam Tank Upgrades", !GregTech_API.sPostloadFinished ));
+                    aList.add(tAmount + " " + GT_LanguageManager.addStringLocalization("GT_TileEntity_STEAMTANKS", "Steam Tank Upgrades", !GregTech_API.sPostloadFinished));
                 }
             }
         } catch (Throwable e) {
@@ -174,24 +180,24 @@ public class GT_Item_Machines
     }
 
     public String getItemStackDisplayName(ItemStack aStack) {
-    	String aName = super.getItemStackDisplayName(aStack);
-    	short tDamage = (short) getDamage(aStack);
-    	if (tDamage >= 0 && tDamage < GregTech_API.METATILEENTITIES.length && GregTech_API.METATILEENTITIES[tDamage] != null) {
-    		Materials aMaterial = null;
-    		if (GregTech_API.METATILEENTITIES[tDamage] instanceof GT_MetaPipeEntity_Fluid) {
-    			aMaterial = ((GT_MetaPipeEntity_Fluid) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
+        String aName = super.getItemStackDisplayName(aStack);
+        short tDamage = (short) getDamage(aStack);
+        if (tDamage >= 0 && tDamage < GregTech_API.METATILEENTITIES.length && GregTech_API.METATILEENTITIES[tDamage] != null) {
+            Materials aMaterial = null;
+            if (GregTech_API.METATILEENTITIES[tDamage] instanceof GT_MetaPipeEntity_Fluid) {
+                aMaterial = ((GT_MetaPipeEntity_Fluid) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
             } else if (GregTech_API.METATILEENTITIES[tDamage] instanceof GT_MetaPipeEntity_Cable) {
-    			aMaterial = ((GT_MetaPipeEntity_Cable) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
+                aMaterial = ((GT_MetaPipeEntity_Cable) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
             } else if (GregTech_API.METATILEENTITIES[tDamage] instanceof GT_MetaPipeEntity_Item) {
-    			aMaterial = ((GT_MetaPipeEntity_Item) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
+                aMaterial = ((GT_MetaPipeEntity_Item) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
             } else if (GregTech_API.METATILEENTITIES[tDamage] instanceof GT_MetaPipeEntity_Frame) {
-    			aMaterial = ((GT_MetaPipeEntity_Frame) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
+                aMaterial = ((GT_MetaPipeEntity_Frame) GregTech_API.METATILEENTITIES[tDamage]).mMaterial;
             }
-    		if (aMaterial != null) {
-    			return aMaterial.getLocalizedNameForItem(aName);
-    		}
+            if (aMaterial != null) {
+                return aMaterial.getLocalizedNameForItem(aName);
+            }
         }
-    	return aName;
+        return aName;
     }
 
     public void onCreated(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
@@ -228,12 +234,12 @@ public class GT_Item_Machines
                 final byte aSide = GT_Utility.getOppositeSide(side);
                 if (tTileEntity.getMetaTileEntity() instanceof IConnectable) {
                     // If we're connectable, try connecting to whatever we're up against
-                	((IConnectable) tTileEntity.getMetaTileEntity()).connect(aSide);
+                    ((IConnectable) tTileEntity.getMetaTileEntity()).connect(aSide);
                 } else if (aPlayer != null && aPlayer.isSneaking()) {
                     // If we're being placed against something that is connectable, try telling it to connect to us
                     IGregTechTileEntity aTileEntity = tTileEntity.getIGregTechTileEntityAtSide(aSide);
                     if (aTileEntity != null && aTileEntity.getMetaTileEntity() instanceof IConnectable) {
-                        ((IConnectable) aTileEntity.getMetaTileEntity()).connect((byte)side);
+                        ((IConnectable) aTileEntity.getMetaTileEntity()).connect((byte) side);
                     }
                 }
             }

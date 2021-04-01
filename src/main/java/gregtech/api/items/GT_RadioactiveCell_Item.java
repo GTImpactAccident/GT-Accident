@@ -74,15 +74,6 @@ public class GT_RadioactiveCell_Item
             aStack.setTagCompound(tNBT);
         }
         tNBT.setInteger("durability", aDurability);
-//    if (this.maxDelay > 0)
-//    {
-//      double var4 = (this.maxDelay - aDurability) / this.maxDelay;
-//      int var6 = (int)(aStack.getMaxDamage() * var4);
-//      if (var6 >= aStack.getMaxDamage()) {
-//        var6 = aStack.getMaxDamage() - 1;
-//      }
-//      aStack.setItemDamage(aStack.getMaxDamage() - var6);
-//    }
     }
 
     public int getMaxNuclearDurability() {
@@ -139,9 +130,9 @@ public class GT_RadioactiveCell_Item
         setDamageForStack(stack, getDamageOfStack(stack) + Dmg);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void addAdditionalToolTips(List aList, ItemStack aStack, EntityPlayer aPlayer) {
         super.addAdditionalToolTips(aList, aStack, aPlayer);
-        //aList.add("Time left: " + (this.maxDelay - getDurabilityOfStack(aStack)) + " secs");
         int rDmg = getDurabilityOfStack(aStack) * 6 / this.maxDmg;
         EnumChatFormatting color2;
         switch (rDmg) {

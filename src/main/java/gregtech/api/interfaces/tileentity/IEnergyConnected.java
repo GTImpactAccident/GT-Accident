@@ -29,32 +29,34 @@ public interface IEnergyConnected extends IColoredTileEntity, IHasWorldObjectAnd
      * @param aSide 0 - 5 = Vanilla Directions of YOUR Block the Energy gets inserted to. 6 = No specific Side (don't do Side checks for this Side)
      * @return amount of used Amperes. 0 if not accepted anything.
      */
-    public long injectEnergyUnits(byte aSide, long aVoltage, long aAmperage);
+    long injectEnergyUnits(byte aSide, long aVoltage, long aAmperage);
 
     /**
      * Sided Energy Input
      */
-    public boolean inputEnergyFrom(byte aSide);
-    public boolean inputEnergyFrom(byte aSide, boolean waitForActive);
+    boolean inputEnergyFrom(byte aSide);
+
+    boolean inputEnergyFrom(byte aSide, boolean waitForActive);
 
     /**
      * Sided Energy Output
      */
-    public boolean outputsEnergyTo(byte aSide);
-    public boolean outputsEnergyTo(byte aSide, boolean waitForActive);
+    boolean outputsEnergyTo(byte aSide);
+
+    boolean outputsEnergyTo(byte aSide, boolean waitForActive);
 
     /**
      * Utility for the Network
      */
-    public static class Util {
+    class Util {
         /**
          * Emits Energy to the E-net. Also compatible with adjacent IC2 TileEntities.
          *
          * @return the used Amperage.
          */
-        public static final long emitEnergyToNetwork(long aVoltage, long aAmperage, IEnergyConnected aEmitter) {
+        public static long emitEnergyToNetwork(long aVoltage, long aAmperage, IEnergyConnected aEmitter) {
             long rUsedAmperes = 0;
-            for (byte i = 0, j = 0; i < 6 && aAmperage > rUsedAmperes; i++)
+            for (byte i = 0, j; i < 6 && aAmperage > rUsedAmperes; i++)
                 if (aEmitter.outputsEnergyTo(i)) {
                     j = GT_Utility.getOppositeSide(i);
                     TileEntity tTileEntity = aEmitter.getTileEntityAtSide(i);
@@ -78,16 +80,15 @@ public interface IEnergyConnected extends IColoredTileEntity, IHasWorldObjectAnd
                         }
                         if (GregTech_API.mRFExplosions && GregTech_API.sMachineExplosions && ((IEnergyReceiver) tTileEntity).getMaxEnergyStored(tDirection) < rfOut * 600) {
                             if (rfOut > 32 * GregTech_API.mEUtoRF / 100) {
-                                int aExplosionPower = rfOut;
-                                float tStrength = aExplosionPower < V[0] ? 1.0F : aExplosionPower < V[1] ? 2.0F : aExplosionPower < V[2] ? 3.0F : aExplosionPower < V[3] ? 4.0F : aExplosionPower < V[4] ? 5.0F : aExplosionPower < V[4] * 2 ? 6.0F : aExplosionPower < V[5] ? 7.0F : aExplosionPower < V[6] ? 8.0F : aExplosionPower < V[7] ? 9.0F : 10.0F;
+                                float tStrength = rfOut < V[0] ? 1.0F : rfOut < V[1] ? 2.0F : rfOut < V[2] ? 3.0F : rfOut < V[3] ? 4.0F : rfOut < V[4] ? 5.0F : rfOut < V[4] * 2 ? 6.0F : rfOut < V[5] ? 7.0F : rfOut < V[6] ? 8.0F : rfOut < V[7] ? 9.0F : 10.0F;
                                 int tX = tTileEntity.xCoord, tY = tTileEntity.yCoord, tZ = tTileEntity.zCoord;
                                 World tWorld = tTileEntity.getWorldObj();
                                 GT_Utility.sendSoundToPlayers(tWorld, GregTech_API.sSoundList.get(209), 1.0F, -1, tX, tY, tZ);
                                 tWorld.setBlock(tX, tY, tZ, Blocks.air);
                                 if (GregTech_API.sMachineExplosions)
-                                	if(GT_Mod.gregtechproxy.mPollution)
-                                		GT_Pollution.addPollution(tWorld.getChunkFromBlockCoords(tX,tZ), 100000);
-                                    tWorld.createExplosion(null, tX + 0.5, tY + 0.5, tZ + 0.5, tStrength, true);
+                                    if (GT_Mod.gregtechproxy.mPollution)
+                                        GT_Pollution.addPollution(tWorld.getChunkFromBlockCoords(tX, tZ), 100000);
+                                tWorld.createExplosion(null, tX + 0.5, tY + 0.5, tZ + 0.5, tStrength, true);
                             }
                         }
                     }

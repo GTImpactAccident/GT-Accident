@@ -1,9 +1,10 @@
 package gregtech.api.events;
 
 import net.minecraft.entity.Entity;
+import net.minecraftforge.event.entity.EntityEvent;
 
 @cpw.mods.fml.common.eventhandler.Cancelable
-public class TeleporterUsingEvent extends net.minecraftforge.event.entity.EntityEvent {
+public class TeleporterUsingEvent extends EntityEvent {
 
     public final Entity mEntity;
     public final int mTargetX, mTargetY, mTargetZ, mTargetD;

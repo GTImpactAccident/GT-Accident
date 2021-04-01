@@ -24,24 +24,24 @@ public class GT_GUIContainer_FusionReactor extends GT_GUIContainerMetaTile_Machi
         fontRendererObj.drawString(mName, 8, -10, 16448255);
 
         if (mContainer != null) {
-            if ((((GT_Container_MultiMachine) mContainer).mDisplayErrorCode & 64) != 0)
+            if (((mContainer).mDisplayErrorCode & 64) != 0)
                 fontRendererObj.drawString("Incomplete Structure.", 10, 8, 16448255);
 
-            if (((GT_Container_MultiMachine) mContainer).mDisplayErrorCode == 0) {
-                if (((GT_Container_MultiMachine) mContainer).mActive == 0) {
+            if ((mContainer).mDisplayErrorCode == 0) {
+                if ((mContainer).mActive == 0) {
                     fontRendererObj.drawString("Hit with Soft Hammer to (re-)start the Machine if it doesn't start.", -70, 170, 16448255);
                 } else {
                     fontRendererObj.drawString("Running perfectly.", 10, 170, 16448255);
                 }
             }
-            if(this.mContainer.mEnergy > 160000000 && this.mContainer.mEnergy < 160010000)
+            if (this.mContainer.mEnergy > 160000000 && this.mContainer.mEnergy < 160010000)
                 fontRendererObj.drawString("160,000,000 EU", 50, 155, 0x00ff0000);
-            else if(this.mContainer.mEnergy > 320000000 && this.mContainer.mEnergy < 320010000)
+            else if (this.mContainer.mEnergy > 320000000 && this.mContainer.mEnergy < 320010000)
                 fontRendererObj.drawString("320,000,000 EU", 50, 155, 0x00ff0000);
-            else if(this.mContainer.mEnergy > 640000000 && this.mContainer.mEnergy < 640010000)
+            else if (this.mContainer.mEnergy > 640000000 && this.mContainer.mEnergy < 640010000)
                 fontRendererObj.drawString("640,000,000 EU", 50, 155, 0x00ff0000);
             else
-            fontRendererObj.drawString(GT_Utility.formatNumbers(this.mContainer.mEnergy) + " EU", 50, 155, 0x00ff0000);
+                fontRendererObj.drawString(GT_Utility.formatNumbers(this.mContainer.mEnergy) + " EU", 50, 155, 0x00ff0000);
         }
     }
 

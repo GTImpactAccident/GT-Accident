@@ -43,23 +43,23 @@ public class Behaviour_Plunger_Fluid
                 }
             }
 
-        }       
-        if (aTileEntity instanceof IGregTechTileEntity) {
-        IGregTechTileEntity tTileEntity = (IGregTechTileEntity) aTileEntity;
-        IMetaTileEntity mTileEntity = tTileEntity.getMetaTileEntity();
-        if (aPlayer.isSneaking() && mTileEntity instanceof GT_MetaTileEntity_WaterPumpBase) {
-            ((GT_MetaTileEntity_WaterPumpBase) mTileEntity).mEfficiencyRate = 1d;
-            GT_Utility.sendChatToPlayer(aPlayer, GT_LanguageManager.addStringLocalization("gt.plunger.clearpump", "Cleared"));
-            return true;
         }
-        if (mTileEntity instanceof GT_MetaTileEntity_BasicTank) {
-          	GT_MetaTileEntity_BasicTank machine = (GT_MetaTileEntity_BasicTank) mTileEntity;
-           	if(machine.mFluid!=null&&machine.mFluid.amount>0)
-           	machine.mFluid.amount = machine.mFluid.amount - Math.min(machine.mFluid.amount, 1000);
-            GT_Utility.sendSoundToPlayers(aWorld, (String) GregTech_API.sSoundList.get(Integer.valueOf(101)), 1.0F, -1.0F, aX, aY, aZ);
-           	return true;
-                }
+        if (aTileEntity instanceof IGregTechTileEntity) {
+            IGregTechTileEntity tTileEntity = (IGregTechTileEntity) aTileEntity;
+            IMetaTileEntity mTileEntity = tTileEntity.getMetaTileEntity();
+            if (aPlayer.isSneaking() && mTileEntity instanceof GT_MetaTileEntity_WaterPumpBase) {
+                ((GT_MetaTileEntity_WaterPumpBase) mTileEntity).mEfficiencyRate = 1d;
+                GT_Utility.sendChatToPlayer(aPlayer, GT_LanguageManager.addStringLocalization("gt.plunger.clearpump", "Cleared"));
+                return true;
             }
+            if (mTileEntity instanceof GT_MetaTileEntity_BasicTank) {
+                GT_MetaTileEntity_BasicTank machine = (GT_MetaTileEntity_BasicTank) mTileEntity;
+                if (machine.mFluid != null && machine.mFluid.amount > 0)
+                    machine.mFluid.amount = machine.mFluid.amount - Math.min(machine.mFluid.amount, 1000);
+                GT_Utility.sendSoundToPlayers(aWorld, (String) GregTech_API.sSoundList.get(Integer.valueOf(101)), 1.0F, -1.0F, aX, aY, aZ);
+                return true;
+            }
+        }
         return false;
     }
 

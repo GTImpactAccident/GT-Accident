@@ -7,20 +7,29 @@ import gregtech.api.util.GT_Utility;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fluids.Fluid;
 
-public class GT_Cover_Shutter
-        extends GT_CoverBehavior {
+public class GT_Cover_Shutter extends GT_CoverBehavior {
     public int doCoverThings(byte aSide, byte aInputRedstone, int aCoverID, int aCoverVariable, ICoverable aTileEntity, long aTimer) {
         return aCoverVariable;
     }
 
     public int onCoverScrewdriverclick(byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking()? -1 : 1)) % 4;
-        if(aCoverVariable <0){aCoverVariable = 3;}
-        switch(aCoverVariable) {
-            case 0: GT_Utility.sendChatToPlayer(aPlayer, trans("082", "Open if work enabled")); break;
-            case 1: GT_Utility.sendChatToPlayer(aPlayer, trans("083", "Open if work disabled")); break;
-            case 2: GT_Utility.sendChatToPlayer(aPlayer, trans("084", "Only Output allowed")); break;
-            case 3: GT_Utility.sendChatToPlayer(aPlayer, trans("085", "Only Input allowed")); break;
+        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking() ? -1 : 1)) % 4;
+        if (aCoverVariable < 0) {
+            aCoverVariable = 3;
+        }
+        switch (aCoverVariable) {
+            case 0:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("082", "Open if work enabled"));
+                break;
+            case 1:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("083", "Open if work disabled"));
+                break;
+            case 2:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("084", "Only Output allowed"));
+                break;
+            case 3:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("085", "Only Input allowed"));
+                break;
         }
         return aCoverVariable;
     }

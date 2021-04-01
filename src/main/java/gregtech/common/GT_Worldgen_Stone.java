@@ -29,14 +29,20 @@ public class GT_Worldgen_Stone
                 if ((this.mAllowToGenerateinVoid) || (!aWorld.getBlock(tX, tY, tZ).isAir(aWorld, tX, tY, tZ))) {
                     float math_pi = 3.141593F;//FB: CNT - CNT_ROUGH_CONSTANT_VALUE
                     float var6 = aRandom.nextFloat() * math_pi;
-                    float var1d = this.mSize / 8.0F;int var2d = tX + 8;int var3d = tZ + 8;int var4d = tY - 2;
-                    float mh_s_0 = MathHelper.sin(var6) * var1d;float mh_c_0 = MathHelper.cos(var6) * var1d;
+                    float var1d = this.mSize / 8.0F;
+                    int var2d = tX + 8;
+                    int var3d = tZ + 8;
+                    int var4d = tY - 2;
+                    float mh_s_0 = MathHelper.sin(var6) * var1d;
+                    float mh_c_0 = MathHelper.cos(var6) * var1d;
                     float var7 = var2d + mh_s_0;
                     float var11 = var3d + mh_c_0;
-                    int var15r = aRandom.nextInt(3);int var17r = aRandom.nextInt(3);
+                    int var15r = aRandom.nextInt(3);
+                    int var17r = aRandom.nextInt(3);
                     int var15 = var4d + var15r;
-                    int mh_n_4=var17r - var15r;
-                    float mh_n_0 = -2*mh_s_0;float mh_n_1 = -2*mh_c_0;
+                    int mh_n_4 = var17r - var15r;
+                    float mh_n_0 = -2 * mh_s_0;
+                    float mh_n_1 = -2 * mh_c_0;
                     for (int var19 = 0; var19 <= this.mSize; var19++) {
                         float var5d = var19 / this.mSize;
                         float var20 = var7 + mh_n_0 * var5d;
@@ -69,7 +75,7 @@ public class GT_Worldgen_Stone
                                                         if (tTargetedBlock != GregTech_API.sBlockOres1) {
                                                             ((GT_TileEntity_Ores) tTileEntity).convertOreBlock(aWorld, eX, eY, eZ);
                                                         }
-                                                        ((GT_TileEntity_Ores)tTileEntity).overrideOreBlockMaterial(this.mBlock, (byte) this.mBlockMeta);
+                                                        ((GT_TileEntity_Ores) tTileEntity).overrideOreBlockMaterial(this.mBlock, (byte) this.mBlockMeta);
                                                     }
                                                 } else if (((this.mAllowToGenerateinVoid) && (aWorld.getBlock(eX, eY, eZ).isAir(aWorld, eX, eY, eZ))) || ((tTargetedBlock != null) && ((tTargetedBlock.isReplaceableOreGen(aWorld, eX, eY, eZ, Blocks.stone)) || (tTargetedBlock.isReplaceableOreGen(aWorld, eX, eY, eZ, Blocks.end_stone)) || (tTargetedBlock.isReplaceableOreGen(aWorld, eX, eY, eZ, Blocks.netherrack)) || (tTargetedBlock.isReplaceableOreGen(aWorld, eX, eY, eZ, GregTech_API.sBlockGranites)) || (tTargetedBlock.isReplaceableOreGen(aWorld, eX, eY, eZ, GregTech_API.sBlockStones))))) {
                                                     aWorld.setBlock(eX, eY, eZ, this.mBlock, this.mBlockMeta, 0);

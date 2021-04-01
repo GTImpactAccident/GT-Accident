@@ -29,8 +29,7 @@ import net.minecraftforge.common.util.FakePlayerFactory;
 import java.util.List;
 import java.util.UUID;
 
-public class GT_Entity_Arrow
-        extends EntityArrow {
+public class GT_Entity_Arrow extends EntityArrow {
     private int mHitBlockX = -1;
     private int mHitBlockY = -1;
     private int mHitBlockZ = -1;

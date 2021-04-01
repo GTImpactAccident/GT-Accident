@@ -75,7 +75,7 @@ public class GT_Runnable_MachineBlockUpdate implements Runnable {
         return mX == that.mX &&
                 mY == that.mY &&
                 mZ == that.mZ &&
-                mWorld.provider.dimensionId ==  that.mWorld.provider.dimensionId;
+                mWorld.provider.dimensionId == that.mWorld.provider.dimensionId;
     }
 
     @Override
@@ -107,8 +107,8 @@ public class GT_Runnable_MachineBlockUpdate implements Runnable {
             mNextQueue = new HashSet<>();
             mRNextQueue = new HashSet<>();
             mAlreadyPassedSet = new HashSet<>();
-            mNextQueue.add(new ChunkPosition(aX,aY,aZ));
-            mUpdater =aUpdater;
+            mNextQueue.add(new ChunkPosition(aX, aY, aZ));
+            mUpdater = aUpdater;
             mDepth = aDepth;
         }
 
@@ -141,8 +141,8 @@ public class GT_Runnable_MachineBlockUpdate implements Runnable {
 
             for (GT_Runnable_MachineBlockUpdate r : mWaitingThreads) {
                 if (r.mX == aX && r.mY == aY && r.mZ == aZ &&
-                aWorld.provider.dimensionId == r.mWorld.provider.dimensionId &&
-                !mUpdater.equals(r)) {
+                        aWorld.provider.dimensionId == r.mWorld.provider.dimensionId &&
+                        !mUpdater.equals(r)) {
                     r.mTimer = r.mTime;
                     return true;
                 }

@@ -45,7 +45,8 @@ public enum CombType {
     // Radioactive Line
     URANIUM("urania", true, Materials.Uranium, 50),
     PLUTONIUM("plutonium", true, Materials.Plutonium, 10),
-    NAQUADAH("stargatium", true, Materials.Naquadah, 10),;
+    NAQUADAH("stargatium", true, Materials.Naquadah, 10),
+    ;
 
     private static int[][] colours = new int[][]{
             {0x906237, 0x58300B},
@@ -86,6 +87,7 @@ public enum CombType {
     public Materials material;
     public int chance;
     private String name;
+
     private CombType(String pName, boolean show, Materials material, int chance) {
         this.name = pName;
         this.material = material;
@@ -98,7 +100,7 @@ public enum CombType {
     }
 
     public String getName() {
-//		return "gt.comb."+this.name;
+
         return GT_LanguageManager.addStringLocalization("comb." + this.name, this.name.substring(0, 1).toUpperCase() + this.name.substring(1) + " Comb");
     }
 

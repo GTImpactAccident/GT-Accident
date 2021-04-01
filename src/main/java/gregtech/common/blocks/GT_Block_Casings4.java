@@ -14,8 +14,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-public class GT_Block_Casings4
-        extends GT_Block_Casings_Abstract {
+public class GT_Block_Casings4 extends GT_Block_Casings_Abstract {
+
     public static boolean mConnectedMachineTextures = true;
 
     public GT_Block_Casings4() {
@@ -27,8 +27,7 @@ public class GT_Block_Casings4
         GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".1.name", "Clean Stainless Steel Machine Casing");
         GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".2.name", "Stable Titanium Machine Casing");
         GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".3.name", "Titanium Firebox Casing");
-//      GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".4.name", "Fusion Casing");
-//      GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".5.name", "Fusion Casing");
+        //4 - 5
         GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".6.name", "Fusion Machine Casing");
         GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".7.name", "Fusion Coil Block");
         GT_LanguageManager.addStringLocalization(getUnlocalizedName() + ".8.name", "Fusion Machine Casing MK II");
@@ -67,10 +66,10 @@ public class GT_Block_Casings4
             case 3:
                 return aSide > 1 ? Textures.BlockIcons.MACHINE_CASING_FIREBOX_TITANIUM.getIcon() : Textures.BlockIcons.MACHINE_CASING_STABLE_TITANIUM.getIcon();
             case 4:
-            	//Do not overwrite!
+                //Do not overwrite!
                 return Textures.BlockIcons.MACHINE_CASING_FUSION_GLASS_YELLOW.getIcon();
             case 5:
-            	//Do not overwrite!
+                //Do not overwrite!
                 return Textures.BlockIcons.MACHINE_CASING_FUSION_GLASS.getIcon();
             case 6:
                 return Textures.BlockIcons.MACHINE_CASING_FUSION.getIcon();

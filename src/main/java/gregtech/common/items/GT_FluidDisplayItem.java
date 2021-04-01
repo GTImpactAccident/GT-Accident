@@ -29,6 +29,7 @@ public class GT_FluidDisplayItem
         ItemList.Display_Fluid.set(this);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     protected void addAdditionalToolTips(List aList, ItemStack aStack, EntityPlayer aPlayer) {
         NBTTagCompound aNBT = aStack.getTagCompound();
         if (GT_Values.D1) {
@@ -88,6 +89,7 @@ public class GT_FluidDisplayItem
         return "";
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item aItem, CreativeTabs aTab, List aList) {
         if (GT_Values.D1) {

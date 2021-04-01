@@ -9,7 +9,7 @@ public class GT_IconContainer implements IIconContainer {
     IIcon mIcon, mOverlayIcon;
     ResourceLocation mLocation;
 
-    public GT_IconContainer(IIcon aIcon, IIcon aOverlay, ResourceLocation aLoaction){
+    public GT_IconContainer(IIcon aIcon, IIcon aOverlay, ResourceLocation aLoaction) {
         mIcon = aIcon;
         mOverlayIcon = aOverlay;
         mLocation = aLoaction;

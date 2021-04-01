@@ -91,12 +91,12 @@ public class GT_Utility {
     /**
      * Forge screwed the Fluid Registry up again, so I make my own, which is also much more efficient than the stupid Stuff over there.
      */
-    private static final List<FluidContainerData> sFluidContainerList = new ArrayList<FluidContainerData>();
-    private static final Map<GT_ItemStack, FluidContainerData> sFilledContainerToData = new /*Concurrent*/HashMap<GT_ItemStack, FluidContainerData>();
-    private static final Map<GT_ItemStack, Map<Fluid, FluidContainerData>> sEmptyContainerToFluidToData = new /*Concurrent*/HashMap<GT_ItemStack, Map<Fluid, FluidContainerData>>();
+    private static final List<FluidContainerData> sFluidContainerList = new ArrayList<>();
+    private static final Map<GT_ItemStack, FluidContainerData> sFilledContainerToData = new /*Concurrent*/HashMap<>();
+    private static final Map<GT_ItemStack, Map<Fluid, FluidContainerData>> sEmptyContainerToFluidToData = new /*Concurrent*/HashMap<>();
     public static volatile int VERSION = 509;
     public static boolean TE_CHECK = false, BC_CHECK = false, CHECK_ALL = true, RF_CHECK = false;
-    public static Map<GT_PlayedSound, Integer> sPlayedSoundMap = new /*Concurrent*/HashMap<GT_PlayedSound, Integer>();
+    public static Map<GT_PlayedSound, Integer> sPlayedSoundMap = new /*Concurrent*/HashMap<>();
     private static int sBookCount = 0;
 
 
@@ -251,8 +251,7 @@ public class GT_Utility {
             Field[] var3 = EntityLiving.class.getDeclaredFields();
             int var4 = var3.length;
 
-            for (int var5 = 0; var5 < var4; ++var5) {
-                Field var6 = var3[var5];
+            for (Field var6 : var3) {
                 if (var6.getType() == HashMap.class) {
                     tPotionHashmap = var6;
                     tPotionHashmap.setAccessible(true);
@@ -280,8 +279,7 @@ public class GT_Utility {
             Field[] var3 = EntityLiving.class.getDeclaredFields();
             int var4 = var3.length;
 
-            for (int var5 = 0; var5 < var4; ++var5) {
-                Field var6 = var3[var5];
+            for (Field var6 : var3) {
                 if (var6.getType() == HashMap.class) {
                     tPotionHashmap = var6;
                     tPotionHashmap.setAccessible(true);
@@ -289,7 +287,7 @@ public class GT_Utility {
                 }
             }
 
-            if (tPotionHashmap != null) ((HashMap) tPotionHashmap.get(aPlayer)).remove(Integer.valueOf(aPotionIndex));
+            if (tPotionHashmap != null) ((HashMap) tPotionHashmap.get(aPlayer)).remove(aPotionIndex);
         } catch (Throwable e) {
             if (D1) e.printStackTrace(GT_Log.err);
         }
@@ -394,16 +392,15 @@ public class GT_Utility {
         if (aTileEntity2 != null) {
             checkAvailabilities();
             if (TE_CHECK && aTileEntity2 instanceof IItemDuct) {
-                for (int i = 0; i < aGrabSlots.length; i++) {
-                    if (listContainsItem(aFilter, aTileEntity1.getStackInSlot(aGrabSlots[i]), true, aInvertFilter)) {
-                        if (isAllowedToTakeFromSlot(aTileEntity1, aGrabSlots[i], (byte) aGrabFrom, aTileEntity1.getStackInSlot(aGrabSlots[i]))) {
-                            if (Math.max(aMinMoveAtOnce, aMinTargetStackSize) <= aTileEntity1.getStackInSlot(aGrabSlots[i]).stackSize) {
-                                ItemStack tStack = copyAmount(Math.min(aTileEntity1.getStackInSlot(aGrabSlots[i]).stackSize, Math.min(aMaxMoveAtOnce, aMaxTargetStackSize)), aTileEntity1.getStackInSlot(aGrabSlots[i]));
+                for (int aGrabSlot : aGrabSlots) {
+                    if (listContainsItem(aFilter, aTileEntity1.getStackInSlot(aGrabSlot), true, aInvertFilter)) {
+                        if (isAllowedToTakeFromSlot(aTileEntity1, aGrabSlot, (byte) aGrabFrom, aTileEntity1.getStackInSlot(aGrabSlot))) {
+                            if (Math.max(aMinMoveAtOnce, aMinTargetStackSize) <= aTileEntity1.getStackInSlot(aGrabSlot).stackSize) {
+                                ItemStack tStack = copyAmount(Math.min(aTileEntity1.getStackInSlot(aGrabSlot).stackSize, Math.min(aMaxMoveAtOnce, aMaxTargetStackSize)), aTileEntity1.getStackInSlot(aGrabSlot));
                                 ItemStack rStack = ((IItemDuct) aTileEntity2).insertItem(ForgeDirection.getOrientation(aPutTo), copy(tStack));
                                 byte tMovedItemCount = (byte) (tStack.stackSize - (rStack == null ? 0 : rStack.stackSize));
                                 if (tMovedItemCount >= 1/*Math.max(aMinMoveAtOnce, aMinTargetStackSize)*/) {
-                                    //((cofh.api.transport.IItemConduit)aTileEntity2).insertItem(ForgeDirection.getOrientation(aPutTo), copyAmount(tMovedItemCount, tStack), F);
-                                    aTileEntity1.decrStackSize(aGrabSlots[i], tMovedItemCount);
+                                    aTileEntity1.decrStackSize(aGrabSlot, tMovedItemCount);
                                     aTileEntity1.markDirty();
                                     return tMovedItemCount;
                                 }
@@ -414,15 +411,15 @@ public class GT_Utility {
                 return 0;
             }
             if (BC_CHECK && aTileEntity2 instanceof buildcraft.api.transport.IPipeTile) {
-                for (int i = 0; i < aGrabSlots.length; i++) {
-                    if (listContainsItem(aFilter, aTileEntity1.getStackInSlot(aGrabSlots[i]), true, aInvertFilter)) {
-                        if (isAllowedToTakeFromSlot(aTileEntity1, aGrabSlots[i], (byte) aGrabFrom, aTileEntity1.getStackInSlot(aGrabSlots[i]))) {
-                            if (Math.max(aMinMoveAtOnce, aMinTargetStackSize) <= aTileEntity1.getStackInSlot(aGrabSlots[i]).stackSize) {
-                                ItemStack tStack = copyAmount(Math.min(aTileEntity1.getStackInSlot(aGrabSlots[i]).stackSize, Math.min(aMaxMoveAtOnce, aMaxTargetStackSize)), aTileEntity1.getStackInSlot(aGrabSlots[i]));
+                for (int aGrabSlot : aGrabSlots) {
+                    if (listContainsItem(aFilter, aTileEntity1.getStackInSlot(aGrabSlot), true, aInvertFilter)) {
+                        if (isAllowedToTakeFromSlot(aTileEntity1, aGrabSlot, (byte) aGrabFrom, aTileEntity1.getStackInSlot(aGrabSlot))) {
+                            if (Math.max(aMinMoveAtOnce, aMinTargetStackSize) <= aTileEntity1.getStackInSlot(aGrabSlot).stackSize) {
+                                ItemStack tStack = copyAmount(Math.min(aTileEntity1.getStackInSlot(aGrabSlot).stackSize, Math.min(aMaxMoveAtOnce, aMaxTargetStackSize)), aTileEntity1.getStackInSlot(aGrabSlot));
                                 byte tMovedItemCount = (byte) ((buildcraft.api.transport.IPipeTile) aTileEntity2).injectItem(copy(tStack), false, ForgeDirection.getOrientation(aPutTo));
                                 if (tMovedItemCount >= Math.max(aMinMoveAtOnce, aMinTargetStackSize)) {
                                     tMovedItemCount = (byte) (((buildcraft.api.transport.IPipeTile) aTileEntity2).injectItem(copyAmount(tMovedItemCount, tStack), true, ForgeDirection.getOrientation(aPutTo)));
-                                    aTileEntity1.decrStackSize(aGrabSlots[i], tMovedItemCount);
+                                    aTileEntity1.decrStackSize(aGrabSlot, tMovedItemCount);
                                     aTileEntity1.markDirty();
                                     return tMovedItemCount;
                                 }
@@ -438,15 +435,15 @@ public class GT_Utility {
         if (aTileEntity1 instanceof TileEntity && tDirection != ForgeDirection.UNKNOWN && tDirection.getOpposite() == ForgeDirection.getOrientation(aPutTo)) {
             int tX = ((TileEntity) aTileEntity1).xCoord + tDirection.offsetX, tY = ((TileEntity) aTileEntity1).yCoord + tDirection.offsetY, tZ = ((TileEntity) aTileEntity1).zCoord + tDirection.offsetZ;
             if (!hasBlockHitBox(((TileEntity) aTileEntity1).getWorldObj(), tX, tY, tZ) && dropItem) {
-                for (int i = 0; i < aGrabSlots.length; i++) {
-                    if (listContainsItem(aFilter, aTileEntity1.getStackInSlot(aGrabSlots[i]), true, aInvertFilter)) {
-                        if (isAllowedToTakeFromSlot(aTileEntity1, aGrabSlots[i], (byte) aGrabFrom, aTileEntity1.getStackInSlot(aGrabSlots[i]))) {
-                            if (Math.max(aMinMoveAtOnce, aMinTargetStackSize) <= aTileEntity1.getStackInSlot(aGrabSlots[i]).stackSize) {
-                                ItemStack tStack = copyAmount(Math.min(aTileEntity1.getStackInSlot(aGrabSlots[i]).stackSize, Math.min(aMaxMoveAtOnce, aMaxTargetStackSize)), aTileEntity1.getStackInSlot(aGrabSlots[i]));
+                for (int aGrabSlot : aGrabSlots) {
+                    if (listContainsItem(aFilter, aTileEntity1.getStackInSlot(aGrabSlot), true, aInvertFilter)) {
+                        if (isAllowedToTakeFromSlot(aTileEntity1, aGrabSlot, (byte) aGrabFrom, aTileEntity1.getStackInSlot(aGrabSlot))) {
+                            if (Math.max(aMinMoveAtOnce, aMinTargetStackSize) <= aTileEntity1.getStackInSlot(aGrabSlot).stackSize) {
+                                ItemStack tStack = copyAmount(Math.min(aTileEntity1.getStackInSlot(aGrabSlot).stackSize, Math.min(aMaxMoveAtOnce, aMaxTargetStackSize)), aTileEntity1.getStackInSlot(aGrabSlot));
                                 EntityItem tEntity = new EntityItem(((TileEntity) aTileEntity1).getWorldObj(), tX + 0.5, tY + 0.5, tZ + 0.5, tStack);
                                 tEntity.motionX = tEntity.motionY = tEntity.motionZ = 0;
                                 ((TileEntity) aTileEntity1).getWorldObj().spawnEntityInWorld(tEntity);
-                                aTileEntity1.decrStackSize(aGrabSlots[i], tStack.stackSize);
+                                aTileEntity1.decrStackSize(aGrabSlot, tStack.stackSize);
                                 aTileEntity1.markDirty();
                                 return (byte) tStack.stackSize;
                             }
@@ -570,22 +567,22 @@ public class GT_Utility {
                 for (int i = 0; i < tPutSlots.length; i++) tPutSlots[i] = i;
             }
 
-            for (int i = 0; i < tGrabSlots.length; i++) {
+            for (int tGrabSlot : tGrabSlots) {
                 byte tMovedItemCount = 0;
-                ItemStack tGrabStack = aTileEntity1.getStackInSlot(tGrabSlots[i]);
+                ItemStack tGrabStack = aTileEntity1.getStackInSlot(tGrabSlot);
                 if (listContainsItem(aFilter, tGrabStack, true, aInvertFilter)) {
-                    if (tGrabStack.stackSize >= aMinMoveAtOnce && isAllowedToTakeFromSlot(aTileEntity1, tGrabSlots[i], aGrabFrom, tGrabStack)) {
-                        for (int j = 0; j < tPutSlots.length; j++) {
-                            if (isAllowedToPutIntoSlot((IInventory) aTileEntity2, tPutSlots[j], aPutTo, tGrabStack, aMaxTargetStackSize)) {
-                                tMovedItemCount += moveStackFromSlotAToSlotB(aTileEntity1, (IInventory) aTileEntity2, tGrabSlots[i], tPutSlots[j], aMaxTargetStackSize, aMinTargetStackSize, (byte) (aMaxMoveAtOnce - tMovedItemCount), aMinMoveAtOnce);
-                                if (tMovedItemCount >= aMaxMoveAtOnce ||(tMovedItemCount > 0 && aMaxTargetStackSize < 64))
-                                     return tMovedItemCount;
+                    if (tGrabStack.stackSize >= aMinMoveAtOnce && isAllowedToTakeFromSlot(aTileEntity1, tGrabSlot, aGrabFrom, tGrabStack)) {
+                        for (int tPutSlot : tPutSlots) {
+                            if (isAllowedToPutIntoSlot((IInventory) aTileEntity2, tPutSlot, aPutTo, tGrabStack, aMaxTargetStackSize)) {
+                                tMovedItemCount += moveStackFromSlotAToSlotB(aTileEntity1, (IInventory) aTileEntity2, tGrabSlot, tPutSlot, aMaxTargetStackSize, aMinTargetStackSize, (byte) (aMaxMoveAtOnce - tMovedItemCount), aMinMoveAtOnce);
+                                if (tMovedItemCount >= aMaxMoveAtOnce || (tMovedItemCount > 0 && aMaxTargetStackSize < 64))
+                                    return tMovedItemCount;
 
                             }
                         }
                     }
                 }
-            if (tMovedItemCount > 0) return tMovedItemCount;
+                if (tMovedItemCount > 0) return tMovedItemCount;
             }
 
             if (aDoCheckChests && aTileEntity1 instanceof TileEntityChest) {
@@ -643,11 +640,11 @@ public class GT_Utility {
         }
 
         if (aTileEntity2 instanceof IInventory) {
-            for (int i = 0; i < tGrabSlots.length; i++) {
-                if (listContainsItem(aFilter, ((IInventory) aTileEntity1).getStackInSlot(tGrabSlots[i]), true, aInvertFilter)) {
-                    if (isAllowedToTakeFromSlot((IInventory) aTileEntity1, tGrabSlots[i], aGrabFrom, ((IInventory) aTileEntity1).getStackInSlot(tGrabSlots[i]))) {
-                        if (isAllowedToPutIntoSlot((IInventory) aTileEntity2, aPutTo, (byte) 6, ((IInventory) aTileEntity1).getStackInSlot(tGrabSlots[i]), aMaxTargetStackSize)) {
-                            byte tMovedItemCount = moveStackFromSlotAToSlotB((IInventory) aTileEntity1, (IInventory) aTileEntity2, tGrabSlots[i], aPutTo, aMaxTargetStackSize, aMinTargetStackSize, aMaxMoveAtOnce, aMinMoveAtOnce);
+            for (int tGrabSlot : tGrabSlots) {
+                if (listContainsItem(aFilter, ((IInventory) aTileEntity1).getStackInSlot(tGrabSlot), true, aInvertFilter)) {
+                    if (isAllowedToTakeFromSlot((IInventory) aTileEntity1, tGrabSlot, aGrabFrom, ((IInventory) aTileEntity1).getStackInSlot(tGrabSlot))) {
+                        if (isAllowedToPutIntoSlot((IInventory) aTileEntity2, aPutTo, (byte) 6, ((IInventory) aTileEntity1).getStackInSlot(tGrabSlot), aMaxTargetStackSize)) {
+                            byte tMovedItemCount = moveStackFromSlotAToSlotB((IInventory) aTileEntity1, (IInventory) aTileEntity2, tGrabSlot, aPutTo, aMaxTargetStackSize, aMinTargetStackSize, aMaxMoveAtOnce, aMinMoveAtOnce);
                             if (tMovedItemCount > 0) return tMovedItemCount;
                         }
                     }
@@ -742,7 +739,7 @@ public class GT_Utility {
             sFilledContainerToData.put(new GT_ItemStack(tData.filledContainer), tData);
             Map<Fluid, FluidContainerData> tFluidToContainer = sEmptyContainerToFluidToData.get(new GT_ItemStack(tData.emptyContainer));
             if (tFluidToContainer == null) {
-                sEmptyContainerToFluidToData.put(new GT_ItemStack(tData.emptyContainer), tFluidToContainer = new /*Concurrent*/HashMap<Fluid, FluidContainerData>());
+                sEmptyContainerToFluidToData.put(new GT_ItemStack(tData.emptyContainer), tFluidToContainer = new /*Concurrent*/HashMap<>());
                 GregTech_API.sFluidMappings.add(tFluidToContainer);
             }
             tFluidToContainer.put(tData.fluid.getFluid(), tData);
@@ -754,7 +751,7 @@ public class GT_Utility {
         sFilledContainerToData.put(new GT_ItemStack(aData.filledContainer), aData);
         Map<Fluid, FluidContainerData> tFluidToContainer = sEmptyContainerToFluidToData.get(new GT_ItemStack(aData.emptyContainer));
         if (tFluidToContainer == null) {
-            sEmptyContainerToFluidToData.put(new GT_ItemStack(aData.emptyContainer), tFluidToContainer = new /*Concurrent*/HashMap<Fluid, FluidContainerData>());
+            sEmptyContainerToFluidToData.put(new GT_ItemStack(aData.emptyContainer), tFluidToContainer = new /*Concurrent*/HashMap<>());
             GregTech_API.sFluidMappings.add(tFluidToContainer);
         }
         tFluidToContainer.put(aData.fluid.getFluid(), aData);
@@ -821,7 +818,7 @@ public class GT_Utility {
         if (aCheckIFluidContainerItems && aStack.getItem() instanceof IFluidContainerItem && ((IFluidContainerItem) aStack.getItem()).getCapacity(aStack) > 0)
             return aFluid.isFluidEqual(((IFluidContainerItem) aStack.getItem()).getFluid(aStack = copyAmount(1, aStack)));
         FluidContainerData tData = sFilledContainerToData.get(new GT_ItemStack(aStack));
-        return tData == null ? false : tData.fluid.isFluidEqual(aFluid);
+        return tData != null && tData.fluid.isFluidEqual(aFluid);
     }
 
     public static FluidStack getFluidForFilledItem(ItemStack aStack, boolean aCheckIFluidContainerItems) {
@@ -846,7 +843,7 @@ public class GT_Utility {
     public static ItemStack getContainerItem(ItemStack aStack, boolean aCheckIFluidContainerItems) {
         if (isStackInvalid(aStack)) return null;
         if (aStack.getItem().hasContainerItem(aStack)) return aStack.getItem().getContainerItem(aStack);
-        /** These are all special Cases, in which it is intended to have only GT Blocks outputting those Container Items */
+        /* These are all special Cases, in which it is intended to have only GT Blocks outputting those Container Items */
         if (ItemList.Cell_Empty.isStackEqual(aStack, false, true)) return null;
         if (ItemList.IC2_Fuel_Can_Filled.isStackEqual(aStack, false, true)) return ItemList.IC2_Fuel_Can_Empty.get(1);
         if (aStack.getItem() == Items.potionitem || aStack.getItem() == Items.experience_bottle || ItemList.TF_Vial_FieryBlood.isStackEqual(aStack) || ItemList.TF_Vial_FieryTears.isStackEqual(aStack))
@@ -910,14 +907,14 @@ public class GT_Utility {
     public static boolean addSimpleIC2MachineRecipe(ItemStack aInput, Map<IRecipeInput, RecipeOutput> aRecipeList, NBTTagCompound aNBT, Object... aOutput) {
         if (isStackInvalid(aInput) || aOutput.length == 0 || aRecipeList == null) return false;
         ItemData tOreName = GT_OreDictUnificator.getAssociation(aInput);
-        for (int i = 0; i < aOutput.length; i++) {
-            if (aOutput[i] == null) {
+        for (Object o : aOutput) {
+            if (o == null) {
                 System.out.println("EmptyIC2Output!" + aInput.getUnlocalizedName());
                 return false;
             }
         }
         ItemStack[] tStack = GT_OreDictUnificator.getStackArray(true, aOutput);
-        if(tStack==null||(tStack.length>0&&GT_Utility.areStacksEqual(aInput, tStack[0])))return false;
+        if(tStack.length > 0 && GT_Utility.areStacksEqual(aInput, tStack[0]))return false;
         if (tOreName != null) {
         	if(tOreName.toString().equals("dustAsh")&&tStack[0].getUnlocalizedName().equals("tile.volcanicAsh"))return false;
             aRecipeList.put(new RecipeInputOreDict(tOreName.toString(), aInput.stackSize), new RecipeOutput(aNBT, tStack));
@@ -1460,7 +1457,7 @@ public class GT_Utility {
      * re-maps all Keys of a Map after the Keys were weakened.
      */
     public static <X, Y> Map<X, Y> reMap(Map<X, Y> aMap) {
-        Map<X, Y> tMap = new /*Concurrent*/HashMap<X, Y>();
+        Map<X, Y> tMap = new /*Concurrent*/HashMap<>();
         tMap.putAll(aMap);
         aMap.clear();
         aMap.putAll(tMap);
@@ -1494,7 +1491,7 @@ public class GT_Utility {
                 return aValue2.getValue().compareTo(aValue1.getValue());//FB: RV - RV_NEGATING_RESULT_OF_COMPARETO
             }
         });
-        LinkedHashMap<X, Y> rMap = new LinkedHashMap<X, Y>();
+        LinkedHashMap<X, Y> rMap = new LinkedHashMap<>();
         for (Map.Entry<X, Y> tEntry : tEntrySet) rMap.put(tEntry.getKey(), tEntry.getValue());
         return rMap;
     }
@@ -1538,22 +1535,6 @@ public class GT_Utility {
             if (aEntity.riddenByEntity != null) aEntity.riddenByEntity.mountEntity(null);
             if (aEntity instanceof EntityPlayerMP) {
                 EntityPlayerMP aPlayer = (EntityPlayerMP) aEntity;
-//                aPlayer.dimension = aDimension;
-//                aPlayer.playerNetServerHandler.sendPacket(new S07PacketRespawn(aPlayer.dimension, aPlayer.worldObj.difficultySetting, aPlayer.worldObj.getWorldInfo().getTerrainType(), aPlayer.theItemInWorldManager.getGameType()));
-//                tOriginalWorld.removePlayerEntityDangerously(aPlayer);
-//                aPlayer.isDead = false;
-//                aPlayer.setWorld(tTargetWorld);
-//                MinecraftServer.getServer().getConfigurationManager().func_72375_a(aPlayer, tOriginalWorld);
-//                aPlayer.playerNetServerHandler.setPlayerLocation(aX + 0.5, aY + 0.5, aZ + 0.5, aPlayer.rotationYaw, aPlayer.rotationPitch);
-//                aPlayer.theItemInWorldManager.setWorld(tTargetWorld);
-//                MinecraftServer.getServer().getConfigurationManager().updateTimeAndWeatherForPlayer(aPlayer, tTargetWorld);
-//                MinecraftServer.getServer().getConfigurationManager().syncPlayerInventory(aPlayer);
-//                Iterator tIterator = aPlayer.getActivePotionEffects().iterator();
-//                while (tIterator.hasNext()) {
-//                    PotionEffect potioneffect = (PotionEffect) tIterator.next();
-//                    aPlayer.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(aPlayer.getEntityId(), potioneffect));
-//                }
-//                FMLCommonHandler.instance().firePlayerChangedDimensionEvent(aPlayer, tOriginalWorld.provider.dimensionId, aDimension);
             	aPlayer.travelToDimension(aDimension);
                 aPlayer.playerNetServerHandler.setPlayerLocation(aX + 0.5, aY + 0.5, aZ + 0.5, aPlayer.rotationYaw, aPlayer.rotationPitch);
             	
@@ -1592,70 +1573,6 @@ public class GT_Utility {
     public static int getScaleCoordinates(double aValue, int aScale) {
     	return (int)Math.floor(aValue / aScale);
     }
-
-//    public static FluidStack getUndergroundOil(World aWorld, int aX, int aZ) {
-//    	return getUndergroundOil(aWorld, aX, aZ, false);
-//    }
-//
-//    public static FluidStack getUndergroundOil(World aWorld, int aX, int aZ, boolean needConsumeOil) {
-//
-//    	if (GT_Mod.gregtechproxy.mUndergroundOil.CheckBlackList(aWorld.provider.dimensionId))
-//    		return null;
-//
-//        Random tRandom = new Random((aWorld.getSeed() + aWorld.provider.dimensionId * 2 + (getScaleCoordinates(aX,96)) + (7 * (getScaleCoordinates(aZ,96)))));
-//        int tAmount = 0;
-//        int tFluidId = 0;
-//        int tDecreasePerOperationAmount = 5;
-//        Fluid tFluid = null;
-////        System.out.println("Dimension: "+GT_Mod.gregtechproxy.mUndergroundOil.GetDimension(aWorld.provider.dimensionId).Dimension);
-//        try {
-//            GT_UO_Fluid uoFluid = GT_Mod.gregtechproxy.mUndergroundOil.GetDimension(aWorld.provider.dimensionId).getRandomFluid(tRandom);
-//            if (uoFluid != null)
-//            {
-//            	tFluid = uoFluid.getFluid();
-//            	tAmount = uoFluid.getRandomAmount(tRandom);
-//            	tDecreasePerOperationAmount = uoFluid.DecreasePerOperationAmount;
-//            	if (tFluid != null)
-//            		tFluidId = tFluid.getID();
-//                //System.out.println("Fluid: ("+tFluidId+")"+tFluid.getName()+" Amount:"+tAmount);
-//            }
-//			
-//		} catch (Exception e) {
-//	        tAmount = 0;
-//	        tFluidId = 0;
-//		}
-//
-//        try {
-//        ChunkPosition tPos = new ChunkPosition(getScaleCoordinates(aX,16), aWorld.provider.dimensionId, getScaleCoordinates(aZ,16));
-//        int[] tInts = new int[3];
-//    	if(GT_Proxy.chunkData.containsKey(tPos)){
-//    		tInts = GT_Proxy.chunkData.get(tPos);
-//    		if(tInts.length>0){
-//    			if(tInts[0]>0){tAmount = tInts[0];}
-//    		}
-//    		if(tInts.length>2){
-//    			if(tInts[2]>0&&tInts[2]!=tFluidId)
-//    			{
-//    				tFluidId = tInts[2];
-//    				tFluid = FluidRegistry.getFluid(tFluidId);
-//    			}
-//    		}
-//    		GT_Proxy.chunkData.remove(tPos);
-//    	}
-//
-//    	if (needConsumeOil && tAmount >= 5000)
-//    		tAmount = tAmount - tDecreasePerOperationAmount;
-//
-//    	tInts[0] = tAmount;
-//    	tInts[2] = tFluidId;
-//    	GT_Proxy.chunkData.put(tPos, tInts);
-//		} catch (Exception e) {
-//			System.out.println("getUndergroundOil() - Error put data");
-//		}
-//    	if (tFluid!=null)
-//    		return new FluidStack(tFluid, tAmount);
-//    	return null;
-//    }
 
     public static String trans(String aKey, String aEnglish){
     	return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_"+aKey, aEnglish, false);
@@ -1784,7 +1701,7 @@ public class GT_Utility {
 
     public static ArrayList<String> sortByValueToList( Map<String, Integer> map ) {
         List<Map.Entry<String, Integer>> list =
-            new LinkedList<Map.Entry<String, Integer>>( map.entrySet() );
+            new LinkedList<>( map.entrySet() );
         Collections.sort( list, new Comparator<Map.Entry<String, Integer>>()
         {
             public int compare( Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2 )

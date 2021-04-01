@@ -17,6 +17,7 @@ public class GT_ItemInventory implements IInventory {
         mDropItems = aDropItemsOnClosing;
         mName = aName;
     }
+
     @Override
     public int getSizeInventory() {
         return mContents.length;
@@ -92,16 +93,16 @@ public class GT_ItemInventory implements IInventory {
     public void saveToNBT(NBTTagCompound aNBT) {
         for (int i = 0; i < mContents.length; i++) {
             if (mContents[i] != null)
-                aNBT.setTag("s"+i, mContents[i].writeToNBT(new NBTTagCompound()));
+                aNBT.setTag("s" + i, mContents[i].writeToNBT(new NBTTagCompound()));
             else
-                aNBT.removeTag("s"+i);
+                aNBT.removeTag("s" + i);
         }
     }
 
     public void loadFromNBT(NBTTagCompound aNBT) {
         for (int i = 0; i < mContents.length; i++) {
-            if (aNBT.hasKey("s"+i))
-                mContents[i] = ItemStack.loadItemStackFromNBT(aNBT.getCompoundTag("s"+i));
+            if (aNBT.hasKey("s" + i))
+                mContents[i] = ItemStack.loadItemStackFromNBT(aNBT.getCompoundTag("s" + i));
         }
     }
 

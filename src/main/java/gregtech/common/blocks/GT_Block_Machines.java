@@ -43,10 +43,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GT_Block_Machines
-        extends GT_Generic_Block
-        implements IDebugableBlock, ITileEntityProvider {
-    public static ThreadLocal<IGregTechTileEntity> mTemporaryTileEntity = new ThreadLocal();
+public class GT_Block_Machines extends GT_Generic_Block implements IDebugableBlock, ITileEntityProvider {
+
+    public static ThreadLocal<IGregTechTileEntity> mTemporaryTileEntity = new ThreadLocal<>();
 
     public GT_Block_Machines() {
         super(GT_Item_Machines.class, "gt.blockmachines", new GT_Material_Machines());
@@ -61,7 +60,6 @@ public class GT_Block_Machines
     public String getHarvestTool(int aMeta) {
         switch (aMeta / 4) {
             case 0:
-                return "wrench";
             case 1:
                 return "wrench";
             case 2:
@@ -183,7 +181,7 @@ public class GT_Block_Machines
     public boolean onBlockEventReceived(World aWorld, int aX, int aY, int aZ, int aData1, int aData2) {
         super.onBlockEventReceived(aWorld, aX, aY, aZ, aData1, aData2);
         TileEntity tTileEntity = aWorld.getTileEntity(aX, aY, aZ);
-        return tTileEntity != null ? tTileEntity.receiveClientEvent(aData1, aData2) : false;
+        return tTileEntity != null && tTileEntity.receiveClientEvent(aData1, aData2);
     }
 
     public void addCollisionBoxesToList(World aWorld, int aX, int aY, int aZ, AxisAlignedBB inputAABB, List outputAABB, Entity collider) {
@@ -369,7 +367,7 @@ public class GT_Block_Machines
         if ((tTileEntity instanceof IGregTechTileEntity)) {
             return ((IGregTechTileEntity) tTileEntity).getDrops();
         }
-        return mTemporaryTileEntity.get() == null ? new ArrayList() : ((IGregTechTileEntity) mTemporaryTileEntity.get()).getDrops();
+        return mTemporaryTileEntity.get() == null ? new ArrayList<>() : (mTemporaryTileEntity.get()).getDrops();
     }
 
     @Override
@@ -484,6 +482,7 @@ public class GT_Block_Machines
         return 10.0F;
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 1; i < GregTech_API.METATILEENTITIES.length; i++) {

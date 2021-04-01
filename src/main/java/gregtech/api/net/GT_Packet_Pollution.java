@@ -32,7 +32,7 @@ public class GT_Packet_Pollution extends GT_Packet {
 
     @Override
     public void process(IBlockAccess aWorld) {
-    	GT_Pollution.mPlayerPollution = mPollution;
+        GT_Pollution.mPlayerPollution = mPollution;
     }
 
     @Override

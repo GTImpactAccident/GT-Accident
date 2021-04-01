@@ -13,12 +13,12 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 public class GT_Assemblyline_Server {
-    public static LinkedHashMap<String, String> lServerNames = new LinkedHashMap();
-    private static LinkedHashMap<String, String> internal2 = new LinkedHashMap();
-    private static LinkedHashMap<String, String> internal3 = new LinkedHashMap();
-    private static LinkedHashMap<String, String> internal4 = new LinkedHashMap();
-    private static LinkedHashMap<String, String> internal_meta = new LinkedHashMap();
-    private static HashMap<String, Property> internal = new HashMap();
+    public static LinkedHashMap<String, String> lServerNames = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> internal2 = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> internal3 = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> internal4 = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> internal_meta = new LinkedHashMap<>();
+    private static HashMap<String, Property> internal = new HashMap<>();
 
     public GT_Assemblyline_Server() {
     }
@@ -62,7 +62,7 @@ public class GT_Assemblyline_Server {
                     try {
                         i = Integer.parseInt(((String)entry.getKey()).substring("gt.metaitem.01.".length(), ((String)entry.getKey()).length() - ".name".length()));
                         lServerNames.put((String)entry.getKey(),(String) entry.getValue());
-                    } catch (Exception var14) {
+                    } catch (Exception ignored) {
                         ;
                     }
                 }
@@ -78,7 +78,7 @@ public class GT_Assemblyline_Server {
 
                     try {
                         lServerNames.put((String)entry.getKey(), ((String)entry.getValue()).replace("material", GregTech_API.sGeneratedMaterials[i].toString()));
-                    } catch (Exception var13) {
+                    } catch (Exception ignored) {
                         ;
                     }
                 }
@@ -125,7 +125,7 @@ public class GT_Assemblyline_Server {
                             i = Integer.parseInt(((String)entry.getKey()).substring("gt.blockores.".length(), ((String)entry.getKey()).length() - ".name".length()));
                             i %= 1000;
                             lServerNames.put((String)entry.getKey(), ((String)entry.getValue()).replace("material", GregTech_API.sGeneratedMaterials[i].toString()));
-                        } catch (Exception var11) {
+                        } catch (Exception ignored) {
                             ;
                         }
                     } else {

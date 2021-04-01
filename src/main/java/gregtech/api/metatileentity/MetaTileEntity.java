@@ -67,7 +67,6 @@ public abstract class MetaTileEntity implements IMetaTileEntity {
      * See also the List in the API, as it has a Description containing all the reservations.
      *
      * @param aID the ID
-     * @example for Constructor overload.
      * <p/>
      * public GT_MetaTileEntity_EBench(int aID, String mName, String mNameRegional) {
      * super(aID, mName, mNameRegional);
@@ -165,28 +164,28 @@ public abstract class MetaTileEntity implements IMetaTileEntity {
 
     @Override
     public boolean onWireCutterRightClick(byte aSide, byte aWrenchingSide, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        if(!aPlayer.isSneaking()) return false;
-		byte tSide = GT_Utility.getOppositeSide(aWrenchingSide);
-		TileEntity tTileEntity = getBaseMetaTileEntity().getTileEntityAtSide(aWrenchingSide);
-        if (tTileEntity != null && (tTileEntity instanceof IGregTechTileEntity) && (((IGregTechTileEntity) tTileEntity).getMetaTileEntity() instanceof GT_MetaPipeEntity_Cable)) {
-			// The tile entity we're facing is a cable, let's try to connect to it
+        if (!aPlayer.isSneaking()) return false;
+        byte tSide = GT_Utility.getOppositeSide(aWrenchingSide);
+        TileEntity tTileEntity = getBaseMetaTileEntity().getTileEntityAtSide(aWrenchingSide);
+        if ((tTileEntity instanceof IGregTechTileEntity) && (((IGregTechTileEntity) tTileEntity).getMetaTileEntity() instanceof GT_MetaPipeEntity_Cable)) {
+            // The tile entity we're facing is a cable, let's try to connect to it
             return ((IGregTechTileEntity) tTileEntity).getMetaTileEntity().onWireCutterRightClick(aWrenchingSide, tSide, aPlayer, aX, aY, aZ);
         }
         return false;
-		}
-		
+    }
+
     @Override
     public boolean onSolderingToolRightClick(byte aSide, byte aWrenchingSide, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        if(!aPlayer.isSneaking()) return false;
+        if (!aPlayer.isSneaking()) return false;
         byte tSide = GT_Utility.getOppositeSide(aWrenchingSide);
         TileEntity tTileEntity = getBaseMetaTileEntity().getTileEntityAtSide(aWrenchingSide);
-        if (tTileEntity != null && (tTileEntity instanceof IGregTechTileEntity) && (((IGregTechTileEntity) tTileEntity).getMetaTileEntity() instanceof GT_MetaPipeEntity_Cable)) {
+        if ((tTileEntity instanceof IGregTechTileEntity) && (((IGregTechTileEntity) tTileEntity).getMetaTileEntity() instanceof GT_MetaPipeEntity_Cable)) {
             // The tile entity we're facing is a cable, let's try to connect to it
             return ((IGregTechTileEntity) tTileEntity).getMetaTileEntity().onSolderingToolRightClick(aWrenchingSide, tSide, aPlayer, aX, aY, aZ);
         }
         return false;
     }
-        
+
     @Override
     public void onExplosion() {/*Do nothing*/}
 
@@ -688,7 +687,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity {
 
     @Override
     public int[] getAccessibleSlotsFromSide(int aSide) {
-        ArrayList<Integer> tList = new ArrayList<Integer>();
+        ArrayList<Integer> tList = new ArrayList<>();
         IGregTechTileEntity tTileEntity = getBaseMetaTileEntity();
         boolean tSkip = tTileEntity.getCoverBehaviorAtSide((byte) aSide).letsItemsIn((byte) aSide, tTileEntity.getCoverIDAtSide((byte) aSide), tTileEntity.getCoverDataAtSide((byte) aSide), -2, tTileEntity) || tTileEntity.getCoverBehaviorAtSide((byte) aSide).letsItemsOut((byte) aSide, tTileEntity.getCoverIDAtSide((byte) aSide), tTileEntity.getCoverDataAtSide((byte) aSide), -2, tTileEntity);
         for (int i = 0; i < getSizeInventory(); i++)
@@ -834,7 +833,7 @@ public abstract class MetaTileEntity implements IMetaTileEntity {
     public void onColorChangeServer(byte aColor) {
         final IGregTechTileEntity meta = getBaseMetaTileEntity();
         final int aX = meta.getXCoord(), aY = meta.getYCoord(), aZ = meta.getZCoord();
-        for (byte aSide = 0; aSide < 6 ; aSide++ ) {
+        for (byte aSide = 0; aSide < 6; aSide++) {
             // Flag surrounding pipes/cables to revaluate their connection with us if we got painted
             final TileEntity tTileEntity = meta.getTileEntityAtSide(aSide);
             if ((tTileEntity instanceof BaseMetaPipeEntity)) {
@@ -896,28 +895,29 @@ public abstract class MetaTileEntity implements IMetaTileEntity {
     public void onCreated(ItemStack aStack, World aWorld, EntityPlayer aPlayer) {
         //
     }
-    
+
     @Override
-    public boolean allowGeneralRedstoneOutput(){
-    	return false;
+    public boolean allowGeneralRedstoneOutput() {
+        return false;
     }
-    
-    public String trans(String aKey, String aEnglish){
-    	return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_"+aKey, aEnglish, false);
-    }
-    
-    @Override
-    public boolean hasAlternativeModeText(){
-    	return false;
-    }
-    
-    @Override
-    public String getAlternativeModeText(){
-    	return "";
+
+    public String trans(String aKey, String aEnglish) {
+        return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_" + aKey, aEnglish, false);
     }
 
     @Override
-    public void receiveExtendedBlockEvent(int aID, int aValue) {  }
+    public boolean hasAlternativeModeText() {
+        return false;
+    }
+
+    @Override
+    public String getAlternativeModeText() {
+        return "";
+    }
+
+    @Override
+    public void receiveExtendedBlockEvent(int aID, int aValue) {
+    }
 
     @Override
     public boolean isWaterProofByDefault() {

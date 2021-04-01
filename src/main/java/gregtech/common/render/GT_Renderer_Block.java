@@ -80,7 +80,7 @@ public class GT_Renderer_Block
             renderPositiveXFacing(null, aRenderer, aBlock, 0, 0, 0, tMetaTileEntity.getTexture(tMetaTileEntity.getBaseMetaTileEntity(), (byte) 5, (byte) 9, (byte) -1, true, false), true);
             Tessellator.instance.draw();
         } else {
-            ITexture[][] textures = tMetaTileEntity.getBaseMetaTileEntity().getTextures(is, (byte) 4, true, false,  !aInWorld);
+            ITexture[][] textures = tMetaTileEntity.getBaseMetaTileEntity().getTextures(is, (byte) 4, true, false, !aInWorld);
             Tessellator.instance.startDrawingQuads();
             Tessellator.instance.setNormal(0.0F, -1.0F, 0.0F);
             renderNegativeYFacing(null, aRenderer, aBlock, 0, 0, 0, textures[0], true);
@@ -113,13 +113,13 @@ public class GT_Renderer_Block
         }
         aBlock.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         aRenderer.setRenderBoundsFromBlock(aBlock);
-       // GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+        // GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
 
     public static boolean renderStandardBlock(IBlockAccess aWorld, int aX, int aY, int aZ, Block aBlock, RenderBlocks aRenderer) {
         TileEntity tTileEntity = aWorld.getTileEntity(aX, aY, aZ);
-        if(tTileEntity instanceof IFastRenderedTileEntity){
-            return renderStandardBlock(aWorld, aX, aY, aZ, aBlock, aRenderer, ((IFastRenderedTileEntity)tTileEntity).getTextures());
+        if (tTileEntity instanceof IFastRenderedTileEntity) {
+            return renderStandardBlock(aWorld, aX, aY, aZ, aBlock, aRenderer, ((IFastRenderedTileEntity) tTileEntity).getTextures());
         }
         if ((tTileEntity instanceof ITexturedTileEntity)) {
             return renderStandardBlock(aWorld, aX, aY, aZ, aBlock, aRenderer, new ITexture[][]{((ITexturedTileEntity) tTileEntity).getTexture(aBlock, (byte) 0), ((ITexturedTileEntity) tTileEntity).getTexture(aBlock, (byte) 1), ((ITexturedTileEntity) tTileEntity).getTexture(aBlock, (byte) 2), ((ITexturedTileEntity) tTileEntity).getTexture(aBlock, (byte) 3), ((ITexturedTileEntity) tTileEntity).getTexture(aBlock, (byte) 4), ((ITexturedTileEntity) tTileEntity).getTexture(aBlock, (byte) 5)});
@@ -166,11 +166,10 @@ public class GT_Renderer_Block
         }
         ITexture[][] tIcons;
         ITexture[][] tCovers;
-        if(aTileEntity instanceof IFastRenderedTileEntity){
-            tIcons = ((IFastRenderedTileEntity)aTileEntity).getTextures(false);
-            tCovers = ((IFastRenderedTileEntity)aTileEntity).getTextures(true);
-        }
-        else {
+        if (aTileEntity instanceof IFastRenderedTileEntity) {
+            tIcons = ((IFastRenderedTileEntity) aTileEntity).getTextures(false);
+            tCovers = ((IFastRenderedTileEntity) aTileEntity).getTextures(true);
+        } else {
             tIcons = new ITexture[6][];
             tCovers = new ITexture[6][];
             for (byte i = 0; i < 6; i = (byte) (i + 1)) {

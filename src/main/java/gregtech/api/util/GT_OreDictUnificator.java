@@ -31,9 +31,9 @@ import static gregtech.api.enums.GT_Values.*;
  * P.S. It is intended to be named "Unificator" and not "Unifier", because that sounds more awesome.
  */
 public class GT_OreDictUnificator {
-    private static final /*ConcurrentHash*/Map<String, ItemStack> sName2StackMap = new /*ConcurrentHash*/HashMap<String, ItemStack>();
-    private static final /*ConcurrentHash*/Map<GT_ItemStack, ItemData> sItemStack2DataMap = new /*ConcurrentHash*/HashMap<GT_ItemStack, ItemData>();
-    private static final /*ConcurrentHash*/Map<GT_ItemStack, List<ItemStack>> sUnificationTable = new /*ConcurrentHash*/HashMap<GT_ItemStack, List<ItemStack>>();
+    private static final /*ConcurrentHash*/ Map<String, ItemStack> sName2StackMap = new /*ConcurrentHash*/HashMap<String, ItemStack>();
+    private static final /*ConcurrentHash*/ Map<GT_ItemStack, ItemData> sItemStack2DataMap = new /*ConcurrentHash*/HashMap<GT_ItemStack, ItemData>();
+    private static final /*ConcurrentHash*/ Map<GT_ItemStack, List<ItemStack>> sUnificationTable = new /*ConcurrentHash*/HashMap<GT_ItemStack, List<ItemStack>>();
     private static final GT_HashSet<GT_ItemStack> sNoUnificationList = new GT_HashSet<GT_ItemStack>();
     public static volatile int VERSION = 509;
     private static int isRegisteringOre = 0, isAddingOre = 0;
@@ -142,7 +142,7 @@ public class GT_OreDictUnificator {
     }
 
     private static ItemStack get(boolean aUseBlackList, ItemStack aStack, boolean aOnUnificationTableCreation) {
-    	if (GT_Utility.isStackInvalid(aStack)) return null;
+        if (GT_Utility.isStackInvalid(aStack)) return null;
         ItemData tPrefixMaterial = getAssociation(aStack);
         ItemStack rStack = null;
         if (tPrefixMaterial == null || !tPrefixMaterial.hasValidPrefixMaterialData() || (aUseBlackList && tPrefixMaterial.mBlackListed))
@@ -152,8 +152,8 @@ public class GT_OreDictUnificator {
             return GT_Utility.copy(aStack);
         }
         if (tPrefixMaterial.mUnificationTarget == null) {
-        	tPrefixMaterial.mUnificationTarget = sName2StackMap.get(tPrefixMaterial.toString());
-        	if (!aOnUnificationTableCreation) sUnificationTable.clear();
+            tPrefixMaterial.mUnificationTarget = sName2StackMap.get(tPrefixMaterial.toString());
+            if (!aOnUnificationTableCreation) sUnificationTable.clear();
         }
         rStack = tPrefixMaterial.mUnificationTarget;
         if (GT_Utility.isStackInvalid(rStack)) return GT_Utility.copy(aStack);
@@ -163,37 +163,37 @@ public class GT_OreDictUnificator {
     }
 
     public static List<ItemStack> getNonUnifiedStacks(Object obj) {
-    	synchronized (sUnificationTable) {
-    		if (sUnificationTable.isEmpty() && !sItemStack2DataMap.isEmpty()) {
-            	for (GT_ItemStack tGTStack0 : sItemStack2DataMap.keySet()) {
-            		ItemStack tStack0 = tGTStack0.toStack();
-            		ItemStack tStack1 = get(false, tStack0, true);
-            		if (tStack0 != null && tStack1 != null && !GT_Utility.areStacksEqual(tStack0, tStack1)) {
-            			GT_ItemStack tGTStack1 = new GT_ItemStack(tStack1);
-            			List<ItemStack> list = sUnificationTable.get(tGTStack1);
-            			if (list == null) sUnificationTable.put(tGTStack1, list = new ArrayList<ItemStack>());
-            			if (!list.contains(tStack0)) list.add(tStack0);
-            		}
-            	}
-        	}
-    	}
-    	ItemStack[] aStacks = {};
-    	if (obj instanceof ItemStack) aStacks = new ItemStack[]{(ItemStack) obj};
-    	else if (obj instanceof ItemStack[]) aStacks = (ItemStack[]) obj;
-    	else if (obj instanceof List) aStacks = (ItemStack[]) ((List)obj).toArray(new ItemStack[0]);
-    	List<ItemStack> rList = new ArrayList<ItemStack>();
-    	for (ItemStack aStack : aStacks) {
-    		rList.add(aStack);
-    		List<ItemStack> tList = sUnificationTable.get(new GT_ItemStack(aStack));
-    		if (tList != null) {
-    			for (ItemStack tStack : tList) {
-            		ItemStack tStack1 = GT_Utility.copyAmount(aStack.stackSize, tStack);
-            		tStack1.setTagCompound(aStack.getTagCompound());
-            		rList.add(tStack1);
-            	}
-    		}
-    	}
-    	return rList;
+        synchronized (sUnificationTable) {
+            if (sUnificationTable.isEmpty() && !sItemStack2DataMap.isEmpty()) {
+                for (GT_ItemStack tGTStack0 : sItemStack2DataMap.keySet()) {
+                    ItemStack tStack0 = tGTStack0.toStack();
+                    ItemStack tStack1 = get(false, tStack0, true);
+                    if (tStack0 != null && tStack1 != null && !GT_Utility.areStacksEqual(tStack0, tStack1)) {
+                        GT_ItemStack tGTStack1 = new GT_ItemStack(tStack1);
+                        List<ItemStack> list = sUnificationTable.get(tGTStack1);
+                        if (list == null) sUnificationTable.put(tGTStack1, list = new ArrayList<ItemStack>());
+                        if (!list.contains(tStack0)) list.add(tStack0);
+                    }
+                }
+            }
+        }
+        ItemStack[] aStacks = {};
+        if (obj instanceof ItemStack) aStacks = new ItemStack[]{(ItemStack) obj};
+        else if (obj instanceof ItemStack[]) aStacks = (ItemStack[]) obj;
+        else if (obj instanceof List) aStacks = (ItemStack[]) ((List) obj).toArray(new ItemStack[0]);
+        List<ItemStack> rList = new ArrayList<ItemStack>();
+        for (ItemStack aStack : aStacks) {
+            rList.add(aStack);
+            List<ItemStack> tList = sUnificationTable.get(new GT_ItemStack(aStack));
+            if (tList != null) {
+                for (ItemStack tStack : tList) {
+                    ItemStack tStack1 = GT_Utility.copyAmount(aStack.stackSize, tStack);
+                    tStack1.setTagCompound(aStack.getTagCompound());
+                    rList.add(tStack1);
+                }
+            }
+        }
+        return rList;
     }
 
     public static void addItemData(ItemStack aStack, ItemData aData) {
@@ -366,7 +366,8 @@ public class GT_OreDictUnificator {
 
     public static ItemStack getIngotOrDust(MaterialStack aMaterial) {
         ItemStack rStack = getIngot(aMaterial);
-        if(aMaterial!=null&&aMaterial.mMaterial!=null&&(aMaterial.mMaterial==Materials.Naquadah||aMaterial.mMaterial==Materials.NaquadahEnriched))rStack = getDust(aMaterial);
+        if (aMaterial != null && aMaterial.mMaterial != null && (aMaterial.mMaterial == Materials.Naquadah || aMaterial.mMaterial == Materials.NaquadahEnriched))
+            rStack = getDust(aMaterial);
         if (rStack == null) rStack = getDust(aMaterial);
         return rStack;
     }

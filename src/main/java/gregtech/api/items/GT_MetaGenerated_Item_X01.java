@@ -145,6 +145,7 @@ public abstract class GT_MetaGenerated_Item_X01 extends GT_MetaGenerated_Item {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public final void getSubItems(Item var1, CreativeTabs aCreativeTab, List aList) {
         for (int i = 0; i < GregTech_API.sGeneratedMaterials.length; i++)

@@ -3,8 +3,7 @@ package gregtech.common.covers;
 import gregtech.api.interfaces.tileentity.ICoverable;
 import gregtech.api.util.GT_CoverBehavior;
 
-public class GT_Cover_SolarPanel
-        extends GT_CoverBehavior {
+public class GT_Cover_SolarPanel extends GT_CoverBehavior {
     private final int mVoltage;
 
     public GT_Cover_SolarPanel(int aVoltage) {
@@ -27,7 +26,7 @@ public class GT_Cover_SolarPanel
     }
 
     public boolean alwaysLookConnected(byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity) {
-    	return true;
+        return true;
     }
 
     public int getTickRate(byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity) {

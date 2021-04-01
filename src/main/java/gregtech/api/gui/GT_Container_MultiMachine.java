@@ -1,7 +1,6 @@
 package gregtech.api.gui;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import gregtech.api.GregTech_API;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,15 +24,15 @@ public class GT_Container_MultiMachine extends GT_ContainerMetaTile_Machine {
     @Override
     public void addSlots(InventoryPlayer aInventoryPlayer) {
         addSlotToContainer(new Slot(mTileEntity, 1, 152, 5));
-        addSlotToContainer(new GT_Slot_Holo(mTileEntity,2,131,60,false,true,1));
+        addSlotToContainer(new GT_Slot_Holo(mTileEntity, 2, 131, 60, false, true, 1));
     }
 
     @Override
     public ItemStack slotClick(int aSlotIndex, int aMouseclick, int aShifthold, EntityPlayer aPlayer) {
-        if(aSlotIndex == 1){
-            if(FMLCommonHandler.instance().getEffectiveSide().isClient())
+        if (aSlotIndex == 1) {
+            if (FMLCommonHandler.instance().getEffectiveSide().isClient())
                 return null;
-            if(mTileEntity!=null){
+            if (mTileEntity != null) {
                 if (mTileEntity.isAllowedToWork())
                     mTileEntity.disableWorking();
                 else

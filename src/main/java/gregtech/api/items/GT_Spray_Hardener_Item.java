@@ -16,11 +16,7 @@ import static gregtech.api.enums.GT_Values.D1;
 
 public class GT_Spray_Hardener_Item extends GT_Tool_Item {
     public GT_Spray_Hardener_Item(String aUnlocalized, String aEnglish, int aMaxDamage, int aEntityDamage) {
-        super(aUnlocalized, aEnglish, "Construction Foam Hardener", aMaxDamage, aEntityDamage, true);/*
-        setCraftingSound(GregTech_API.sSoundList.get(102));
-		setBreakingSound(GregTech_API.sSoundList.get(102));
-		setEntityHitSound(GregTech_API.sSoundList.get(102));
-		setUsageAmounts(16, 3, 1);*/
+        super(aUnlocalized, aEnglish, "Construction Foam Hardener", aMaxDamage, aEntityDamage, true);
     }
 
     @Override
@@ -31,7 +27,6 @@ public class GT_Spray_Hardener_Item extends GT_Tool_Item {
         }
         Block aBlock = aWorld.getBlock(aX, aY, aZ);
         if (aBlock == null) return false;
-//    	byte aMeta = (byte)aWorld.getBlockMetadata(aX, aY, aZ);
         TileEntity aTileEntity = aWorld.getTileEntity(aX, aY, aZ);
 
         try {

@@ -428,7 +428,7 @@ public abstract class BaseTileEntity extends TileEntity implements IHasWorldObje
                 worldObj.notifyBlockOfNeighborChange(x1, y1, z1, thisBlock);
 
                 //update if it was / is strong powered.
-                if (((((mStrongRedstone | oStrongRedstone) >>> dir.ordinal()) & 1) != 0 ) && getBlock(x1, y1, z1).isNormalCube()) {
+                if (((((mStrongRedstone | oStrongRedstone) >>> dir.ordinal()) & 1) != 0) && getBlock(x1, y1, z1).isNormalCube()) {
                     int skipUpdateSide = dir.getOpposite().ordinal(); //Don't update this block. Still updates diagonal blocks twice if conditions meet.
 
                     for (ForgeDirection dir2 : ForgeDirection.VALID_DIRECTIONS) {
@@ -457,11 +457,11 @@ public abstract class BaseTileEntity extends TileEntity implements IHasWorldObje
     public final void setToFire() {
         worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.fire);
     }
-    
-    @Override 
-    public void markDirty() {/* Do not do the super Function */} 
-    
-    public String trans(String aKey, String aEnglish){
-    	return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_"+aKey, aEnglish, false);
+
+    @Override
+    public void markDirty() {/* Do not do the super Function */}
+
+    public String trans(String aKey, String aEnglish) {
+        return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_" + aKey, aEnglish, false);
     }
 }

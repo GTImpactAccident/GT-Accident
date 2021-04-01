@@ -1,6 +1,7 @@
 package gregtech.api.interfaces.tileentity;
 
 import cofh.api.energy.IEnergyReceiver;
+import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.enums.SubTag;
 import gregtech.api.util.GT_Utility;
 import ic2.api.energy.tile.IEnergySink;
@@ -25,25 +26,26 @@ public interface IExperimentalEnergyTileEntity extends IColoredTileEntity, IHasW
      * @param aSide 0 - 5 = Vanilla Directions of YOUR Block the Energy gets inserted to. 6 = No specific Side (don't do Side checks for this Side)
      * @return amount of used Amperes. 0 if not accepted anything.
      */
-    public long injectEnergy(SubTag aEnergyType, byte aSide, long aPrimary, long aSecondary);
+    long injectEnergy(SubTag aEnergyType, byte aSide, long aPrimary, long aSecondary);
 
     /**
      * Sided Energy Input
      */
-    public boolean inputEnergyFrom(SubTag aEnergyType, byte aSide);
+    boolean inputEnergyFrom(SubTag aEnergyType, byte aSide);
 
     /**
      * Sided Energy Output
      */
-    public boolean outputsEnergyTo(SubTag aEnergyType, byte aSide);
+    boolean outputsEnergyTo(SubTag aEnergyType, byte aSide);
 
     /**
      * Utility for the Network
      */
-    public static class Util {
+    class Util {
         public static int RF_PER_EU = 4;
         private static boolean RF_ENERGY = false, IC_ENERGY = false, CHECK_ALL = true;
 
+        @SuppressWarnings("rawtypes")
         private static void checkAvailabilities() {
             if (CHECK_ALL) {
                 try {
@@ -65,10 +67,10 @@ public interface IExperimentalEnergyTileEntity extends IColoredTileEntity, IHasW
          *
          * @return the amount of used secondary value.
          */
-        public static final long emitEnergyToNetwork(SubTag aEnergyType, long aPrimary, long aSecondary, IExperimentalEnergyTileEntity aEmitter) {
+        public static long emitEnergyToNetwork(SubTag aEnergyType, long aPrimary, long aSecondary, IExperimentalEnergyTileEntity aEmitter) {
             long rUsedSecondary = 0;
             checkAvailabilities();
-            for (byte i = 0, j = 0; i < 6 && aSecondary > rUsedSecondary; i++)
+            for (byte i = 0, j; i < 6 && aSecondary > rUsedSecondary; i++)
                 if (aEmitter.outputsEnergyTo(aEnergyType, i)) {
                     j = GT_Utility.getOppositeSide(i);
                     TileEntity tTileEntity = aEmitter.getTileEntityAtSide(i);

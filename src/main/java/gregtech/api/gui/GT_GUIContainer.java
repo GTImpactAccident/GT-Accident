@@ -34,7 +34,6 @@ public class GT_GUIContainer extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        //
     }
 
     @Override
@@ -49,8 +48,7 @@ public class GT_GUIContainer extends GuiContainer {
         } catch (Throwable e) {
             try {
                 Tessellator.instance.draw();
-            } catch (Throwable f) {
-                //
+            } catch (Throwable ignored) {
             }
         }
     }
@@ -58,20 +56,4 @@ public class GT_GUIContainer extends GuiContainer {
     public boolean isTheMouseOverSlot(Slot aSlot, int aMouseX, int aMouseY) {
         return aMouseX >= aSlot.xDisplayPosition && aMouseX <= aSlot.xDisplayPosition + 16 && aMouseY >= aSlot.yDisplayPosition && aMouseY <= aSlot.yDisplayPosition + 16;
     }
-    /*
-    @Override
-    protected void drawSlotInventory(Slot par1Slot) {
-        try {
-        	super.drawSlotInventory(par1Slot);
-        } catch(Throwable e) {
-            try {
-            	Tessellator.instance.draw();
-            } catch(Throwable f) {}
-        	if (!mCrashed) {
-        		GT_Log.out.println("Clientside Slot drawing Crash prevented. Seems one Itemstack causes Problems with negative Damage Values or the Wildcard Damage Value. This is absolutely NOT a Bug of the GregTech-Addon, so don't even think about reporting it to me, it's a Bug of the Mod, which belongs to the almost-crash-causing Item, so bug that Mods Author and not me! Did you hear it? NOT ME!!!");
-        		e.printStackTrace();
-            	mCrashed = true;
-        	}
-        }
-    }*/
 }

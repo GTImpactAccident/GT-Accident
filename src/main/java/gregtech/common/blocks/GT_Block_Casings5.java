@@ -10,8 +10,8 @@ import gregtech.api.util.GT_Utility;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class GT_Block_Casings5
-        extends GT_Block_Casings_Abstract {
+public class GT_Block_Casings5 extends GT_Block_Casings_Abstract {
+
     public GT_Block_Casings5() {
         super(GT_Item_Casings5.class, "gt.blockcasings5", GT_Material_Casings.INSTANCE);
         GT_Utility.addTexturePage((byte) 1);
@@ -34,6 +34,7 @@ public class GT_Block_Casings5
         ItemList.Casing_Coil_Naquadah.set(new ItemStack(this, 1, 5));
         ItemList.Casing_Coil_NaquadahAlloy.set(new ItemStack(this, 1, 6));
     }
+
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int aSide, int aMeta) {

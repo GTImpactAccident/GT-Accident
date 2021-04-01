@@ -178,7 +178,7 @@ public interface IMetaTileEntity extends ISidedInventory, IFluidTank, IFluidHand
     void onRemoval();
 
     /**
-     * @param aFacing
+     * @param aFacing - Forge Direction side
      * @return if aFacing would be a valid Facing for this Device. Used for wrenching.
      */
     boolean isFacingValid(byte aFacing);
@@ -241,8 +241,6 @@ public interface IMetaTileEntity extends ISidedInventory, IFluidTank, IFluidHand
     /**
      * a Player rightclicks the Machine
      * Sneaky rightclicks are not getting passed to this!
-     *
-     * @return
      */
     boolean onRightclick(IGregTechTileEntity aBaseMetaTileEntity, EntityPlayer aPlayer, byte aSide, float aX, float aY, float aZ);
 
@@ -299,8 +297,6 @@ public interface IMetaTileEntity extends ISidedInventory, IFluidTank, IFluidHand
 
     /**
      * Called when the Machine explodes, override Explosion Code here.
-     *
-     * @param aExplosionPower
      */
     void doExplosion(long aExplosionPower);
 
@@ -342,12 +338,7 @@ public interface IMetaTileEntity extends ISidedInventory, IFluidTank, IFluidHand
      * @param aRedstone   if the Machine is currently outputting a RedstoneSignal (use this instead of calling mBaseMetaTileEntity.mRedstone!!!)
      */
     ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, byte aSide, byte aFacing, byte aColorIndex, boolean aActive, boolean aRedstone);
-
-    /**
-     * The Textures used for the Item rendering. Return null if you want the regular 3D Block Rendering.
-     */
-    //public ITexture[] getItemTexture(ItemStack aStack);
-
+    
     /**
      * Register Icons here. This gets called when the Icons get initialized by the Base Block
      * Best is you put your Icons in a static Array for quick and easy access without relying on the MetaTileList.

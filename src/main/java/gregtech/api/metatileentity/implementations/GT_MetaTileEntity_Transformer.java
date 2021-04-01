@@ -97,7 +97,7 @@ public class GT_MetaTileEntity_Transformer extends GT_MetaTileEntity_TieredMachi
 
     @Override
     public boolean isInputFacing(byte aSide) {
-        return getBaseMetaTileEntity().isAllowedToWork() ? aSide == getBaseMetaTileEntity().getFrontFacing() : aSide != getBaseMetaTileEntity().getFrontFacing();
+        return getBaseMetaTileEntity().isAllowedToWork() == (aSide == getBaseMetaTileEntity().getFrontFacing());
     }
 
     @Override
@@ -155,11 +155,11 @@ public class GT_MetaTileEntity_Transformer extends GT_MetaTileEntity_TieredMachi
                         ((IEnergySource) tTileEntity).drawEnergy(tEU);
                         aBaseMetaTileEntity.injectEnergyUnits((byte) 6, tEU, 1);
                     } else if (GregTech_API.mInputRF && tTileEntity instanceof IEnergyProvider && ((IEnergyProvider) tTileEntity).extractEnergy(ForgeDirection.getOrientation(GT_Utility.getOppositeSide(i)), 1, true) == 1) {
-                        long tEU = (long) ((IEnergyProvider) tTileEntity).extractEnergy(ForgeDirection.getOrientation(GT_Utility.getOppositeSide(i)), (int) maxEUInput() * 100 / GregTech_API.mRFtoEU, false);
+                        long tEU = ((IEnergyProvider) tTileEntity).extractEnergy(ForgeDirection.getOrientation(GT_Utility.getOppositeSide(i)), (int) maxEUInput() * 100 / GregTech_API.mRFtoEU, false);
                         tEU = tEU * GregTech_API.mRFtoEU / 100;
                         aBaseMetaTileEntity.injectEnergyUnits((byte) 6, Math.min(tEU, maxEUInput()), 1);
                     } else if (GregTech_API.mInputRF && tTileEntity instanceof IEnergyStorage && ((IEnergyStorage) tTileEntity).extractEnergy(1, true) == 1) {
-                        long tEU = (long) ((IEnergyStorage) tTileEntity).extractEnergy((int) maxEUInput() * 100 / GregTech_API.mRFtoEU, false);
+                        long tEU = ((IEnergyStorage) tTileEntity).extractEnergy((int) maxEUInput() * 100 / GregTech_API.mRFtoEU, false);
                         tEU = tEU * GregTech_API.mRFtoEU / 100;
                         aBaseMetaTileEntity.injectEnergyUnits((byte) 6, Math.min(tEU, maxEUInput()), 1);
                     } else if (GregTech_API.mInputRF && GregTech_API.meIOLoaded && tTileEntity instanceof IPowerContainer && ((IPowerContainer) tTileEntity).getEnergyStored() > 0) {

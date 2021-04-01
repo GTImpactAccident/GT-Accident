@@ -1,8 +1,6 @@
 package gregtech.common.items;
 
-import gregtech.api.GregTech_API;
 import gregtech.api.items.GT_Generic_Item;
-import gregtech.api.items.GT_RadioactiveCellIC_Item;
 import ic2.api.reactor.IReactor;
 import ic2.api.reactor.IReactorComponent;
 import net.minecraft.item.ItemStack;
@@ -18,7 +16,7 @@ public class GT_NeutronReflector_Item
 
     public boolean acceptUraniumPulse(IReactor reactor, ItemStack yourStack, ItemStack pulsingStack, int youX, int youY, int pulseX, int pulseY, boolean heatrun) {
         if (!heatrun) {
-        	((IReactorComponent) pulsingStack.getItem()).acceptUraniumPulse(reactor, pulsingStack, yourStack, pulseX, pulseY, youX, youY, heatrun);
+            ((IReactorComponent) pulsingStack.getItem()).acceptUraniumPulse(reactor, pulsingStack, yourStack, pulseX, pulseY, youX, youY, heatrun);
         }
         return true;
     }

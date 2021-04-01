@@ -30,7 +30,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import static gregtech.api.enums.GT_Values.RES_PATH_ITEM;
 
 public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
-    public static Map jumpChargeMap = new ConcurrentHashMap();
+    @SuppressWarnings("rawtypes")
+    public static Map jumpChargeMap = new ConcurrentHashMap<>();
     public int mCharge, mTransfer, mTier, mDamageEnergyCost, mSpecials;
     public boolean mChargeProvider;
     public double mArmorAbsorbtionPercentage;
@@ -90,6 +91,7 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack aStack, EntityPlayer aPlayer, List aList, boolean aF3_H) {
         aList.add("Tier: " + mTier);
         if ((mSpecials & 1) != 0) aList.add("Rebreather");
@@ -140,7 +142,7 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
         }
 
         if (!aPlayer.worldObj.isRemote && (mSpecials & 128) != 0) {
-            float var6 = jumpChargeMap.containsKey(aPlayer) ? ((Float) jumpChargeMap.get(aPlayer)).floatValue() : 1.0F;
+            float var6 = jumpChargeMap.containsKey(aPlayer) ? (Float) jumpChargeMap.get(aPlayer) : 1.0F;
 
             if (GT_ModHandler.canUseElectricItem(aStack, 1000) && aPlayer.onGround && var6 < 1.0F) {
                 var6 = 1.0F;
@@ -161,7 +163,7 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
                 }
             }
 
-            jumpChargeMap.put(aPlayer, Float.valueOf(var6));
+            jumpChargeMap.put(aPlayer, var6);
         }
 
         if ((mSpecials & 256) != 0) {
@@ -193,7 +195,6 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
         }
 
         if (!aPlayer.worldObj.isRemote && (mSpecials & (16 | 32)) != 0) {
-            //if (GregTech_API.sWorldTickCounter%20==0) {
             ItemStack tTargetChargeItem = aStack, tTargetDechargeItem = aStack;
 
             if (GT_ModHandler.chargeElectricItem(tTargetChargeItem, 1, Integer.MAX_VALUE, true, true) < 1) {
@@ -211,14 +212,6 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
                 if ((mSpecials & 32) != 0 && tTargetChargeItem != null) {
                     GT_ModHandler.chargeElectricItem(tTargetChargeItem, 20, Integer.MAX_VALUE, true, false);
                 }
-            } else {
-                    /* TODO:
-					if ((mSpecials & 16) != 0 && tTargetDechargeItem != null && GT_ModHandler.canUseElectricItem(tTargetDechargeItem, 10)) {
-						if (aPlayer.worldObj.getBlock	((int)aPlayer.posX, (int)aPlayer.posY+1, (int)aPlayer.posZ) == Blocks.air)
-							aPlayer.worldObj.setBlock	((int)aPlayer.posX, (int)aPlayer.posY+1, (int)aPlayer.posZ, GregTech_API.sBlockList[3]);
-						GT_ModHandler.useElectricItem(tTargetDechargeItem, 10, aPlayer);
-					}*/
-                //}
             }
         }
     }
@@ -229,6 +222,7 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item aItem, CreativeTabs var2, List var3) {
         ItemStack tCharged = new ItemStack(this, 1), tUncharged = new ItemStack(this, 1, getMaxDamage());
@@ -320,13 +314,12 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
         if (mArmorAbsorbtionPercentage <= 0) return 0.00;
         switch (this.armorType) {
             case 0:
+            case 3:
                 return 0.15;
             case 1:
                 return 0.40;
             case 2:
                 return 0.30;
-            case 3:
-                return 0.15;
             default:
                 return 0.00;
         }

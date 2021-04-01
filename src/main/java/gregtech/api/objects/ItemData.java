@@ -4,7 +4,10 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import net.minecraft.item.ItemStack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class ItemData {
     private static final MaterialStack[] EMPTY_MATERIALSTACK_ARRAY = new MaterialStack[0];
@@ -122,7 +125,7 @@ public class ItemData {
 
     @Override
     public int hashCode() {
-        return (mPrefix.ordinal()<<16)|mMaterial.mMaterial.mMetaItemSubID;
+        return (mPrefix.ordinal() << 16) | mMaterial.mMaterial.mMetaItemSubID;
     }
 
     @Override

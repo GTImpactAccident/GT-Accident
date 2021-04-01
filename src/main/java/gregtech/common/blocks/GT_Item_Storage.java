@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public class GT_Item_Storage extends ItemBlock {
+
     public GT_Item_Storage(Block par1) {
         super(par1);
         setMaxDamage(0);
@@ -22,22 +23,23 @@ public class GT_Item_Storage extends ItemBlock {
     }
 
     public String getItemStackDisplayName(ItemStack aStack) {
-    	String aName = super.getItemStackDisplayName(aStack);
-    	if (this.field_150939_a instanceof GT_Block_Metal) {
-    		int aDamage = getDamage(aStack);
-    		if (aDamage >= 0 && aDamage < ((GT_Block_Metal) this.field_150939_a).mMats.length){
-    			Materials aMaterial = ((GT_Block_Metal) this.field_150939_a).mMats[aDamage];
-    			if (aMaterial != null)
-    				return aMaterial.getLocalizedNameForItem(aName);
-    		}
-    	}
-    	return aName;
+        String aName = super.getItemStackDisplayName(aStack);
+        if (this.field_150939_a instanceof GT_Block_Metal) {
+            int aDamage = getDamage(aStack);
+            if (aDamage >= 0 && aDamage < ((GT_Block_Metal) this.field_150939_a).mMats.length) {
+                Materials aMaterial = ((GT_Block_Metal) this.field_150939_a).mMats[aDamage];
+                if (aMaterial != null)
+                    return aMaterial.getLocalizedNameForItem(aName);
+            }
+        }
+        return aName;
     }
 
     public int getMetadata(int aMeta) {
         return aMeta;
     }
 
+    @Override
     public void addInformation(ItemStack aStack, EntityPlayer aPlayer, List aList, boolean aF3_H) {
         super.addInformation(aStack, aPlayer, aList, aF3_H);
     }

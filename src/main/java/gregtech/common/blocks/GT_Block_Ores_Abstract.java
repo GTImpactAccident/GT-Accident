@@ -35,12 +35,12 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class GT_Block_Ores_Abstract extends GT_Generic_Block implements ITileEntityProvider {
-    public static ThreadLocal<GT_TileEntity_Ores> mTemporaryTileEntity = new ThreadLocal();
+    public static ThreadLocal<GT_TileEntity_Ores> mTemporaryTileEntity = new ThreadLocal<>();
     public static boolean FUCKING_LOCK = false;
     public static boolean tHideOres;
     private final String aTextName = ".name";
     private final String aTextSmall = "Small ";
-    public static Set aBlockedOres = new HashSet<Materials>();
+    public static Set<Materials> aBlockedOres = new HashSet<>();
 
     protected GT_Block_Ores_Abstract(String aUnlocalizedName, int aOreMetaCount, boolean aHideFirstMeta, Material aMaterial) {
         super(GT_Item_Ores.class, aUnlocalizedName, aMaterial);
@@ -135,7 +135,7 @@ public abstract class GT_Block_Ores_Abstract extends GT_Generic_Block implements
     public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_) {
         super.onBlockEventReceived(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_5_, p_149696_6_);
         TileEntity tileentity = p_149696_1_.getTileEntity(p_149696_2_, p_149696_3_, p_149696_4_);
-        return tileentity != null ? tileentity.receiveClientEvent(p_149696_5_, p_149696_6_) : false;
+        return tileentity != null && tileentity.receiveClientEvent(p_149696_5_, p_149696_6_);
     }
 
     public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
@@ -241,7 +241,7 @@ public abstract class GT_Block_Ores_Abstract extends GT_Generic_Block implements
         if ((tTileEntity instanceof GT_TileEntity_Ores)) {
             return ((GT_TileEntity_Ores) tTileEntity).getDrops(getDroppedBlock(), aFortune);
         }
-        return mTemporaryTileEntity.get() == null ? new ArrayList() : ((GT_TileEntity_Ores) mTemporaryTileEntity.get()).getDrops(getDroppedBlock(), aFortune);
+        return mTemporaryTileEntity.get() == null ? new ArrayList<>() : (mTemporaryTileEntity.get()).getDrops(getDroppedBlock(), aFortune);
     }
 
     public TileEntity createTileEntity(World aWorld, int aMeta) {
@@ -251,6 +251,7 @@ public abstract class GT_Block_Ores_Abstract extends GT_Generic_Block implements
     public abstract ITexture[] getTextureSet(); //Must have 16 entries.
 
     @Override
+    @SuppressWarnings("unchecked")
     public void getSubBlocks(Item aItem, CreativeTabs aTab, List aList) {
         for (int i = 0; i < GregTech_API.sGeneratedMaterials.length; i++) {
             Materials tMaterial = GregTech_API.sGeneratedMaterials[i];

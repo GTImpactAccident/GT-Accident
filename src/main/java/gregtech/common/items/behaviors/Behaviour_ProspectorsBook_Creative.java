@@ -7,7 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.List;
+import java.util.Random;
 
 public class Behaviour_ProspectorsBook_Creative
         extends Behaviour_None {
@@ -17,10 +18,10 @@ public class Behaviour_ProspectorsBook_Creative
 
 
     public boolean onItemUse(GT_MetaBase_Item aItem, ItemStack aStack, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ, int aSide, float hitX, float hitY, float hitZ) {
-        if(aWorld.isRemote)
+        if (aWorld.isRemote)
             return true;
-        ItemStack tBook = Behaviour_ProspectorsBook.getBook(aWorld,aX,aY,aZ,new Random());
-        aPlayer.setCurrentItemOrArmor(0,tBook);
+        ItemStack tBook = Behaviour_ProspectorsBook.getBook(aWorld, aX, aY, aZ, new Random());
+        aPlayer.setCurrentItemOrArmor(0, tBook);
         return true;
     }
 

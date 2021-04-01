@@ -67,7 +67,7 @@ public abstract class GT_Tool
     }
 
     public String getBreakingSound() {
-        return (String) GregTech_API.sSoundList.get(Integer.valueOf(0));
+        return GregTech_API.sSoundList.get(0);
     }
 
     public int getBaseQuality() {
@@ -85,11 +85,11 @@ public abstract class GT_Tool
     public boolean isGrafter() {
         return false;
     }
-    
-    public boolean isChainsaw(){
-    	return false;
+
+    public boolean isChainsaw() {
+        return false;
     }
-    
+
     public boolean isWrench() {
         return false;
     }
@@ -147,8 +147,8 @@ public abstract class GT_Tool
         return aOriginalDamage;
     }
 
-	@Override
-	public float getMiningSpeed(Block aBlock, byte aMetaData, float aDefault, EntityPlayer aPlayer, World worldObj, int aX, int aY, int aZ) {
-		return aDefault;
-	}
+    @Override
+    public float getMiningSpeed(Block aBlock, byte aMetaData, float aDefault, EntityPlayer aPlayer, World worldObj, int aX, int aY, int aZ) {
+        return aDefault;
+    }
 }

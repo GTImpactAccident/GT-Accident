@@ -24,12 +24,17 @@ public class GT_Worldgen_Boulder extends GT_Worldgen_Ore {
                     float math_pi = 3.141593F;
                     float var6 = aRandom.nextFloat() * math_pi;
                     float var1b = mSize / 8.0F;
-                    float var3b = MathHelper.sin(var6) * var1b; float var4b = MathHelper.cos(var6) * var1b;
-                    float var8b = -2*var3b;float var9b = -2*var4b;
-                    int var10b = (tX + 8);int var11b = (tZ + 8);
+                    float var3b = MathHelper.sin(var6) * var1b;
+                    float var4b = MathHelper.cos(var6) * var1b;
+                    float var8b = -2 * var3b;
+                    float var9b = -2 * var4b;
+                    int var10b = (tX + 8);
+                    int var11b = (tZ + 8);
                     float var7 = (var10b + var3b);
                     float var11 = (var11b + var4b);
-                    int var5b = aRandom.nextInt(3);int var6b = aRandom.nextInt(3);int var7b = var6b - var5b;
+                    int var5b = aRandom.nextInt(3);
+                    int var6b = aRandom.nextInt(3);
+                    int var7b = var6b - var5b;
                     float var15 = (tY + var5b - 2);
                     float var12b = math_pi / mSize;
 

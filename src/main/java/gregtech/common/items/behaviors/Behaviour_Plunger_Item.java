@@ -34,9 +34,7 @@ public class Behaviour_Plunger_Item
         if ((aTileEntity instanceof IGregTechTileEntity)) {
             IMetaTileEntity tMetaTileEntity = ((IGregTechTileEntity) aTileEntity).getMetaTileEntity();
             if ((tMetaTileEntity instanceof IMetaTileEntityItemPipe)) {
-                for (Object tTileEntity : GT_Utility.sortMapByValuesAcending(IMetaTileEntityItemPipe.Util.scanPipes((IMetaTileEntityItemPipe) tMetaTileEntity, new ConcurrentHashMap<IMetaTileEntityItemPipe,Long>(), 0L, false, true)).keySet())
-
-                {
+                for (Object tTileEntity : GT_Utility.sortMapByValuesAcending(IMetaTileEntityItemPipe.Util.scanPipes((IMetaTileEntityItemPipe) tMetaTileEntity, new ConcurrentHashMap<IMetaTileEntityItemPipe, Long>(), 0L, false, true)).keySet()) {
                     int i = 0;
                     for (int j = ((IMetaTileEntityItemPipe) tTileEntity).getSizeInventory(); i < j; i++) {
                         if (((IMetaTileEntityItemPipe) tTileEntity).isValidSlot(i)) {

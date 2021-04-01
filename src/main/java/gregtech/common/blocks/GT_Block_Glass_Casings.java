@@ -44,9 +44,8 @@ public class GT_Block_Glass_Casings extends GT_Block_Casings_Abstract {
     }
 
     public IIcon getIcon(int aSide, int aMeta) {
-        switch (aMeta) {
-            case 0:
-                return Textures.BlockIcons.BLOCK_PLASCRETE_WINDOW.getIcon();
+        if (aMeta == 0) {
+            return Textures.BlockIcons.BLOCK_PLASCRETE_WINDOW.getIcon();
         }
         assert aMeta >= 0 && aMeta <= maxAllowedMeta : "GT_Block_Glass_Casings - Invalid Metadata: " + aMeta;
         return Textures.BlockIcons.BLOCK_PLASCRETE_WINDOW.getIcon();
@@ -92,5 +91,4 @@ public class GT_Block_Glass_Casings extends GT_Block_Casings_Abstract {
         Block block = aWorld.getBlock(aX, aY, aZ);
         return !block.isBlockSolid(aWorld, aX, aY, aZ, aSide);
     }
-
 }

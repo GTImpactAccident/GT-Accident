@@ -14,7 +14,9 @@ public class GT_Item_Casings1
     public GT_Item_Casings1(Block par1) {
         super(par1);
     }
+
     @Override
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack aStack, EntityPlayer aPlayer, List aList, boolean aF3_H) {
         super.addInformation(aStack, aPlayer, aList, aF3_H);

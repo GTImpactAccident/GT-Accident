@@ -57,29 +57,29 @@ public class GT_Tool_Chainsaw_LV
     }
 
     public String getCraftingSound() {
-        return (String) GregTech_API.sSoundList.get(Integer.valueOf(104));
+        return GregTech_API.sSoundList.get(104);
     }
 
     public String getEntityHitSound() {
-        return (String) GregTech_API.sSoundList.get(Integer.valueOf(105));
+        return GregTech_API.sSoundList.get(105);
     }
 
     public String getBreakingSound() {
-        return (String) GregTech_API.sSoundList.get(Integer.valueOf(0));
+        return GregTech_API.sSoundList.get(0);
     }
 
     public String getMiningSound() {
-        return (String) GregTech_API.sSoundList.get(Integer.valueOf(104));
+        return GregTech_API.sSoundList.get(104);
     }
 
     public boolean canBlock() {
         return false;
     }
 
-    public boolean isChainsaw(){
-    	return true;
+    public boolean isChainsaw() {
+        return true;
     }
-    
+
     public boolean isWeapon() {
         return true;
     }
@@ -87,11 +87,12 @@ public class GT_Tool_Chainsaw_LV
     public void onToolCrafted(ItemStack aStack, EntityPlayer aPlayer) {
         super.onToolCrafted(aStack, aPlayer);
         try {
-            GT_Mod.instance.achievements.issueAchievement(aPlayer, "brrrr");
-            GT_Mod.instance.achievements.issueAchievement(aPlayer, "buildChainsaw");
-        } catch (Exception e) {
+            GT_Mod.achievements.issueAchievement(aPlayer, "brrrr");
+            GT_Mod.achievements.issueAchievement(aPlayer, "buildChainsaw");
+        } catch (Exception ignored) {
         }
     }
+
     @Override
     public int convertBlockDrops(List<ItemStack> aDrops, ItemStack aStack, EntityPlayer aPlayer, Block aBlock, int aX, int aY, int aZ, byte aMetaData, int aFortune, boolean aSilkTouch, BlockEvent.HarvestDropsEvent aEvent) {
         int rAmount = 0;
@@ -100,24 +101,9 @@ public class GT_Tool_Chainsaw_LV
             if (((IShearable) aBlock).isShearable(aStack, aPlayer.worldObj, aX, aY, aZ)) {
                 ArrayList<ItemStack> tDrops = ((IShearable) aBlock).onSheared(aStack, aPlayer.worldObj, aX, aY, aZ, aFortune);
                 aDrops.clear();
-//                aDrops.addAll(tDrops);
-//                aEvent.dropChance = 1.0F;
-//                for (ItemStack stack : tDrops)
-//                {
-//                Random itemRand = new Random();
-//                  float f = 0.7F;
-//                  double d = itemRand.nextFloat() * f + (1.0F - f) * 0.5D;
-//                  double d1 = itemRand.nextFloat() * f + (1.0F - f) * 0.5D;
-//                  double d2 = itemRand.nextFloat() * f + (1.0F - f) * 0.5D;
-//                  EntityItem entityitem = new EntityItem(aPlayer.worldObj, aX + d, aY + d1, aZ + d2, stack);
-//                  entityitem.delayBeforeCanPickup = 10;
-//                  aPlayer.worldObj.spawnEntityInWorld(entityitem);
-//                }
-//                aPlayer.addStat(net.minecraft.stats.StatList.mineBlockStatArray[Block.getIdFromBlock(aBlock)], 1);                
             }
             aPlayer.worldObj.setBlock(aX, aY, aZ, Blocks.air, 0, 0);
-        } else 
-        	if (((aBlock.getMaterial() == Material.ice) || (aBlock.getMaterial() == Material.packedIce)) && (aDrops.isEmpty())) {
+        } else if (((aBlock.getMaterial() == Material.ice) || (aBlock.getMaterial() == Material.packedIce)) && (aDrops.isEmpty())) {
             aDrops.add(new ItemStack(aBlock, 1, aMetaData));
             aPlayer.worldObj.setBlockToAir(aX, aY, aZ);
             aEvent.dropChance = 1.0F;
@@ -134,20 +120,21 @@ public class GT_Tool_Chainsaw_LV
         }
         return rAmount;
     }
-    
-    public float getMiningSpeed(Block aBlock, byte aMetaData, float aDefault, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ)
-    {
-      if (aBlock.isWood(aPlayer.worldObj, aX, aY, aZ) && OrePrefixes.log.contains(new ItemStack(aBlock, 1, aMetaData))){
-        float rAmount = 1.0F;float tIncrement = 1.0F;
-        if ((GregTech_API.sTimber) && !aPlayer.isSneaking()){
-          int tY = aY + 1;
-          for (int tH = aPlayer.worldObj.getHeight(); (tY < tH) && (aPlayer.worldObj.getBlock(aX, tY, aZ) == aBlock); tY++){
-            tIncrement += 0.1F;rAmount += tIncrement;
-          }
+
+    public float getMiningSpeed(Block aBlock, byte aMetaData, float aDefault, EntityPlayer aPlayer, World aWorld, int aX, int aY, int aZ) {
+        if (aBlock.isWood(aPlayer.worldObj, aX, aY, aZ) && OrePrefixes.log.contains(new ItemStack(aBlock, 1, aMetaData))) {
+            float rAmount = 1.0F;
+            float tIncrement = 1.0F;
+            if ((GregTech_API.sTimber) && !aPlayer.isSneaking()) {
+                int tY = aY + 1;
+                for (int tH = aPlayer.worldObj.getHeight(); (tY < tH) && (aPlayer.worldObj.getBlock(aX, tY, aZ) == aBlock); tY++) {
+                    tIncrement += 0.1F;
+                    rAmount += tIncrement;
+                }
+            }
+            return 2.0F * aDefault / rAmount;
         }
-        return 2.0F * aDefault / rAmount;
-      }
-      return (aBlock.getMaterial() == Material.leaves) || (aBlock.getMaterial() == Material.vine) || (aBlock.getMaterial() == Material.plants) || (aBlock.getMaterial() == Material.gourd) ? aDefault / 4.0F : aDefault;
+        return (aBlock.getMaterial() == Material.leaves) || (aBlock.getMaterial() == Material.vine) || (aBlock.getMaterial() == Material.plants) || (aBlock.getMaterial() == Material.gourd) ? aDefault / 4.0F : aDefault;
     }
 
     public IIconContainer getIcon(boolean aIsToolHead, ItemStack aStack) {

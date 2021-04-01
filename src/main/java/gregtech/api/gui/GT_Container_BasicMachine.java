@@ -12,8 +12,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.util.Iterator;
-
 /**
  * NEVER INCLUDE THIS FILE IN YOUR MOD!!!
  * <p/>
@@ -39,29 +37,29 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
             case 0:
                 break;
             case 1:
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 53, 25));
                 break;
             case 2:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 25));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 53, 25));
                 break;
             case 3:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 25));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 25));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 53, 25));
                 break;
             case 4:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 16));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 16));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 34));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 34));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 53, 34));
                 break;
             case 5:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 16));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 16));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 16));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 34));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 34));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 53, 34));
                 break;
             case 6:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 16));
@@ -69,7 +67,7 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 16));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 34));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 34));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 34));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 53, 34));
                 break;
             case 7:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 7));
@@ -78,7 +76,7 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 25));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 25));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 43));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 17, 43));
                 break;
             case 8:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 7));
@@ -88,7 +86,7 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 25));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 43));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 43));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 35, 43));
                 break;
             default:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 7));
@@ -99,7 +97,7 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 43));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 43));
-                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 43));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex, 53, 43));
                 break;
         }
 
@@ -175,7 +173,7 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
 
         addSlotToContainer(new Slot(mTileEntity, 1, 80, 63));
         addSlotToContainer(new Slot(mTileEntity, 3, 125, 63));
-        addSlotToContainer(new GT_Slot_Render(mTileEntity, tStartIndex++, 53, 63));
+        addSlotToContainer(new GT_Slot_Render(mTileEntity, tStartIndex, 53, 63));
     }
 
     @Override
@@ -195,7 +193,7 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
                         ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid = ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid2;
                         ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluidOut = ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid1;
                         ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).fluidChange = false;
-                        GT_Utility.sendChatToPlayer(aPlayer, (((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid1 == null ? null : EnumChatFormatting.RED +  ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid1.getLocalizedName() + EnumChatFormatting.RESET +  " on Output Slot"));
+                        GT_Utility.sendChatToPlayer(aPlayer, (((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid1 == null ? null : EnumChatFormatting.RED + ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid1.getLocalizedName() + EnumChatFormatting.RESET + " on Output Slot"));
                         GT_Utility.sendChatToPlayer(aPlayer, (((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid2 == null ? null : EnumChatFormatting.GREEN + ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mFluid2.getLocalizedName() + EnumChatFormatting.RESET + " on Input Slot"));
                     }
 
@@ -221,9 +219,8 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
         mItemTransfer = ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mItemTransfer;
         mStuttering = ((GT_MetaTileEntity_BasicMachine) mTileEntity.getMetaTileEntity()).mStuttering;
 
-        Iterator var2 = this.crafters.iterator();
-        while (var2.hasNext()) {
-            ICrafting var1 = (ICrafting) var2.next();
+        for (Object crafter : this.crafters) {
+            ICrafting var1 = (ICrafting) crafter;
             var1.sendProgressBarUpdate(this, 102, mFluidTransfer ? 1 : 0);
             var1.sendProgressBarUpdate(this, 103, mItemTransfer ? 1 : 0);
             var1.sendProgressBarUpdate(this, 104, mStuttering ? 1 : 0);

@@ -25,12 +25,6 @@ public abstract class GT_MetaTileEntity_BasicMachine_Steel extends GT_MetaTileEn
         super(aName, aDescription, aTextures, aInputSlotCount, aOutputSlotCount, aBricked);
     }
 
-    /*
-    @Override
-    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_BasicMachine_Steel(mTier, mDescription, mTextures);
-    }
-    */
     @Override
     public float getSteamDamage() {
         return 12.0F;

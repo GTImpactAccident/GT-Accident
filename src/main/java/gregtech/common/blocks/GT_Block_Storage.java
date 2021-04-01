@@ -92,6 +92,7 @@ public class GT_Block_Storage extends GT_Generic_Block {
     public void registerBlockIcons(IIconRegister aIconRegister) {
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item aItem, CreativeTabs par2CreativeTabs, List aList) {
         for (int i = 0; i < 16; i++) {

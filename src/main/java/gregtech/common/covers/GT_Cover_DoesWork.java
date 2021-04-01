@@ -7,8 +7,7 @@ import gregtech.api.util.GT_Utility;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fluids.Fluid;
 
-public class GT_Cover_DoesWork
-        extends GT_CoverBehavior {
+public class GT_Cover_DoesWork extends GT_CoverBehavior {
     public int doCoverThings(byte aSide, byte aInputRedstone, int aCoverID, int aCoverVariable, ICoverable aTileEntity, long aTimer) {
         if ((aTileEntity instanceof IMachineProgress)) {
             if (aCoverVariable < 2) {
@@ -28,13 +27,23 @@ public class GT_Cover_DoesWork
     }
 
     public int onCoverScrewdriverclick(byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking()? -1 : 1)) % 4;
-        if(aCoverVariable <0){aCoverVariable = 3;}
-        switch(aCoverVariable) {
-            case 0: GT_Utility.sendChatToPlayer(aPlayer, trans("018", "Normal")); break;
-            case 1: GT_Utility.sendChatToPlayer(aPlayer, trans("019", "Inverted")); break;
-            case 2: GT_Utility.sendChatToPlayer(aPlayer, trans("020", "Ready to work")); break;
-            case 3: GT_Utility.sendChatToPlayer(aPlayer, trans("021", "Not ready to work")); break;
+        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking() ? -1 : 1)) % 4;
+        if (aCoverVariable < 0) {
+            aCoverVariable = 3;
+        }
+        switch (aCoverVariable) {
+            case 0:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("018", "Normal"));
+                break;
+            case 1:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("019", "Inverted"));
+                break;
+            case 2:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("020", "Ready to work"));
+                break;
+            case 3:
+                GT_Utility.sendChatToPlayer(aPlayer, trans("021", "Not ready to work"));
+                break;
         }
         return aCoverVariable;
     }

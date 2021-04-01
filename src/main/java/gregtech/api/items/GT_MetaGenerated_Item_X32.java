@@ -84,7 +84,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
      */
     public boolean doesMaterialAllowGeneration(OrePrefixes aPrefix, Materials aMaterial) {
         // You have to check for at least these Conditions in every Case! So add a super Call like the following for this before executing your Code:
-        // if (!super.doesMaterialAllowGeneration(aPrefix, aMaterial)) return false;
+
         return aPrefix != null && aMaterial != null && aPrefix.doGenerateItem(aMaterial);
     }
 	
@@ -159,6 +159,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public final void getSubItems(Item var1, CreativeTabs aCreativeTab, List aList) {
         for (int i = 0; i < 32000; i++) {

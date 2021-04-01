@@ -5,7 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class GT_NEIItemStack extends GT_ItemStack{
+public class GT_NEIItemStack extends GT_ItemStack {
 
     public GT_NEIItemStack(Item aItem, long aStackSize, long aMetaData) {
         super(aItem, aStackSize, aMetaData);
@@ -36,7 +36,7 @@ public class GT_NEIItemStack extends GT_ItemStack{
     public boolean equals(Object aStack) {
         if (aStack == this) return true;
         if (aStack instanceof GT_NEIItemStack) {
-            return ((GT_NEIItemStack) aStack).mItem == mItem && (((GT_NEIItemStack) aStack).mMetaData == mMetaData||((GT_NEIItemStack)aStack).mItem.isDamageable());
+            return ((GT_NEIItemStack) aStack).mItem == mItem && (((GT_NEIItemStack) aStack).mMetaData == mMetaData || ((GT_NEIItemStack) aStack).mItem.isDamageable());
         }
         return false;
     }
@@ -48,7 +48,7 @@ public class GT_NEIItemStack extends GT_ItemStack{
 
     public static int stackToInt(ItemStack aStack) {
         if (GT_Utility.isStackInvalid(aStack)) return 0;
-        return Item.getIdFromItem(aStack.getItem()) | (aStack.getItem().isDamageable()?0:(Items.feather.getDamage(aStack) << 16));
+        return Item.getIdFromItem(aStack.getItem()) | (aStack.getItem().isDamageable() ? 0 : (Items.feather.getDamage(aStack) << 16));
 
     }
 }

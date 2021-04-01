@@ -106,8 +106,8 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
     }
 
     protected final void addInfo(int aID) {
-    	if (GT.isServerSide()) return;
-    	ItemStack tStack = new ItemStack(GregTech_API.sBlockMachines, 1, aID);
+        if (GT.isServerSide()) return;
+        ItemStack tStack = new ItemStack(GregTech_API.sBlockMachines, 1, aID);
         tStack.getItem().addInformation(tStack, null, new ArrayList<String>(), true);
     }
 
@@ -178,8 +178,8 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
         if (aSide < 6 && mBaseMetaTileEntity.getCoverIDAtSide(aSide) > 0) {
             tCovered = true;
         }
-        if(isConnectedAtSide(aSide)){
-        	tCovered = true;
+        if (isConnectedAtSide(aSide)) {
+            tCovered = true;
         }
         //System.out.println("Cover: "+mBaseMetaTileEntity.getCoverIDAtSide(aSide));
         //toDo: filter cover ids that actually protect against temperature (rubber/plastic maybe?)
@@ -504,7 +504,7 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
 
     @Override
     public int[] getAccessibleSlotsFromSide(int aSide) {
-        ArrayList<Integer> tList = new ArrayList<Integer>();
+        ArrayList<Integer> tList = new ArrayList<>();
         IGregTechTileEntity tTileEntity = getBaseMetaTileEntity();
         boolean tSkip = tTileEntity.getCoverBehaviorAtSide((byte) aSide).letsItemsIn((byte) aSide, tTileEntity.getCoverIDAtSide((byte) aSide), tTileEntity.getCoverDataAtSide((byte) aSide), -2, tTileEntity) || tTileEntity.getCoverBehaviorAtSide((byte) aSide).letsItemsOut((byte) aSide, tTileEntity.getCoverIDAtSide((byte) aSide), tTileEntity.getCoverDataAtSide((byte) aSide), -2, tTileEntity);
         for (int i = 0; i < getSizeInventory(); i++)
@@ -709,18 +709,18 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
         return false;
     }
 
-	@Override
-	public boolean hasAlternativeModeText() {
-		return false;
-	}
+    @Override
+    public boolean hasAlternativeModeText() {
+        return false;
+    }
 
-	@Override
-	public String getAlternativeModeText() {
-		return "";
-	}
+    @Override
+    public String getAlternativeModeText() {
+        return "";
+    }
 
-	public String trans(String aKey, String aEnglish){
-    	return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_"+aKey, aEnglish, false);
+    public String trans(String aKey, String aEnglish) {
+        return GT_LanguageManager.addStringLocalization("Interaction_DESCRIPTION_Index_" + aKey, aEnglish, false);
     }
 
     private boolean connectableColor(TileEntity tTileEntity) {
@@ -737,7 +737,7 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
         return true;
     }
 
-    public boolean letsInOrOut(byte side){
+    public boolean letsInOrOut(byte side) {
         final IGregTechTileEntity baseMetaTile = getBaseMetaTileEntity();
         final int coverId = baseMetaTile.getCoverIDAtSide(side),
                 coverData = baseMetaTile.getCoverDataAtSide(side);
@@ -748,19 +748,19 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
         return letsIn || letsOut || alwaysLookConnected;
     }
 
-	@Override
-	public int connect(byte aSide) {
-		if (aSide >= 6) return 0;
+    @Override
+    public int connect(byte aSide) {
+        if (aSide >= 6) return 0;
 
-		final byte tSide = GT_Utility.getOppositeSide(aSide);
-		final IGregTechTileEntity baseMetaTile = getBaseMetaTileEntity();
-		if (baseMetaTile == null || !baseMetaTile.isServerSide()) return 0;
+        final byte tSide = GT_Utility.getOppositeSide(aSide);
+        final IGregTechTileEntity baseMetaTile = getBaseMetaTileEntity();
+        if (baseMetaTile == null || !baseMetaTile.isServerSide()) return 0;
 
         // Careful - tTileEntity might be null, and that's ok -- so handle it
         TileEntity tTileEntity = baseMetaTile.getTileEntityAtSide(aSide);
         if (!connectableColor(tTileEntity)) return 0;
 
-        if (letsInOrOut(aSide))  {
+        if (letsInOrOut(aSide)) {
             // Are we trying to connect to a pipe? let's do it!
             IMetaTileEntity tPipe = tTileEntity instanceof IGregTechTileEntity ? ((IGregTechTileEntity) tTileEntity).getMetaTileEntity() : null;
             if (tPipe != null && (getClass().isInstance(tPipe) || (tPipe.getClass().isInstance(this))) && ((MetaPipeEntity) tPipe).letsInOrOut(tSide)) {
@@ -770,8 +770,7 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
                     ((MetaPipeEntity) tPipe).connect(tSide);
                 }
                 return 1;
-            }
-            else if((getGT6StyleConnection() && baseMetaTile.getAirAtSide(aSide)) || canConnect(aSide, tTileEntity)) {
+            } else if ((getGT6StyleConnection() && baseMetaTile.getAirAtSide(aSide)) || canConnect(aSide, tTileEntity)) {
                 // Allow open connections to Air, if the GT6 style pipe/cables are enabled, so that it'll connect to the next block placed down next to it
                 connectAtSide(aSide);
                 return 1;
@@ -782,8 +781,8 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
             }
 
         }
-    	return 0;
-	}
+        return 0;
+    }
 
     protected void checkConnections() {
         // Verify connections around us.  If GT6 style cables are not enabled then revert to old behavior and try
@@ -796,34 +795,45 @@ public abstract class MetaPipeEntity implements IMetaTileEntity, IConnectable {
         mCheckConnections = false;
     }
 
-	private void connectAtSide(byte aSide) {
+    private void connectAtSide(byte aSide) {
         mConnections |= (1 << aSide);
     }
 
-	@Override
-	public void disconnect(byte aSide) {
-		if (aSide >= 6) return;
-		mConnections &= ~(1 << aSide);
-		byte tSide = GT_Utility.getOppositeSide(aSide);
-		IGregTechTileEntity tTileEntity = getBaseMetaTileEntity().getIGregTechTileEntityAtSide(aSide);
-		IMetaTileEntity tPipe = tTileEntity == null ? null : tTileEntity.getMetaTileEntity(); 
-		if ((this.getClass().isInstance(tPipe) || (tPipe != null && tPipe.getClass().isInstance(this))) && ((MetaPipeEntity) tPipe).isConnectedAtSide(tSide))
-			((MetaPipeEntity) tPipe).disconnect(tSide);
-	}
+    @Override
+    public void disconnect(byte aSide) {
+        if (aSide >= 6) return;
+        mConnections &= ~(1 << aSide);
+        byte tSide = GT_Utility.getOppositeSide(aSide);
+        IGregTechTileEntity tTileEntity = getBaseMetaTileEntity().getIGregTechTileEntityAtSide(aSide);
+        IMetaTileEntity tPipe = tTileEntity == null ? null : tTileEntity.getMetaTileEntity();
+        if ((this.getClass().isInstance(tPipe) || (tPipe != null && tPipe.getClass().isInstance(this))) && ((MetaPipeEntity) tPipe).isConnectedAtSide(tSide))
+            ((MetaPipeEntity) tPipe).disconnect(tSide);
+    }
 
-	public boolean isConnectedAtSide(int aSide) {
-		return (mConnections & (1 << aSide)) != 0;
-	}
+    public boolean isConnectedAtSide(int aSide) {
+        return (mConnections & (1 << aSide)) != 0;
+    }
 
 
-	public boolean letsIn(GT_CoverBehavior coverBehavior, byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity) { return false; }
-    public boolean letsOut(GT_CoverBehavior coverBehavior, byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity) { return false; }
+    public boolean letsIn(GT_CoverBehavior coverBehavior, byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity) {
+        return false;
+    }
 
-	public boolean canConnect(byte aSide, TileEntity tTileEntity) { return false; }
-	public boolean getGT6StyleConnection() { return false; }
+    public boolean letsOut(GT_CoverBehavior coverBehavior, byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity) {
+        return false;
+    }
+
+    public boolean canConnect(byte aSide, TileEntity tTileEntity) {
+        return false;
+    }
+
+    public boolean getGT6StyleConnection() {
+        return false;
+    }
 
     @Override
-    public void receiveExtendedBlockEvent(int aID, int aValue) {    }
+    public void receiveExtendedBlockEvent(int aID, int aValue) {
+    }
 
     @Override
     public boolean isWaterProofByDefault() {

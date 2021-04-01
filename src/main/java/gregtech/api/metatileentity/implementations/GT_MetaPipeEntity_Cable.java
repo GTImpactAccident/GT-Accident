@@ -30,7 +30,6 @@ import ic2.api.energy.tile.IEnergySource;
 import ic2.api.energy.tile.IEnergyTile;
 import ic2.api.reactor.IReactorChamber;
 import micdoodle8.mods.galacticraft.api.power.EnergySource;
-import micdoodle8.mods.galacticraft.api.power.EnergySource.EnergySourceAdjacent;
 import micdoodle8.mods.galacticraft.api.power.IEnergyHandlerGC;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.transmission.tile.IConnector;
@@ -53,7 +52,7 @@ import java.util.List;
 import appeng.api.parts.IPartHost;
 
 import static gregtech.api.enums.GT_Values.VN;
-
+// TODO: 01.04.2021 remove Galactic
 public class GT_MetaPipeEntity_Cable extends MetaPipeEntity implements IMetaTileEntityCable {
     public final float mThickNess;
     public final Materials mMaterial;
@@ -62,8 +61,8 @@ public class GT_MetaPipeEntity_Cable extends MetaPipeEntity implements IMetaTile
     public long mTransferredAmperage = 0, mTransferredAmperageLast20 = 0, mTransferredVoltageLast20 = 0;
     public long mRestRF;
     public short mOverheat;
-    private boolean mCheckConnections = !GT_Mod.gregtechproxy.gt6Cable;
-    private byte[] IC2RectorAtSide = new byte[]{-1,-1,-1,-1,-1};
+    private final boolean mCheckConnections = !GT_Mod.gregtechproxy.gt6Cable;
+    private final byte[] IC2RectorAtSide = new byte[]{-1,-1,-1,-1,-1};
 
     public GT_MetaPipeEntity_Cable(int aID, String aName, String aNameRegional, float aThickNess, Materials aMaterial, long aCableLossPerMeter, long aAmperage, long aVoltage, boolean aInsulated, boolean aCanShock) {
         super(aID, aName, aNameRegional, 0);
@@ -156,11 +155,11 @@ public class GT_MetaPipeEntity_Cable extends MetaPipeEntity implements IMetaTile
         return (int) mAmperage * 64;
     }
 
-    private void pullFromIc2EnergySources(IGregTechTileEntity aBaseMetaTileEntity,byte[] aSides) {
+    private void pullFromIc2EnergySources(IGregTechTileEntity aBaseMetaTileEntity, byte[] aSides) {
         if(!GT_Mod.gregtechproxy.ic2EnergySourceCompat) return;
 
-        for(byte i = 0;i<aSides.length;i++) {
-            final TileEntity tTileEntity = aBaseMetaTileEntity.getTileEntityAtSide(aSides[i]);
+        for (byte aSide : aSides) {
+            final TileEntity tTileEntity = aBaseMetaTileEntity.getTileEntityAtSide(aSide);
             final TileEntity tEmitter;
             if (tTileEntity instanceof IReactorChamber)
                 tEmitter = (TileEntity) ((IReactorChamber) tTileEntity).getReactor();
@@ -169,21 +168,20 @@ public class GT_MetaPipeEntity_Cable extends MetaPipeEntity implements IMetaTile
                         EnergyNet.instance.getTileEntity(tTileEntity.getWorldObj(), tTileEntity.xCoord, tTileEntity.yCoord, tTileEntity.zCoord);
 
             if (tEmitter instanceof IEnergySource) {
-                final GT_CoverBehavior coverBehavior = aBaseMetaTileEntity.getCoverBehaviorAtSide(aSides[i]);
-                final int coverId = aBaseMetaTileEntity.getCoverIDAtSide(aSides[i]),
-                        coverData = aBaseMetaTileEntity.getCoverDataAtSide(aSides[i]);
-                final ForgeDirection tDirection = ForgeDirection.getOrientation(GT_Utility.getOppositeSide(aSides[i]));
+                final GT_CoverBehavior coverBehavior = aBaseMetaTileEntity.getCoverBehaviorAtSide(aSide);
+                final int coverId = aBaseMetaTileEntity.getCoverIDAtSide(aSide),
+                        coverData = aBaseMetaTileEntity.getCoverDataAtSide(aSide);
+                final ForgeDirection tDirection = ForgeDirection.getOrientation(GT_Utility.getOppositeSide(aSide));
 
                 if (((IEnergySource) tEmitter).emitsEnergyTo((TileEntity) aBaseMetaTileEntity, tDirection) &&
-                        coverBehavior.letsEnergyIn(aSides[i], coverId, coverData, aBaseMetaTileEntity)) {
+                        coverBehavior.letsEnergyIn(aSide, coverId, coverData, aBaseMetaTileEntity)) {
                     final long tEU = (long) ((IEnergySource) tEmitter).getOfferedEnergy();
 
-                    if (transferElectricity(aSides[i], tEU, 1, Sets.newHashSet((TileEntity) aBaseMetaTileEntity)) > 0)
+                    if (transferElectricity(aSide, tEU, 1, Sets.newHashSet((TileEntity) aBaseMetaTileEntity)) > 0)
                         ((IEnergySource) tEmitter).drawEnergy(tEU);
                 }
             }
         }
-
     }
 
     @Override
@@ -313,7 +311,7 @@ public class GT_MetaPipeEntity_Cable extends MetaPipeEntity implements IMetaTile
             }
             else if (rfReceiver.receiveEnergy(tDirection, rfOut, true) > 0) {
                 if (mRestRF == 0) {
-                    int RFtrans = rfReceiver.receiveEnergy(tDirection, (int) rfOut, false);
+                    int RFtrans = rfReceiver.receiveEnergy(tDirection, rfOut, false);
                     rUsedAmperes++;
                     mRestRF = rfOut - RFtrans;
                 } else {

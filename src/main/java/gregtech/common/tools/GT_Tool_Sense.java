@@ -1,10 +1,7 @@
 package gregtech.common.tools;
 
-import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.IIconContainer;
 import gregtech.api.items.GT_MetaGenerated_Tool;
-import gregtech.api.objects.ItemData;
-import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.common.items.behaviors.Behaviour_Sense;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -12,25 +9,22 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GT_Tool_Sense
         extends GT_Tool {
-    private ThreadLocal<Object> sIsHarvestingRightNow = new ThreadLocal();
+    private ThreadLocal<Object> sIsHarvestingRightNow = new ThreadLocal<>();
 
     public float getBaseDamage() {
         return 3.0F;
     }
-    
+
     public float getMaxDurabilityMultiplier() {
         return 4.0F;
     }

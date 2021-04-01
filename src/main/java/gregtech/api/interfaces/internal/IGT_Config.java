@@ -10,7 +10,6 @@ import java.lang.reflect.Modifier;
 
 public interface IGT_Config {
 
-
     //todo: move all impl stuff to abstract class
     /**
      * loads everything, gets invoked via reflection from {@link gregtech.loaders.preload.GT_LoaderConfig}
@@ -45,12 +44,8 @@ public interface IGT_Config {
             field.set(null, getWithType(field.getType(), getProperty(category, name, comment, field, configuration)));
         }
     }
-    /*gregtechproxy.allowDisableToolTips = tMainConfig.get("general", "AllowDisablingLargeTooltips", true).getBoolean(true);*/
 
     static Property getProperty(String category, String name, String comment, Field field, Configuration configuration) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        /*if (String.class.equals(field.getType())) {
-            return configuration.get("main", field.getName(), (String) field.getType().cast(field.get(null)));
-        }*/
         if (comment.equals("")) {
             return (Property) Configuration.class.getMethod("get", String.class, String.class, field.getType())
                     .invoke(configuration, category, name, field.get(null));
@@ -60,7 +55,6 @@ public interface IGT_Config {
                     .invoke(configuration, category, name, field.get(null), comment);
 
         }
-       // throw new IllegalStateException("type of "+field.getName() + ": " + field.getType().getName()+ " handling is not implemented yet");
     }
 
     @SuppressWarnings("rawtypes")
@@ -82,6 +76,4 @@ public interface IGT_Config {
         }
         throw new IllegalStateException("type: "+type.getName() + " handling is not implemented yet");
     }
-
-
 }

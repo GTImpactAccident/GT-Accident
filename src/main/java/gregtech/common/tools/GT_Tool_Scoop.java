@@ -61,7 +61,7 @@ public class GT_Tool_Scoop
     }
 
     public String getBreakingSound() {
-        return (String) GregTech_API.sSoundList.get(Integer.valueOf(0));
+        return GregTech_API.sSoundList.get(0);
     }
 
     public String getMiningSound() {
@@ -94,12 +94,12 @@ public class GT_Tool_Scoop
     }
 
     public void onStatsAddedToTool(GT_MetaGenerated_Tool aItem, int aID) {
-    	if(Loader.isModLoaded(GT_Values.MOD_ID_FR)){
-    		aItem.addItemBehavior(aID, new Behaviour_Scoop(200));
-        }else{
-        	aItem.addItemBehavior(aID, new Behaviour_None());
+        if (Loader.isModLoaded(GT_Values.MOD_ID_FR)) {
+            aItem.addItemBehavior(aID, new Behaviour_Scoop(200));
+        } else {
+            aItem.addItemBehavior(aID, new Behaviour_None());
         }
-    	
+
     }
 
     public IChatComponent getDeathMessage(EntityLivingBase aPlayer, EntityLivingBase aEntity) {

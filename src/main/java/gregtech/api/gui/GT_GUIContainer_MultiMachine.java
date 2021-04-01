@@ -26,7 +26,7 @@ import static gregtech.api.enums.GT_Values.RES_PATH_GUI;
  */
 public class GT_GUIContainer_MultiMachine extends GT_GUIContainerMetaTile_Machine {
 
-    String mName = "";
+    String mName;
     ResourceLocation mProgressIcon = new ResourceLocation(RES_PATH_GUI + "multimachines/" + "Progress.png");
 
     public GT_GUIContainer_MultiMachine(InventoryPlayer aInventoryPlayer, IGregTechTileEntity aTileEntity, String aName, String aTextureFile) {
@@ -42,13 +42,7 @@ public class GT_GUIContainer_MultiMachine extends GT_GUIContainerMetaTile_Machin
         int x = par1 - xStart;
         int y = par2 - yStart;
         if (inventorySlots.getSlot(1) != null && isTheMouseOverSlot(inventorySlots.getSlot(1), x, y)) {
-            // GL11.glDisable(GL11.GL_DEPTH_TEST)
-
-
             drawHoveringText(Arrays.asList(getButtonToolTip()), par1, par2, fontRendererObj);
-            //GL11.glEnable(GL11.GL_DEPTH_TEST);
-
-            // GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             RenderHelper.enableGUIStandardItemLighting();
         }
     }
@@ -169,8 +163,5 @@ public class GT_GUIContainer_MultiMachine extends GT_GUIContainerMetaTile_Machin
                     break;
             }
         }
-
-
     }
-
 }

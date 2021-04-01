@@ -17,7 +17,11 @@ public class MaterialStack implements Cloneable {
 
     @Override
     public MaterialStack clone() {
-        try { return (MaterialStack) super.clone(); } catch (Exception e) { return new MaterialStack(mMaterial, mAmount); }
+        try {
+            return (MaterialStack) super.clone();
+        } catch (Exception e) {
+            return new MaterialStack(mMaterial, mAmount);
+        }
     }
 
     @Override
@@ -32,28 +36,28 @@ public class MaterialStack implements Cloneable {
 
     @Override
     public String toString() {
-         String temp1 = "", temp2 = mMaterial.getToolTip(true), temp3 = "", temp4 = "";
-         if (mAmount > 1) {
-             temp4 = String.valueOf(mAmount);
-             
-             if (mMaterial.mMaterialList.size() > 1 || isMaterialListComplex(this)) {
+        String temp1 = "", temp2 = mMaterial.getToolTip(true), temp3 = "", temp4 = "";
+        if (mAmount > 1) {
+            temp4 = String.valueOf(mAmount);
+
+            if (mMaterial.mMaterialList.size() > 1 || isMaterialListComplex(this)) {
                 temp1 = "(";
                 temp3 = ")";
-             }
-         }
+            }
+        }
         return String.valueOf(new StringBuilder().append(temp1).append(temp2).append(temp3).append(temp4));
     }
 
-    private boolean isMaterialListComplex(MaterialStack materialStack){
-    	if (materialStack.mMaterial.mMaterialList.size() > 1) {
-    		return true;
-    	}
-    	if (materialStack.mMaterial.mMaterialList.size() == 0) {
-    		return false;
-    	}
-    	return isMaterialListComplex(materialStack.mMaterial.mMaterialList.get(0));
+    private boolean isMaterialListComplex(MaterialStack materialStack) {
+        if (materialStack.mMaterial.mMaterialList.size() > 1) {
+            return true;
+        }
+        if (materialStack.mMaterial.mMaterialList.size() == 0) {
+            return false;
+        }
+        return isMaterialListComplex(materialStack.mMaterial.mMaterialList.get(0));
     }
-    
+
     @Override
     public int hashCode() {
         return mMaterial.hashCode();

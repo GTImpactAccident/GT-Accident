@@ -7,8 +7,8 @@ import gregtech.api.util.GT_Utility;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fluids.Fluid;
 
-public class GT_Cover_ControlsWork
-        extends GT_CoverBehavior {
+public class GT_Cover_ControlsWork extends GT_CoverBehavior {
+
     public int doCoverThings(byte aSide, byte aInputRedstone, int aCoverID, int aCoverVariable, ICoverable aTileEntity, long aTimer) {
         if (aTileEntity instanceof IMachineProgress) {
             if ((aInputRedstone > 0) == (aCoverVariable == 0) && aCoverVariable != 2)
@@ -53,8 +53,10 @@ public class GT_Cover_ControlsWork
     }
 
     public int onCoverScrewdriverclick(byte aSide, int aCoverID, int aCoverVariable, ICoverable aTileEntity, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking()? -1 : 1)) % 3;
-        if(aCoverVariable <0){aCoverVariable = 2;}
+        aCoverVariable = (aCoverVariable + (aPlayer.isSneaking() ? -1 : 1)) % 3;
+        if (aCoverVariable < 0) {
+            aCoverVariable = 2;
+        }
         if (aCoverVariable == 0) {
             GT_Utility.sendChatToPlayer(aPlayer, trans("003", "Normal"));
         }

@@ -12,7 +12,7 @@ public enum ColorFormat {
 
     private final EnumChatFormatting prefix;
 
-    public final static DoubleFun DEFAULT = a -> a, MULTIBLOCK_STATUS = d -> d-1999d;
+    public final static DoubleFun DEFAULT = a -> a, MULTIBLOCK_STATUS = d -> d - 1999d;
 
     ColorFormat(EnumChatFormatting prefix) {
         this.prefix = prefix;
@@ -54,19 +54,18 @@ public enum ColorFormat {
         /**
          * accepts value between 0 and 10000, returns modified value
          * used to control good and bad events
+         *
          * @param regularValue val
          * @return modified val
-         *
+         * <p>
          * eg.
-         *
+         * <p>
          * you want to modify func that operates between 0 and 6, for 6 and less be Better or Bad
          * and only 6 be GOOD
          * than Multiblock_Status is your func
-         *
          */
-        double decide (double regularValue);
+        double decide(double regularValue);
     }
-
 
 
 }

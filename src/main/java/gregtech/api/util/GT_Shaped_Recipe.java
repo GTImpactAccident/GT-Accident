@@ -1,7 +1,6 @@
 package gregtech.api.util;
 
 import gregtech.GT_Mod;
-import gregtech.api.enums.GT_Values;
 import gregtech.api.interfaces.internal.IGT_CraftingRecipe;
 import gregtech.api.items.GT_MetaGenerated_Tool;
 import net.minecraft.enchantment.Enchantment;
@@ -24,7 +23,7 @@ public class GT_Shaped_Recipe extends ShapedOreRecipe implements IGT_CraftingRec
         mRemovableByGT = aRemovableByGT;
         mKeepingNBT = aKeepingNBT;
         mDismantleable = aDismantleAble;
-        if(mDismantleable&&GT_Mod.gregtechproxy.disassemblerRecipeMapOn && !(aResult.getItem() instanceof GT_MetaGenerated_Tool)) {
+        if (mDismantleable && GT_Mod.gregtechproxy.disassemblerRecipeMapOn && !(aResult.getItem() instanceof GT_MetaGenerated_Tool)) {
             GT_Recipe.GT_Recipe_Map_Disassembler.cacheRecipe(this);
         }
     }
@@ -72,7 +71,7 @@ public class GT_Shaped_Recipe extends ShapedOreRecipe implements IGT_CraftingRec
 
             // Saving Ingredients inside the Item.
             if (mDismantleable) {
-                if(!GT_Mod.gregtechproxy.disassemblerRecipeMapOn || (getRecipeOutput().getItem() instanceof GT_MetaGenerated_Tool)){
+                if (!GT_Mod.gregtechproxy.disassemblerRecipeMapOn || (getRecipeOutput().getItem() instanceof GT_MetaGenerated_Tool)) {
                     NBTTagCompound rNBT = rStack.getTagCompound(), tNBT = new NBTTagCompound();
                     if (rNBT == null) rNBT = new NBTTagCompound();
                     for (int i = 0; i < 9; i++) {

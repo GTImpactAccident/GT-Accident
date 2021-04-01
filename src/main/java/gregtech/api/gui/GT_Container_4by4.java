@@ -4,8 +4,6 @@ import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 
-import java.util.function.Supplier;
-
 public class GT_Container_4by4 extends GT_ContainerMetaTile_Machine {
 
     public GT_Container_4by4(InventoryPlayer aInventoryPlayer, IGregTechTileEntity aTileEntity) {

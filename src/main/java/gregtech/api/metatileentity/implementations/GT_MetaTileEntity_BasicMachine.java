@@ -643,7 +643,7 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
     public void onValueUpdate(byte aValue) {
         if(aValue!=mMainFacing) {
             mMainFacing = aValue;
-            ((IFastRenderedTileEntity) getBaseMetaTileEntity()).rebakeMap();
+            getBaseMetaTileEntity().rebakeMap();
         }
         mMainFacing = aValue;
     }

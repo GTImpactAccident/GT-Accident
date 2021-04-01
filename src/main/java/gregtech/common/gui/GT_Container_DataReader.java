@@ -24,14 +24,14 @@ public class GT_Container_DataReader extends Container {
 
     public GT_Container_DataReader(InventoryPlayer aInventoryPlayer, ItemStack aTool) {
         bindPlayerInventory(aInventoryPlayer, 0, 90);
-        mInventory = new GT_ItemInventory(3,false, "Data Reader");
+        mInventory = new GT_ItemInventory(3, false, "Data Reader");
         if (aTool.getTagCompound() != null && GT_Mod.gregtechproxy.isServerSide())
             mInventory.loadFromNBT(aTool.getTagCompound());
-        addSlotToContainer(new GT_Slot_RestrictedContents(mInventory, 0, 80, 84+68, aStack -> ItemList.Tool_DataStick.isStackEqual(aStack, false, true) || ItemList.Tool_CD.isStackEqual(aStack, false, true)));
+        addSlotToContainer(new GT_Slot_RestrictedContents(mInventory, 0, 80, 84 + 68, aStack -> ItemList.Tool_DataStick.isStackEqual(aStack, false, true) || ItemList.Tool_CD.isStackEqual(aStack, false, true)));
         mRestrictedSlot = aInventoryPlayer.currentItem;
 
-        addSlotToContainer(new GT_Slot_Holo(mInventory, 1, 2*18+8, 84+68, false, false, 0));
-        addSlotToContainer(new GT_Slot_Holo(mInventory, 2, 6*18+8, 84+68, false, false, 0));
+        addSlotToContainer(new GT_Slot_Holo(mInventory, 1, 2 * 18 + 8, 84 + 68, false, false, 0));
+        addSlotToContainer(new GT_Slot_Holo(mInventory, 2, 6 * 18 + 8, 84 + 68, false, false, 0));
         mTool = aTool;
 
     }
@@ -39,12 +39,12 @@ public class GT_Container_DataReader extends Container {
     protected void bindPlayerInventory(InventoryPlayer aInventoryPlayer, int xOffset, int yOffset) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                addSlotToContainer(new Slot(aInventoryPlayer, j + i * 9 + 9, xOffset+ 8 + j * 18, yOffset + 84 + i * 18));
+                addSlotToContainer(new Slot(aInventoryPlayer, j + i * 9 + 9, xOffset + 8 + j * 18, yOffset + 84 + i * 18));
             }
         }
 
         for (int i = 0; i < 9; i++) {
-            addSlotToContainer(new Slot(aInventoryPlayer, i, xOffset+ 8 + i * 18, yOffset + 142));
+            addSlotToContainer(new Slot(aInventoryPlayer, i, xOffset + 8 + i * 18, yOffset + 142));
         }
     }
 
@@ -56,7 +56,7 @@ public class GT_Container_DataReader extends Container {
     }
 
     private void saveToNBT(ItemStack aTool) {
-        if (GT_Mod.gregtechproxy.isServerSide() && aTool != null && (ItemList.Tool_DataReader_MV.isStackEqual(aTool, false, true)||ItemList.Tool_DataReader_EV.isStackEqual(aTool, false, true))) {
+        if (GT_Mod.gregtechproxy.isServerSide() && aTool != null && (ItemList.Tool_DataReader_MV.isStackEqual(aTool, false, true) || ItemList.Tool_DataReader_EV.isStackEqual(aTool, false, true))) {
             NBTTagCompound tNbt = aTool.getTagCompound();
             if (tNbt == null)
                 tNbt = new NBTTagCompound();
@@ -68,39 +68,38 @@ public class GT_Container_DataReader extends Container {
 
     @Override
     public ItemStack slotClick(int aSlotIndex, int aMouseclick, int aShifthold, EntityPlayer aPlayer) {
-        if (aSlotIndex == (mRestrictedSlot+27))
+        if (aSlotIndex == (mRestrictedSlot + 27))
             return null;
         if (aShifthold == 2 && aMouseclick == mRestrictedSlot)
             return null;
         if (aShifthold == 1 || aShifthold == 6)
             return null;
-        if (aSlotIndex ==37 || aSlotIndex == 38) {
+        if (aSlotIndex == 37 || aSlotIndex == 38) {
             mTool = aPlayer.getHeldItem();
             if (mTool != null && mInventory.getStackInSlot(0) != null && mInventory.getStackInSlot(0).getTagCompound() != null
-                    &&mInventory.getStackInSlot(0).getTagCompound().hasKey("pages")) {
-                NBTTagList list =  mInventory.getStackInSlot(0).getTagCompound().getTagList("pages", 8);
-                    if (list != null) {
-                        int bookSize = list.tagCount();
-                        NBTTagCompound tNBT = mTool.getTagCompound();
-                        if (tNBT == null)
-                            tNBT = new NBTTagCompound();
-                        int i = tNBT.getInteger("page");
-                        if (aSlotIndex == 37)
-                            i--;
-                        else
-                            i++;
-                        if (i < 0)
-                            i = 0;
-                        if (i >= bookSize)
-                            i = bookSize - 1;
-                        tNBT.setInteger("page", i);
-                        mTool.setTagCompound(tNBT);
-                    }
+                    && mInventory.getStackInSlot(0).getTagCompound().hasKey("pages")) {
+                NBTTagList list = mInventory.getStackInSlot(0).getTagCompound().getTagList("pages", 8);
+                if (list != null) {
+                    int bookSize = list.tagCount();
+                    NBTTagCompound tNBT = mTool.getTagCompound();
+                    if (tNBT == null)
+                        tNBT = new NBTTagCompound();
+                    int i = tNBT.getInteger("page");
+                    if (aSlotIndex == 37)
+                        i--;
+                    else
+                        i++;
+                    if (i < 0)
+                        i = 0;
+                    if (i >= bookSize)
+                        i = bookSize - 1;
+                    tNBT.setInteger("page", i);
+                    mTool.setTagCompound(tNBT);
+                }
             }
 
 
-        }
-        else if (aSlotIndex == 36) {
+        } else if (aSlotIndex == 36) {
             ItemStack s = super.slotClick(aSlotIndex, aMouseclick, aShifthold, aPlayer);
             mTool = aPlayer.getHeldItem();
             NBTTagCompound nbt = mTool.getTagCompound();
@@ -114,12 +113,12 @@ public class GT_Container_DataReader extends Container {
         mTool = aPlayer.getHeldItem();
         saveToNBT(mTool);
 
-        return super.slotClick( aSlotIndex,aMouseclick, aShifthold, aPlayer);
+        return super.slotClick(aSlotIndex, aMouseclick, aShifthold, aPlayer);
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer aPlayer) {
-        return ItemList.Tool_DataReader_MV.isStackEqual(aPlayer.getHeldItem(), false, true)||ItemList.Tool_DataReader_EV.isStackEqual(aPlayer.getHeldItem(), false, true);
+        return ItemList.Tool_DataReader_MV.isStackEqual(aPlayer.getHeldItem(), false, true) || ItemList.Tool_DataReader_EV.isStackEqual(aPlayer.getHeldItem(), false, true);
     }
 
     @Override

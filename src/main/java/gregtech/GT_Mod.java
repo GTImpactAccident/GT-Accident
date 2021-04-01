@@ -652,7 +652,7 @@ public class GT_Mod implements IGT_Mod {
         new GT_MachineRecipeLoader().run();
         new GT_ScrapboxDropLoader().run();
         new GT_CropLoader().run();
-        new GT_Worldgenloader().run();
+        //new GT_Worldgenloader().run(); //// TODO: 01.04.2021 remove world gen run
         new GT_CoverLoader().run();
         new GT_AE2EnergyTunnelLoader().run();
         LoadArmorComponents.init();

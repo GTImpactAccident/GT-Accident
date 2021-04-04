@@ -11,7 +11,7 @@ public class GT_MetaGenerated_Item_03
     public static GT_MetaGenerated_Item_03 INSTANCE;
 
     public GT_MetaGenerated_Item_03() {
-        super("metaitem.03", OrePrefixes.crateGtDust, OrePrefixes.crateGtIngot, OrePrefixes.crateGtGem, OrePrefixes.crateGtPlate);
+        super("metaitem.03");
         INSTANCE = this;
         int tLastID = 0;
         Object[] o = new Object[0];
@@ -24,7 +24,6 @@ public class GT_MetaGenerated_Item_03
         ItemList.Circuit_Parts_DiodeSMD.set(addItem(tLastID = 16, "SMD Diode", "Electronic Component", o));
         ItemList.Circuit_Parts_TransistorSMD.set(addItem(tLastID = 18, "SMD Transistor", "Electronic Component", o));
         ItemList.Circuit_Parts_CapacitorSMD.set(addItem(tLastID = 20, "SMD Capacitor", "Electronic Component", o));
-        ItemList.Circuit_Parts_GlassFiber.set(addItem(tLastID = 21, "Glass Fiber", Materials.BorosilicateGlass.mChemicalFormula, o));
         ItemList.Circuit_Parts_PetriDish.set(addItem(tLastID = 22, "Petri Dish", "For cultivating cells", o));
         ItemList.PrimitiveFluidFilterItem.set(addItem(tLastID = 23, "Primitive Fluid Filter", "Used to filter water", o));
         ItemList.SimpleFluidFilterItem.set(addItem(tLastID = 24, "Simple Fluid Filter", "Used to filter water", o));

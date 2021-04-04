@@ -1,5 +1,6 @@
 package gregtech.api.interfaces;
 
+
 public interface ICondition<O> {
     boolean isTrue(O aObject);
 

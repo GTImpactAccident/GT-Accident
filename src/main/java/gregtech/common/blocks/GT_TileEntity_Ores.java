@@ -256,12 +256,6 @@ public class GT_TileEntity_Ores extends TileEntity implements ITexturedTileEntit
                     tSelector.add(tStack);
                 }
             }
-            tStack = GT_OreDictUnificator.get(OrePrefixes.gemChipped, aMaterial, GT_OreDictUnificator.get(OrePrefixes.dustImpure, aMaterial, 1L), 1L);
-            if (tStack != null) {
-                for (int i = 0; i < 5; i++) {
-                    tSelector.add(tStack);
-                }
-            }
             tStack = GT_OreDictUnificator.get(OrePrefixes.dustImpure, aMaterial, 1L);
             if (tStack != null) {
                 for (int i = 0; i < 10; i++) {

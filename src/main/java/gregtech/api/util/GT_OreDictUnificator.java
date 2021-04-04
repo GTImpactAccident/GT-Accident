@@ -311,8 +311,6 @@ public class GT_OreDictUnificator {
         if (rStack == null) {
             if ((((aMaterialAmount * 2) % M == 0) || aMaterialAmount >= M * 16))
                 rStack = get(OrePrefixes.gemFlawed, aMaterial, (aMaterialAmount * 2) / M);
-            if ((((aMaterialAmount * 4) >= M)))
-                rStack = get(OrePrefixes.gemChipped, aMaterial, (aMaterialAmount * 4) / M);
         }
         return rStack;
     }
@@ -330,10 +328,6 @@ public class GT_OreDictUnificator {
         ItemStack rStack = null;
         if (((aMaterialAmount % M == 0) || aMaterialAmount >= M * 16))
             rStack = get(OrePrefixes.dust, aMaterial, aMaterialAmount / M);
-        if (rStack == null && (((aMaterialAmount * 4) % M == 0) || aMaterialAmount >= M * 8))
-            rStack = get(OrePrefixes.dustSmall, aMaterial, (aMaterialAmount * 4) / M);
-        if (rStack == null && (((aMaterialAmount * 9) >= M)))
-            rStack = get(OrePrefixes.dustTiny, aMaterial, (aMaterialAmount * 9) / M);
         return rStack;
     }
 
@@ -352,8 +346,6 @@ public class GT_OreDictUnificator {
             rStack = get(OrePrefixes.block, aMaterial, aMaterialAmount / (M * 9));
         if (rStack == null && ((aMaterialAmount % M == 0) || aMaterialAmount >= M * 8))
             rStack = get(OrePrefixes.ingot, aMaterial, aMaterialAmount / M);
-        if (rStack == null && (((aMaterialAmount * 9) >= M)))
-            rStack = get(OrePrefixes.nugget, aMaterial, (aMaterialAmount * 9) / M);
         return rStack;
     }
 

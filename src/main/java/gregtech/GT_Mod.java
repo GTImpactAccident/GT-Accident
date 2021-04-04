@@ -11,6 +11,7 @@ import gregtech.api.enchants.Enchantment_EnderDamage;
 import gregtech.api.enchants.Enchantment_Radioactivity;
 import gregtech.api.enums.*;
 import gregtech.api.interfaces.internal.IGT_Mod;
+import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.objects.ItemData;
 import gregtech.api.objects.XSTR;
 import gregtech.api.util.*;
@@ -54,6 +55,8 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static gregtech.api.enums.GT_Values.RA;
 
 @Mod(
         modid = "gregtech",
@@ -129,7 +132,7 @@ public class GT_Mod implements IGT_Mod {
         GT_Values.GT = this;
         GT_Values.DW = new GT_DummyWorld();
         GT_Values.NW = new GT_Network();
-        GregTech_API.sRecipeAdder = GT_Values.RA = new GT_RecipeAdder();
+        GregTech_API.sRecipeAdder = RA = new GT_RecipeAdder();
 
         Textures.BlockIcons.VOID.name();
         Textures.ItemIcons.VOID.name();
@@ -480,7 +483,7 @@ public class GT_Mod implements IGT_Mod {
         }
         String[] preS = new String[]{"dustTiny", "dustSmall", "dust", "dustImpure", "dustPure", "crushed", "crushedPurified", "crushedCentrifuged", "gem", "nugget", "ingot", "ingotHot", "ingotDouble", "ingotTriple", "ingotQuadruple", "ingotQuintuple", "plate", "plateDouble", "plateTriple", "plateQuadruple", "plateQuintuple", "plateDense", "stick", "lens", "round", "bolt", "screw", "ring", "foil", "cell", "cellPlasma", "toolHeadSword", "toolHeadPickaxe", "toolHeadShovel", "toolHeadAxe", "toolHeadHoe", "toolHeadHammer", "toolHeadFile", "toolHeadSaw", "toolHeadDrill", "toolHeadChainsaw", "toolHeadWrench", "toolHeadUniversalSpade", "toolHeadSense", "toolHeadPlow", "toolHeadArrow", "toolHeadBuzzSaw", "turbineBlade", "wireFine", "gearGtSmall", "rotor", "stickLong", "springSmall", "spring", "arrowGtWood", "arrowGtPlastic", "gemChipped", "gemFlawed", "gemFlawless", "gemExquisite", "gearGt", "crateGtDust", "crateGtIngot", "crateGtGem", "crateGtPlate"};
 
-        List<String> mMTTags = new ArrayList<String>();
+        List<String> mMTTags = new ArrayList<>();
         for (String test : oreTags) {
             if (StringUtils.startsWithAny(test, preS)) {
                 mMTTags.add(test);
@@ -502,10 +505,6 @@ public class GT_Mod implements IGT_Mod {
                         OrePrefixes.bolt.mGeneratedItems.add(tName);
                         OrePrefixes.stick.mDisabledItems.remove(tName);
                         OrePrefixes.stick.mGeneratedItems.add(tName);
-                    }
-                    if (tPrefix == OrePrefixes.round) {
-                        OrePrefixes.nugget.mDisabledItems.remove(tName);
-                        OrePrefixes.nugget.mGeneratedItems.add(tName);
                     }
                     if (tPrefix == OrePrefixes.spring) {
                         OrePrefixes.stickLong.mDisabledItems.remove(tName);
@@ -698,16 +697,9 @@ public class GT_Mod implements IGT_Mod {
         }
         GT_ModHandler.removeRecipeByOutput(GT_ModHandler.getIC2Item("machine", 1L));
         GT_ModHandler.addCraftingRecipe(GT_ModHandler.getIC2Item("machine", 1L), GT_ModHandler.RecipeBits.BUFFERED | GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE, new Object[]{"RRR", "RwR", "RRR", 'R', OrePrefixes.plate.get(Materials.Iron)});
-        ItemStack ISdata0 = new ItemStack(Items.potionitem, 1, 0);
-        ItemStack ILdata0 = ItemList.Bottle_Empty.get(1L);
         for (FluidContainerRegistry.FluidContainerData tData : FluidContainerRegistry.getRegisteredFluidContainerData()) {
-            if ((tData.filledContainer.getItem() == Items.potionitem) && (tData.filledContainer.getItemDamage() == 0)) {
-                GT_Recipe.GT_Recipe_Map.sFluidCannerRecipes.addRecipe(true, new ItemStack[]{ILdata0}, new ItemStack[]{ISdata0}, null, new FluidStack[]{Materials.Water.getFluid(250L)}, null, 4, 1, 0);
-                GT_Recipe.GT_Recipe_Map.sFluidCannerRecipes.addRecipe(true, new ItemStack[]{ISdata0}, new ItemStack[]{ILdata0}, null, null, null, 4, 1, 0);
-            } else {
-                GT_Recipe.GT_Recipe_Map.sFluidCannerRecipes.addRecipe(true, new ItemStack[]{tData.emptyContainer}, new ItemStack[]{tData.filledContainer}, null, new FluidStack[]{tData.fluid}, null, tData.fluid.amount / 62, 1, 0);
-                GT_Recipe.GT_Recipe_Map.sFluidCannerRecipes.addRecipe(true, new ItemStack[]{tData.filledContainer}, new ItemStack[]{GT_Utility.getContainerItem(tData.filledContainer, true)}, null, null, new FluidStack[]{tData.fluid}, tData.fluid.amount / 62, 1, 0);
-            }
+            GT_Recipe.GT_Recipe_Map.sFluidCannerRecipes.addRecipe(true, new ItemStack[]{tData.emptyContainer}, new ItemStack[]{tData.filledContainer}, null, new FluidStack[]{tData.fluid}, null, tData.fluid.amount / 62, 1, 0);
+            GT_Recipe.GT_Recipe_Map.sFluidCannerRecipes.addRecipe(true, new ItemStack[]{tData.filledContainer}, new ItemStack[]{GT_Utility.getContainerItem(tData.filledContainer, true)}, null, null, new FluidStack[]{tData.fluid}, tData.fluid.amount / 62, 1, 0);
         }
         try {
             for (ICentrifugeRecipe tRecipe : RecipeManagers.centrifugeManager.recipes()) {
@@ -914,6 +906,7 @@ public class GT_Mod implements IGT_Mod {
         GT_Recipe.GT_Recipe_Map_Disassembler.initCachedRecipes();
 
         achievements = new GT_Achievements();
+        
         GT_Log.out.println("GT_Mod: Loading finished, deallocating temporary Init Variables.");
         GregTech_API.sBeforeGTPreload = null;
         GregTech_API.sAfterGTPreload = null;

@@ -25,7 +25,7 @@ public class GT_Block_Ores_UB2 extends GT_Block_Ores_Abstract {
 
     @Override
     public OrePrefixes[] getProcessingPrefix() { //Must have 8 entries; an entry can be null to disable automatic recipes.
-        return new OrePrefixes[]{OrePrefixes.ore, OrePrefixes.ore, OrePrefixes.oreMarble, OrePrefixes.ore, OrePrefixes.ore, OrePrefixes.ore, OrePrefixes.ore, OrePrefixes.ore};
+        return null;
     }
 
     @Override

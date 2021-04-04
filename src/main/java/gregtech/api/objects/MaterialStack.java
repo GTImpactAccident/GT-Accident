@@ -1,6 +1,7 @@
 package gregtech.api.objects;
 
 import gregtech.api.enums.Materials;
+import net.minecraft.util.EnumChatFormatting;
 
 public class MaterialStack implements Cloneable {
     public long mAmount;

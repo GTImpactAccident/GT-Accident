@@ -465,7 +465,7 @@ public class GT_ModHandler {
         if (aInput == null || aOutput == null) return false;
         boolean temp = false;
         if (aInput.stackSize == 1 && addSmeltingRecipe(aInput, aOutput)) temp = true;
-        if (RA.addAlloySmelterRecipe(aInput, OrePrefixes.ingot.contains(aOutput) ? ItemList.Shape_Mold_Ingot.get(0) : OrePrefixes.block.contains(aOutput) ? ItemList.Shape_Mold_Block.get(0) : OrePrefixes.nugget.contains(aOutput) ? ItemList.Shape_Mold_Nugget.get(0) : null, aOutput, 130, 3, hidden))
+        if (RA.addAlloySmelterRecipe(aInput, OrePrefixes.ingot.contains(aOutput) ? ItemList.Shape_Mold_Ingot.get(0) : OrePrefixes.block.contains(aOutput) ? ItemList.Shape_Mold_Block.get(0) : null, aOutput, 130, 3, hidden))
             temp = true;
         if (GT_Mod.gregtechproxy.mTEMachineRecipes)
             if (addInductionSmelterRecipe(aInput, null, aOutput, null, aOutput.stackSize * 1600, 0)) temp = true;
@@ -630,7 +630,7 @@ public class GT_ModHandler {
         if (GregTech_API.mMagneticraft && GT_Mod.gregtechproxy.mMagneticraftRecipes) {
             ItemData tData = GT_OreDictUnificator.getAssociation(aInput);
             if (tData != null && tData.mPrefix != null) {
-                if (tData.mPrefix == OrePrefixes.ore || tData.mPrefix == OrePrefixes.oreBlackgranite || tData.mPrefix == OrePrefixes.oreEndstone || tData.mPrefix == OrePrefixes.oreNetherrack || tData.mPrefix == OrePrefixes.oreRedgranite) {
+                if (tData.mPrefix == OrePrefixes.ore) {
                     registerMagneticraftCrusherRecipe(aInput, aOutput1, aOutput2, (float) ((float) aChance2 / GT_Mod.gregtechproxy.mMagneticraftBonusOutputPercent), aOutput3, (float) ((float) aChance3 / GT_Mod.gregtechproxy.mMagneticraftBonusOutputPercent));
                 } else if (tData.mPrefix == OrePrefixes.crushed || tData.mPrefix == OrePrefixes.crushedCentrifuged || tData.mPrefix == OrePrefixes.crushedPurified) {
                     registerMagneticraftGrinderRecipe(aInput, aOutput1, aOutput2, (float) ((float) aChance2 / GT_Mod.gregtechproxy.mMagneticraftBonusOutputPercent), aOutput3, (float) ((float) aChance3 / GT_Mod.gregtechproxy.mMagneticraftBonusOutputPercent));
@@ -1901,7 +1901,7 @@ public class GT_ModHandler {
 
     public static int getCapsuleCellContainerCount(ItemStack aStack) {
         if (aStack == null) return 0;
-        return GT_Utility.areStacksEqual(GT_Utility.getContainerForFilledItem(aStack, true), ItemList.Cell_Empty.get(1)) || OrePrefixes.cell.contains(aStack) || OrePrefixes.cellPlasma.contains(aStack) || GT_Utility.areStacksEqual(aStack, getIC2Item("waterCell", 1, W)) ? 1 : 0;
+        return GT_Utility.areStacksEqual(GT_Utility.getContainerForFilledItem(aStack, true), ItemList.Cell_Empty.get(1)) || OrePrefixes.cell.contains(aStack) || GT_Utility.areStacksEqual(aStack, getIC2Item("waterCell", 1, W)) ? 1 : 0;
     }
 
     public static class RecipeBits {

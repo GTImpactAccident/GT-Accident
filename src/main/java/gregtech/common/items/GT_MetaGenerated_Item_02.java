@@ -29,7 +29,7 @@ public class GT_MetaGenerated_Item_02 extends GT_MetaGenerated_Item_X32 {
     private final static String aTextForestry = "Forestry";
 
     public GT_MetaGenerated_Item_02() {
-        super("metaitem.02", OrePrefixes.toolHeadSword, OrePrefixes.toolHeadPickaxe, OrePrefixes.toolHeadShovel, OrePrefixes.toolHeadAxe, OrePrefixes.toolHeadHoe, OrePrefixes.toolHeadHammer, OrePrefixes.toolHeadFile, OrePrefixes.toolHeadSaw, OrePrefixes.toolHeadDrill, OrePrefixes.toolHeadChainsaw, OrePrefixes.toolHeadWrench, OrePrefixes.toolHeadUniversalSpade, OrePrefixes.toolHeadSense, OrePrefixes.toolHeadPlow, OrePrefixes.toolHeadArrow, OrePrefixes.toolHeadBuzzSaw, OrePrefixes.turbineBlade, null, null, OrePrefixes.wireFine, OrePrefixes.gearGtSmall, OrePrefixes.rotor, OrePrefixes.stickLong, OrePrefixes.springSmall, OrePrefixes.spring, OrePrefixes.arrowGtWood, OrePrefixes.arrowGtPlastic, OrePrefixes.gemChipped, OrePrefixes.gemFlawed, OrePrefixes.gemFlawless, OrePrefixes.gemExquisite, OrePrefixes.gearGt);
+        super("metaitem.02", OrePrefixes.toolHeadSword, OrePrefixes.toolHeadPickaxe, OrePrefixes.toolHeadShovel, OrePrefixes.toolHeadAxe, OrePrefixes.toolHeadHoe, OrePrefixes.toolHeadHammer, OrePrefixes.toolHeadFile, OrePrefixes.toolHeadSaw, OrePrefixes.toolHeadDrill, OrePrefixes.toolHeadChainsaw, OrePrefixes.toolHeadWrench, OrePrefixes.toolHeadUniversalSpade, OrePrefixes.toolHeadSense, OrePrefixes.toolHeadPlow, OrePrefixes.toolHeadBuzzSaw, OrePrefixes.turbineBlade, OrePrefixes.wireFine, OrePrefixes.gearGtSmall, OrePrefixes.rotor, OrePrefixes.stickLong, OrePrefixes.springSmall, OrePrefixes.spring, OrePrefixes.gemFlawed, OrePrefixes.gemFlawless, OrePrefixes.gemExquisite, OrePrefixes.gearGt);
         INSTANCE = this;
 
         int tLastID = 0;
@@ -49,46 +49,6 @@ public class GT_MetaGenerated_Item_02 extends GT_MetaGenerated_Item_X32 {
 
         ItemList.ProspectorsBook.set(addItem(tLastID = 11, "Miner's Diary", "Tells a story of unknown miner ", new Behaviour_ProspectorsBook()));
         ItemList.ProspectorsBookCreative.set(addItem(tLastID = 12, "Miner's Diary Generator", "", new Behaviour_ProspectorsBook_Creative()));
-
-        ItemList.Bottle_Purple_Drink.set(addItem(tLastID = 100, "Purple Drink", "How about Lemonade. Or some Ice Tea? I got Purple Drink!", new GT_FoodStat(8, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.moveSlowdown.id, 400, 1, 90)));
-        ItemList.Bottle_Grape_Juice.set(addItem(tLastID = 101, "Grape Juice", "This has a cleaning effect on your internals.", new GT_FoodStat(4, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.hunger.id, 400, 1, 60)));
-        ItemList.Bottle_Wine.set(addItem(tLastID = 102, "Wine", "Ordinary", new GT_FoodStat(2, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 400, 1, 60, Potion.heal.id, 0, 0, 60, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Vinegar.set(addItem(tLastID = 103, "Vinegar", "Exquisite", new GT_FoodStat(2, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 400, 1, 90, Potion.heal.id, 0, 1, 90, Potion.poison.id, 200, 2, 10, Potion.harm.id, 0, 2, 5)));
-        ItemList.Bottle_Potato_Juice.set(addItem(tLastID = 104, "Potato Juice", "Ever seen Potato Juice in stores? No? That has a reason.", SubTag.INVISIBLE, new GT_FoodStat(3, 0.3F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false)));
-        ItemList.Bottle_Vodka.set(addItem(tLastID = 105, "Vodka", "Not to confuse with Water", SubTag.INVISIBLE, new GT_FoodStat(2, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 500, 0, 60, Potion.damageBoost.id, 500, 1, 60, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Leninade.set(addItem(tLastID = 106, "Leninade", "Let the Communism flow through you!", SubTag.INVISIBLE, new GT_FoodStat(2, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 500, 1, 90, Potion.damageBoost.id, 500, 2, 90, Potion.poison.id, 200, 2, 10, Potion.harm.id, 0, 2, 5)));
-        ItemList.Bottle_Mineral_Water.set(addItem(tLastID = 107, "Mineral Water", "The best Stuff you can drink to stay healthy", new GT_FoodStat(1, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.regeneration.id, 100, 1, 10)));
-        ItemList.Bottle_Salty_Water.set(addItem(tLastID = 108, "Salty Water", "Like Sea Water but less dirty", SubTag.INVISIBLE, new GT_FoodStat(1, 0.0F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.hunger.id, 400, 2, 95)));
-        ItemList.Bottle_Reed_Water.set(addItem(tLastID = 109, "Reed Water", "I guess this tastes better when fermented", new GT_FoodStat(1, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false)));
-        ItemList.Bottle_Rum.set(addItem(tLastID = 110, "Rum", "A buddle o' rum", SubTag.INVISIBLE, new GT_FoodStat(4, 0.4F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 300, 0, 60, Potion.damageBoost.id, 300, 1, 60, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Pirate_Brew.set(addItem(tLastID = 111, "Pirate Brew", "Set the Sails, we are going to Torrentuga!", SubTag.INVISIBLE, new GT_FoodStat(4, 0.4F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 300, 1, 90, Potion.damageBoost.id, 300, 2, 90, Potion.poison.id, 200, 2, 10, Potion.harm.id, 0, 2, 5)));
-        ItemList.Bottle_Hops_Juice.set(addItem(tLastID = 112, "Hops Juice", "Every Beer has a start", new GT_FoodStat(1, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false)));
-        ItemList.Bottle_Dark_Beer.set(addItem(tLastID = 113, "Dark Beer", "Dark Beer, for the real Men", new GT_FoodStat(4, 0.4F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 300, 1, 60, Potion.damageBoost.id, 300, 1, 60, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Dragon_Blood.set(addItem(tLastID = 114, "Dragon Blood", "FUS RO DAH!", SubTag.INVISIBLE, new GT_FoodStat(4, 0.4F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 300, 2, 90, Potion.damageBoost.id, 300, 2, 90, Potion.poison.id, 200, 2, 10, Potion.harm.id, 0, 2, 5)));
-        ItemList.Bottle_Wheaty_Juice.set(addItem(tLastID = 115, "Wheaty Juice", "Is this liquefied Bread or what?", new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false)));
-        ItemList.Bottle_Scotch.set(addItem(tLastID = 116, "Scotch", "Technically this is just a Whisky", SubTag.INVISIBLE, new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 400, 0, 60, Potion.resistance.id, 400, 1, 60, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Glen_McKenner.set(addItem(tLastID = 117, "Glen McKenner", "Don't hand to easily surprised people, they will shatter it.", SubTag.INVISIBLE, new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 400, 1, 90, Potion.resistance.id, 400, 2, 90, Potion.poison.id, 200, 2, 10, Potion.harm.id, 0, 2, 5)));
-        ItemList.Bottle_Wheaty_Hops_Juice.set(addItem(tLastID = 118, "Wheaty Hops Juice", "Also known as 'Duff-Lite'", new GT_FoodStat(1, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false)));
-        ItemList.Bottle_Beer.set(addItem(tLastID = 119, "Beer", "Good old Beer", new GT_FoodStat(6, 0.4F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 400, 0, 60, Potion.digSpeed.id, 400, 2, 60, Potion.poison.id, 100, 0, 5)));
-        ItemList.Bottle_Chilly_Sauce.set(addItem(tLastID = 120, "Chilly Sauce", "Spicy", new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 1000, 0, 10, Potion.fireResistance.id, 1000, 0, 60)));
-        ItemList.Bottle_Hot_Sauce.set(addItem(tLastID = 121, "Hot Sauce", "Very Spicy, I guess?", new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 2000, 0, 30, Potion.fireResistance.id, 2000, 0, 70)));
-        ItemList.Bottle_Diabolo_Sauce.set(addItem(tLastID = 122, "Diabolo Sauce", "As if the Devil made this Sauce", SubTag.INVISIBLE, new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 3000, 1, 50, Potion.fireResistance.id, 3000, 0, 80)));
-        ItemList.Bottle_Diablo_Sauce.set(addItem(tLastID = 123, "Diablo Sauce", "Diablo always comes back!", SubTag.INVISIBLE, new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 4000, 1, 70, Potion.fireResistance.id, 4000, 0, 90)));
-        ItemList.Bottle_Snitches_Glitch_Sauce.set(addItem(tLastID = 124, "Old Man Snitches glitched Diablo Sauce", "[Missing No]", SubTag.INVISIBLE, new GT_FoodStat(2, 0.1F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 9999, 2, 999, Potion.fireResistance.id, 9999, 9, 999)));
-        ItemList.Bottle_Apple_Juice.set(addItem(tLastID = 125, "Apple Juice", "Made of the Apples from our best Oak Farms", new GT_FoodStat(4, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.hunger.id, 400, 0, 20)));
-        ItemList.Bottle_Cider.set(addItem(tLastID = 126, "Cider", "If you have nothing better to do with your Apples", new GT_FoodStat(4, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 400, 0, 60, Potion.resistance.id, 400, 1, 60, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Golden_Apple_Juice.set(addItem(tLastID = 127, "Golden Apple Juice", "A golden Apple in liquid form", SubTag.INVISIBLE, new GT_FoodStat(4, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.hunger.id, 400, 0, 20, Potion.field_76444_x.id, 2400, 0, 100, Potion.regeneration.id, 100, 1, 100)));
-        ItemList.Bottle_Golden_Cider.set(addItem(tLastID = 128, "Golden Cider", "More Resistance, less Regeneration", SubTag.INVISIBLE, new GT_FoodStat(4, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.confusion.id, 400, 0, 60, Potion.field_76444_x.id, 2400, 1, 95, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Iduns_Apple_Juice.set(addItem(tLastID = 129, "Idun's Apple Juice", "So you got the Idea of using Notch Apples for a drink?", SubTag.INVISIBLE, new GT_FoodStat(4, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.regeneration.id, 600, 4, 100, Potion.field_76444_x.id, 2400, 0, 100, Potion.resistance.id, 6000, 0, 100, Potion.fireResistance.id, 6000, 0, 100)));
-        ItemList.Bottle_Notches_Brew.set(addItem(tLastID = 130, "Notches Brew", "This is just overpowered", SubTag.INVISIBLE, new GT_FoodStat(4, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.regeneration.id, 700, 4, 95, Potion.field_76444_x.id, 3000, 1, 95, Potion.resistance.id, 7000, 1, 95, Potion.fireResistance.id, 7000, 0, 95, Potion.harm.id, 0, 2, 20)));
-        ItemList.Bottle_Lemon_Juice.set(addItem(tLastID = 131, "Lemon Juice", "Maybe adding Sugar will make it less sour", new GT_FoodStat(2, 0.4F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.digSpeed.id, 1200, 0, 60)));
-        ItemList.Bottle_Limoncello.set(addItem(tLastID = 132, "Limoncello", "An alcoholic Drink which tastes like Lemons", SubTag.INVISIBLE, new GT_FoodStat(2, 0.4F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.digSpeed.id, 1200, 0, 90, Potion.poison.id, 200, 1, 5)));
-        ItemList.Bottle_Lemonade.set(addItem(tLastID = 133, "Lemonade", "Cold and refreshing Lemonade", new GT_FoodStat(4, 0.3F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.digSpeed.id, 900, 1, 90)));
-        ItemList.Bottle_Alcopops.set(addItem(tLastID = 134, "Alcopops", "Don't let your Children drink this junk!", SubTag.INVISIBLE, new GT_FoodStat(2, 0.2F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.digSpeed.id, 900, 1, 90, Potion.poison.id, 300, 2, 20)));
-        ItemList.Bottle_Cave_Johnsons_Grenade_Juice.set(addItem(tLastID = 135, "Cave Johnson's Grenade Juice", "When life gives you Lemons, make Life take them Lemons back!", SubTag.INVISIBLE, new GT_FoodStat(0, 0.0F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false).setExplosive()));
-        ItemList.Bottle_Milk.set(addItem(tLastID = 136, "Milk", "Got Milk?", OrePrefixes.bottle.get(Materials.Milk), new GT_FoodStat(0, 0.0F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false).setMilk()));
-        ItemList.Bottle_Holy_Water.set(addItem(tLastID = 137, "Holy Water", "May the holy Planks be with you", OrePrefixes.bottle.get(Materials.HolyWater), new GT_FoodStat(0, 0.0F, EnumAction.drink, ItemList.Bottle_Empty.get(1L), GregTech_API.sDrinksAlwaysDrinkable, false, false, Potion.poison.id, 100, 1, 100).setMilk()));
-
 
         ItemList.Food_Potato_On_Stick.set(addItem(tLastID = 200, "Potato on a Stick", "Totally looks like a Crab Claw", new GT_FoodStat(1, 0.3F, EnumAction.eat, new ItemStack(Items.stick, 1), false, true, false)));
         ItemList.Food_Potato_On_Stick_Roasted.set(addItem(tLastID = 201, "Roasted Potato on a Stick", "Still looks like a Crab Claw", new GT_FoodStat(6, 0.6F, EnumAction.eat, new ItemStack(Items.stick, 1), false, true, false)));
@@ -328,36 +288,17 @@ public class GT_MetaGenerated_Item_02 extends GT_MetaGenerated_Item_X32 {
         GT_ModHandler.addExtractionRecipe(new ItemStack(Blocks.double_plant, 1, 1), new ItemStack(Items.dye, 3, 13));
         GT_ModHandler.addExtractionRecipe(new ItemStack(Blocks.double_plant, 1, 4), new ItemStack(Items.dye, 3, 1));
         GT_ModHandler.addExtractionRecipe(new ItemStack(Blocks.double_plant, 1, 5), new ItemStack(Items.dye, 3, 9));
-        GT_ModHandler.addExtractionRecipe(ItemList.Crop_Drop_Plumbilia.get(1L), GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Lead, 1L));
-        GT_ModHandler.addExtractionRecipe(ItemList.Crop_Drop_Argentia.get(1L), GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Silver, 1L));
-        GT_ModHandler.addExtractionRecipe(ItemList.Crop_Drop_Indigo.get(1L), ItemList.Dye_Indigo.get(1L));
-        GT_ModHandler.addExtractionRecipe(ItemList.Crop_Drop_MilkWart.get(1L), GT_OreDictUnificator.get(OrePrefixes.dustSmall, Materials.Milk, 1L));
-        GT_ModHandler.addExtractionRecipe(ItemList.Crop_Drop_Coppon.get(1L), GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Copper, 1L));
-        GT_ModHandler.addExtractionRecipe(ItemList.Crop_Drop_Tine.get(1L), GT_OreDictUnificator.get(OrePrefixes.dustTiny, Materials.Tin, 1L));
 
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Coppon.get(4L), new ItemStack(Blocks.wool, 1, 1));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Plumbilia.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Argentia.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Indigo.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Ferru.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Aurelia.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_OilBerry.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_BobsYerUncleRanks.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Tine.get(4L), ItemList.IC2_PlantballCompressed.get(1L));
-        GT_ModHandler.addCompressionRecipe(ItemList.Crop_Drop_Rape.get(8L), ItemList.IC2_PlantballCompressed.get(1L));
         GT_ModHandler.addCompressionRecipe(new ItemStack(Blocks.red_flower, 8, 32767), ItemList.IC2_PlantballCompressed.get(1L));
         GT_ModHandler.addCompressionRecipe(new ItemStack(Blocks.yellow_flower, 8, 32767), ItemList.IC2_PlantballCompressed.get(1L));
 
-        GT_ModHandler.addPulverisationRecipe(ItemList.Food_Sliced_Cheese.get(1L), GT_OreDictUnificator.get(OrePrefixes.dustSmall, Materials.Cheese, 1L));
         GT_ModHandler.addPulverisationRecipe(ItemList.Dye_Cocoa.get(1L), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Cocoa, 1L));
-        GT_ModHandler.addPulverisationRecipe(ItemList.Crop_Drop_Tine.get(1L), GT_OreDictUnificator.get(OrePrefixes.dustSmall, Materials.Wood, 2L));
         GT_ModHandler.addPulverisationRecipe(new ItemStack(Items.reeds, 1), new ItemStack(Items.sugar, 1), null, 0, false);
         GT_ModHandler.addPulverisationRecipe(new ItemStack(Blocks.melon_block, 1, 0), new ItemStack(Items.melon, 8, 0), new ItemStack(Items.melon_seeds, 1), 80, false);
         GT_ModHandler.addPulverisationRecipe(new ItemStack(Blocks.pumpkin, 1, 0), new ItemStack(Items.pumpkin_seeds, 4, 0), null, 0, false);
         GT_ModHandler.addPulverisationRecipe(new ItemStack(Items.melon, 1, 0), new ItemStack(Items.melon_seeds, 1, 0), null, 0, false);
         GT_ModHandler.addPulverisationRecipe(new ItemStack(Items.wheat, 1, 0), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Wheat, 1L), null, 0, false);
         GT_ModHandler.addPulverisationRecipe(GT_ModHandler.getIC2Item("crop", 1L), GT_OreDictUnificator.get(OrePrefixes.dust, Materials.Wood, 1L), null, 0, false);
-        GT_ModHandler.addPulverisationRecipe(new ItemStack(Items.stick, 1), GT_OreDictUnificator.get(OrePrefixes.dustSmall, Materials.Wood, 2L), null, 0, false);
         GT_ModHandler.addPulverisationRecipe(new ItemStack(Blocks.wool, 1, 32767), new ItemStack(Items.string, 2), new ItemStack(Items.string, 1), 50, false);
         try {
             Object tCrop;
@@ -449,9 +390,6 @@ public class GT_MetaGenerated_Item_02 extends GT_MetaGenerated_Item_X32 {
         }
         if (aDamage < 32100) {
             return ItemList.ThermosCan_Empty.get(1L);
-        }
-        if (aDamage < 32200) {
-            return ItemList.Bottle_Empty.get(1L);
         }
         return null;
     }

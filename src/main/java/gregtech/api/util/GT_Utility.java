@@ -759,13 +759,6 @@ public class GT_Utility {
 
     public static ItemStack fillFluidContainer(FluidStack aFluid, ItemStack aStack, boolean aRemoveFluidDirectly, boolean aCheckIFluidContainerItems) {
         if (isStackInvalid(aStack) || aFluid == null) return null;
-        if (GT_ModHandler.isWater(aFluid) && ItemList.Bottle_Empty.isStackEqual(aStack)) {
-            if (aFluid.amount >= 250) {
-                if (aRemoveFluidDirectly) aFluid.amount -= 250;
-                return new ItemStack(Items.potionitem, 1, 0);
-            }
-            return null;
-        }
         if (aCheckIFluidContainerItems && aStack.getItem() instanceof IFluidContainerItem && ((IFluidContainerItem) aStack.getItem()).getFluid(aStack) == null && ((IFluidContainerItem) aStack.getItem()).getCapacity(aStack) <= aFluid.amount) {
             if (aRemoveFluidDirectly)
                 aFluid.amount -= ((IFluidContainerItem) aStack.getItem()).fill(aStack = copyAmount(1, aStack), aFluid, true);
@@ -846,8 +839,6 @@ public class GT_Utility {
         /* These are all special Cases, in which it is intended to have only GT Blocks outputting those Container Items */
         if (ItemList.Cell_Empty.isStackEqual(aStack, false, true)) return null;
         if (ItemList.IC2_Fuel_Can_Filled.isStackEqual(aStack, false, true)) return ItemList.IC2_Fuel_Can_Empty.get(1);
-        if (aStack.getItem() == Items.potionitem || aStack.getItem() == Items.experience_bottle || ItemList.TF_Vial_FieryBlood.isStackEqual(aStack) || ItemList.TF_Vial_FieryTears.isStackEqual(aStack))
-            return ItemList.Bottle_Empty.get(1);
 
         if (aCheckIFluidContainerItems && aStack.getItem() instanceof IFluidContainerItem && ((IFluidContainerItem) aStack.getItem()).getCapacity(aStack) > 0) {
             ItemStack tStack = copyAmount(1, aStack);

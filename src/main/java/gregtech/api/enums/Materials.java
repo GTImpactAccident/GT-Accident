@@ -88,22 +88,22 @@ public class Materials implements IColorModulationContainer, ISubTagContainer {
      * This is the Default Material returned in case no Material has been found or a NullPointer has been inserted at a location where it shouldn't happen.
      */
     public static void genMaterials() {
-        _NULL = new Materials(-1, TextureSet.SET_NONE, new Color(255, 255, 255, 0), "NULL", "NULL", true, Dyes._NULL, Element._NULL, MaterialsValues.NULL);
-        Empty = new Materials(0, TextureSet.SET_NONE, new Color(255, 255, 255, 255), "Empty", "Empty", true, Dyes._NULL, Element._NULL, MaterialsValues.NOT_MATERIAL);
-        Hydrogen = new Materials(1, TextureSet.SET_FLUID, new Color(0, 0, 255, 240), "Hydrogen", "Hydrogen", true, Dyes.dyeBlue, Element.H2, MaterialsValues.CELL, MaterialsValues.GAS).setFuel(FuelType.Gas, 4);
-        Helium = new Materials(2, TextureSet.SET_FLUID, new Color(245, 245, 0, 240), "Helium", "Helium", true, Dyes.dyeYellow, Element.He, MaterialsValues.CELL, MaterialsValues.GAS);
-        Lithium = new Materials(3, TextureSet.SET_DULL, new Color(97, 80, 102, 255), "Lithium", "Lithium", false, Dyes.dyeLightBlue, Element.Li, MaterialsValues.DUST);
-        Beryllium = new Materials(4, TextureSet.SET_METALLIC, new Color(100, 180, 100, 240), "Beryllium", "Beryllium", false, Dyes.dyeGreen, Element.Be, MaterialsValues.DUST);
-        Boron = new Materials(5, TextureSet.SET_DULL, new Color(147, 187, 147, 240), "Boron", "Boron", false, Dyes.dyeWhite, Element.B, MaterialsValues.DUST);
-        Carbon = new Materials(6, TextureSet.SET_DULL, new Color(20, 20, 20, 240), "Carbon", "Carbon", false, Dyes.dyeBlack, Element.C, MaterialsValues.DUST);
-        Nitrogen = new Materials(7, TextureSet.SET_FLUID, new Color(0, 150, 200, 240), "Nitrogen", "Nitrogen", true, Dyes.dyeCyan, Element.N2, MaterialsValues.CELL, MaterialsValues.GAS);
-        Oxygen = new Materials(8, TextureSet.SET_FLUID, new Color(0, 100, 200, 240), "Oxygen", "Oxygen", true, Dyes.dyeWhite, Element.O2, MaterialsValues.CELL, MaterialsValues.GAS);
-        Fluorine = new Materials(9, TextureSet.SET_FLUID, new Color(56, 187, 181, 240), "Fluorine", "Fluorine", true, Dyes.dyeGreen, Element.F2, MaterialsValues.CELL, MaterialsValues.GAS);
-        Neon = new Materials(10, TextureSet.SET_FLUID, new Color(220, 186, 105, 240), "Neon", "Neon", true, Dyes.dyeGreen, Element.Ne, MaterialsValues.CELL, MaterialsValues.GAS);
-        Sodium = new Materials(11, TextureSet.SET_METALLIC, new Color(36, 64, 238, 240), "Sodium", "Sodium", true, Dyes.dyeGreen, Element.Na, MaterialsValues.DUST);
-        Magnesium = new Materials(12, TextureSet.SET_METALLIC, new Color(255, 200, 200, 240), "Magnesium", "Magnesium", false, Dyes.dyePink, Element.Mg, MaterialsValues.DUST);
-        Aluminium = new Materials(13, TextureSet.SET_METALLIC, new Color(128, 200, 240, 240), "Aluminium", "Aluminium", false, Dyes.dyeLightBlue, Element.Al, MaterialsValues.DUST);
-        Silicon = new Materials(14, TextureSet.SET_METALLIC, new Color(60, 60, 80, 240), "Silicon", "Silicon", false, Dyes.dyeBlack, Element.Si, MaterialsValues.DUST);
+        _NULL = new Materials(-1, new Color(255, 255, 255, 0), "NULL", true, Dyes._NULL, Element._NULL, MaterialsValues.NULL);
+        Empty = new Materials(0, new Color(255, 255, 255, 255), "Empty", true, Dyes._NULL, Element._NULL, MaterialsValues.NOT_MATERIAL);
+        Hydrogen = new Materials(1, new Color(0, 0, 255, 240), "Hydrogen", true, Dyes.dyeBlue, Element.H2, MaterialsValues.CELL, MaterialsValues.GAS).setFuel(FuelType.Gas, 4);
+        Helium = new Materials(2, new Color(245, 245, 0, 240), "Helium", true, Dyes.dyeYellow, Element.He, MaterialsValues.CELL, MaterialsValues.GAS);
+        Lithium = new Materials(3, new Color(97, 80, 102, 255), "Lithium", false, Dyes.dyeLightBlue, Element.Li, MaterialsValues.DUST);
+        Beryllium = new Materials(4, new Color(100, 180, 100, 240), "Beryllium", false, Dyes.dyeGreen, Element.Be, MaterialsValues.DUST, MaterialsValues.DUST_IMPURE, MaterialsValues.DUST_PURE);
+        Boron = new Materials(5, new Color(147, 187, 147, 240), "Boron", false, Dyes.dyeWhite, Element.B, MaterialsValues.DUST);
+        Carbon = new Materials(6, new Color(20, 20, 20, 240), "Carbon", false, Dyes.dyeBlack, Element.C, MaterialsValues.DUST);
+        Nitrogen = new Materials(7, new Color(0, 150, 200, 240), "Nitrogen", true, Dyes.dyeCyan, Element.N2, MaterialsValues.CELL, MaterialsValues.GAS);
+        Oxygen = new Materials(8, new Color(0, 100, 200, 240), "Oxygen", true, Dyes.dyeWhite, Element.O2, MaterialsValues.CELL, MaterialsValues.GAS);
+        Fluorine = new Materials(9, new Color(56, 187, 181, 240), "Fluorine", true, Dyes.dyeGreen, Element.F2, MaterialsValues.CELL, MaterialsValues.GAS);
+        Neon = new Materials(10, new Color(220, 186, 105, 240), "Neon", true, Dyes.dyeGreen, Element.Ne, MaterialsValues.CELL, MaterialsValues.GAS);
+        Sodium = new Materials(11, new Color(36, 64, 238, 240), "Sodium", true, Dyes.dyeGreen, Element.Na, MaterialsValues.DUST);
+        Magnesium = new Materials(12, new Color(255, 200, 200, 240), "Magnesium", false, Dyes.dyePink, Element.Mg, MaterialsValues.DUST);
+        Aluminium = new Materials(13, new Color(128, 200, 240, 240), "Aluminium", false, Dyes.dyeLightBlue, Element.Al, MaterialsValues.DUST).setTool(1.0f, 5, 10);
+        Silicon = new Materials(14, new Color(73, 73, 95, 240), "Silicon", false, Dyes.dyeBlack, Element.Si, MaterialsValues.DUST);
 
 		//todo НАХУЙ ЭТО УБРАТЬ
 		//region Direct Elements
@@ -910,11 +910,11 @@ public class Materials implements IColorModulationContainer, ISubTagContainer {
         }
     }
 
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, String aName, String aDefaultLocalName) {
+    public Materials(int aMetaItemSubID, String aName) {
         mMetaItemSubID = aMetaItemSubID;
-        mDefaultLocalName = aDefaultLocalName;
+        mDefaultLocalName = aName;
         mName = aName;
-        mIconSet = aIconSet;
+        mIconSet = TextureSet.MATERIALS;
         MATERIALS_MAP.put(mName, this);
         mCustomOre = false;
         mConfigSection = "ore";
@@ -970,23 +970,23 @@ public class Materials implements IColorModulationContainer, ISubTagContainer {
         aMaterialInto.mFuelType = aFuelType;
         return aMaterialInto;
     }
-    
+	
 	//todo удалить после рефакторинга
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, float x1, int x2, int x3, int r, int g, int b, int a, String aName, String aDefaultLocalName, int x4, int x5, int x6, int aMeltingPoint, boolean asdasdasdm, boolean aTransparent, int qq, int qwe, int qee, Dyes aColor, Element aElement, MaterialsValues... materialsValues) {
-        this(aMetaItemSubID, aIconSet, new Color(r, g, b, a), aName, aDefaultLocalName, 0, aTransparent, aColor, aElement);
-    }
+	public Materials(int aMetaItemSubID, TextureSet aIconSet, float x1, int x2, int x3, int r, int g, int b, int a, String aName, String aDefaultLocalName, int x4, int x5, int x6, int aMeltingPoint, boolean asdasdasdm, boolean aTransparent, int qq, int qwe, int qee, Dyes aColor, Element aElement, MaterialsValues... materialsValues) {
+		this(aMetaItemSubID, new Color(r, g, b, a), aName, 0, aTransparent, aColor, aElement);
+	}
 	//todo удалить после рефакторинга
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, float xx, int x1, int x2, boolean aTransparent, String aName, String aDefaultLocalName) {
-        this(aMetaItemSubID, aIconSet, aName, aDefaultLocalName);
-    }
+	public Materials(int aMetaItemSubID, TextureSet aIconSet, float xx, int x1, int x2, boolean aTransparent, String aName, String aDefaultLocalName) {
+		this(aMetaItemSubID, aName);
+	}
 	//todo удалить после рефакторинга
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, float x1, int x2, int x3, int x9, int r, int g, int b, int a, String aName, String aDefaultLocalName, int x4, int x5, int x6, int aMeltingPoint, boolean asdasdasdm, boolean aTransparent, int qq, int qwe, int qee, Dyes aColor) {
-        this(aMetaItemSubID, aIconSet, new Color(r, g, b, a), aName, aDefaultLocalName, aTransparent, aColor);
-    }
-    //todo удалить после рефакторинга
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, float aToolSpeed, int aDurability, int aToolQuality, int aTypes, int aR, int aG, int aB, int aA, String aName, String aDefaultLocalName, int aFuelType, int aFuelPower, int aMeltingPoint, int aBlastFurnaceTemp, boolean aBlastFurnaceRequired, boolean aTransparent, int aOreValue, int aDensityMultiplier, int aDensityDivider, Dyes aColor, int aExtraData, List<MaterialStack> aMaterialList) {
-        this(aMetaItemSubID, aIconSet, new Color(aR, aG, aB, aA), aName, aDefaultLocalName, aTransparent, aColor);
-    }
+	public Materials(int aMetaItemSubID, TextureSet aIconSet, float x1, int x2, int x3, int x9, int r, int g, int b, int a, String aName, String aDefaultLocalName, int x4, int x5, int x6, int aMeltingPoint, boolean asdasdasdm, boolean aTransparent, int qq, int qwe, int qee, Dyes aColor) {
+		this(aMetaItemSubID, new Color(r, g, b, a), aName, aTransparent, aColor);
+	}
+	//todo удалить после рефакторинга
+	public Materials(int aMetaItemSubID, TextureSet aIconSet, float aToolSpeed, int aDurability, int aToolQuality, int aTypes, int aR, int aG, int aB, int aA, String aName, String aDefaultLocalName, int aFuelType, int aFuelPower, int aMeltingPoint, int aBlastFurnaceTemp, boolean aBlastFurnaceRequired, boolean aTransparent, int aOreValue, int aDensityMultiplier, int aDensityDivider, Dyes aColor, int aExtraData, List<MaterialStack> aMaterialList) {
+		this(aMetaItemSubID, new Color(aR, aG, aB, aA), aName, aTransparent, aColor);
+	}
 
     public Materials(Materials aMaterialInto, boolean aReRegisterIntoThis) {
         mUnificatable = false;
@@ -999,12 +999,12 @@ public class Materials implements IColorModulationContainer, ISubTagContainer {
         mIconSet = TextureSet.SET_NONE;
     }
     
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, Color color, String aName, String aDefaultLocalName, boolean aTransparent, Dyes aColor, MaterialsValues... materialsValues) {
-        this(aMetaItemSubID, aIconSet, color, aName, aDefaultLocalName, 0, aTransparent, aColor, null, materialsValues);
+    public Materials(int aMetaItemSubID, Color color, String aName, boolean aTransparent, Dyes aColor, MaterialsValues... materialsValues) {
+        this(aMetaItemSubID, color, aName, 0, aTransparent, aColor, null, materialsValues);
     }
     
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, Color color, String aName, String aDefaultLocalName, int aMeltingPoint, boolean aTransparent, Dyes aColor, Element aElement, MaterialsValues... materialsValues) {
-        this(aMetaItemSubID, aIconSet, aName, aDefaultLocalName);
+    public Materials(int aMetaItemSubID, Color color, String aName, int aMeltingPoint, boolean aTransparent, Dyes aColor, Element aElement, MaterialsValues... materialsValues) {
+        this(aMetaItemSubID, aName);
         mMeltingPoint = (short) aMeltingPoint;
         mTransparent = aTransparent;
         mColor = aColor;
@@ -1029,17 +1029,17 @@ public class Materials implements IColorModulationContainer, ISubTagContainer {
         this.materialsValues.addAll(Arrays.asList(materialsValues));
     }
     
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, Color rgba, String aName, String aDefaultLocalName, boolean aTransparent, Dyes aColor, Element aElement, MaterialsValues... materialsValues) {
-        this(aMetaItemSubID, aIconSet, rgba, aName, aDefaultLocalName, 0, aTransparent, aColor, aElement, materialsValues);
+    public Materials(int aMetaItemSubID, Color rgba, String aName, boolean aTransparent, Dyes aColor, Element aElement, MaterialsValues... materialsValues) {
+        this(aMetaItemSubID, rgba, aName, 0, aTransparent, aColor, aElement, materialsValues);
     }
     
     
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, Color rgba, String aName, String aDefaultLocalName, boolean aTransparent, Dyes aColor, int aExtraData, List<MaterialStack> aMaterialList, MaterialsValues... materialsValues) {
-        this(aMetaItemSubID, aIconSet, rgba, aName, aDefaultLocalName, 0, aTransparent, aColor, aExtraData, aMaterialList, materialsValues);
+    public Materials(int aMetaItemSubID, Color rgba, String aName, boolean aTransparent, Dyes aColor, int aExtraData, List<MaterialStack> aMaterialList, MaterialsValues... materialsValues) {
+        this(aMetaItemSubID, rgba, aName, 0, aTransparent, aColor, aExtraData, aMaterialList, materialsValues);
     }
     
-    public Materials(int aMetaItemSubID, TextureSet aIconSet, Color rgba, String aName, String aDefaultLocalName, int aMeltingPoint, boolean aTransparent, Dyes aColor, int aExtraData, List<MaterialStack> aMaterialList, MaterialsValues... materialsValues) {
-        this(aMetaItemSubID, aIconSet, rgba, aName, aDefaultLocalName, aMeltingPoint, aTransparent, aColor, null, materialsValues);
+    public Materials(int aMetaItemSubID, Color rgba, String aName, int aMeltingPoint, boolean aTransparent, Dyes aColor, int aExtraData, List<MaterialStack> aMaterialList, MaterialsValues... materialsValues) {
+        this(aMetaItemSubID, rgba, aName, aMeltingPoint, aTransparent, aColor, null, materialsValues);
         mExtraData = aExtraData;
         mMaterialList.addAll(aMaterialList);
         mChemicalFormula = "";

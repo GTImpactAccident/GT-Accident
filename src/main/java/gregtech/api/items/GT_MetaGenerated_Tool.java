@@ -317,9 +317,9 @@ public abstract class GT_MetaGenerated_Tool extends GT_MetaBase_Item implements 
                 isItemStackUsable(tStack);
                 //aList.add(tStack); //View without damage
                 if (i >= 100 && i <= 169) { //Id for gt ore scaners
-                    aList.add(getToolWithStats(i, 1, Materials.Neutronium, Materials.Neutronium, new long[]{81920000L, GT_Values.V[5], 5L, 81920000L}));
+                    aList.add(getToolWithStats(i, 1, Materials.Aluminium, Materials.Aluminium, new long[]{81920000L, GT_Values.V[5], 5L, 81920000L}));
                 } else {
-                    aList.add(getToolWithStats(i, 1, Materials.Neutronium, Materials.Neutronium, null));
+                    aList.add(getToolWithStats(i, 1, Materials.Aluminium, Materials.Aluminium, null));
                 }
             }
         }

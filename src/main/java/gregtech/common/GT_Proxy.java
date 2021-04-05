@@ -394,8 +394,6 @@ public abstract class GT_Proxy implements IGT_Mod, IGuiHandler, IFuelHandler {
         ItemList.IC2_ForgeHammer.set(GT_ModHandler.getIC2Item("ForgeHammer", 1L));
         ItemList.IC2_WireCutter.set(GT_ModHandler.getIC2Item("cutter", 1L));
 
-        ItemList.Credit_Iron.set(GT_ModHandler.getIC2Item("coin", 1L));
-
         ItemList.Circuit_Basic.set(GT_ModHandler.getIC2Item("electronicCircuit", 1L));
         ItemList.Circuit_Advanced.set(GT_ModHandler.getIC2Item("advancedCircuit", 1L));
 
@@ -407,11 +405,6 @@ public abstract class GT_Proxy implements IGT_Mod, IGuiHandler, IFuelHandler {
         ItemList.Dye_Cocoa.set(new ItemStack(Items.dye, 1, 3));
 
         ItemList.Book_Written_00.set(new ItemStack(Items.written_book, 1, 0));
-
-        ItemList.Food_Baked_Bread.set(new ItemStack(Items.bread, 1, 0));
-        ItemList.Food_Raw_Potato.set(new ItemStack(Items.potato, 1, 0));
-        ItemList.Food_Baked_Potato.set(new ItemStack(Items.baked_potato, 1, 0));
-        ItemList.Food_Poisonous_Potato.set(new ItemStack(Items.poisonous_potato, 1, 0));
 
         OrePrefixes.bucket.mContainerItem = new ItemStack(Items.bucket, 1);
         OrePrefixes.cell.mContainerItem = ItemList.Cell_Empty.get(1L);

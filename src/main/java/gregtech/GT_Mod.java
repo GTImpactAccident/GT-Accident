@@ -463,10 +463,9 @@ public class GT_Mod implements IGT_Mod {
                                     String tag = "";
                                     String[] tags = new String[]{};
                                     if (mIt == 1)
-                                        tags = new String[]{"dustTiny", "dustSmall", "dust", "dustImpure", "dustPure", "crushed", "crushedPurified", "crushedCentrifuged", "gem", "nugget", null, "ingot", "ingotHot", "ingotDouble", "ingotTriple", "ingotQuadruple", "ingotQuintuple", "plate", "plateDouble", "plateTriple", "plateQuadruple", "plateQuintuple", "plateDense", "stick", "lens", "round", "bolt", "screw", "ring", "foil", "cell", "cellPlasma"};
+                                        tags = new String[]{"dust", "dustImpure", "dustPure", "crushed", "crushedPurified", "crushedCentrifuged", "gem", "ingot", "ingotHot", "plate", "plateDouble", "plateTriple", "plateDense", "stick", "lens", "bolt", "screw", "ring", "foil", "cell"};
                                     if (mIt == 2)
-                                        tags = new String[]{"toolHeadSword", "toolHeadPickaxe", "toolHeadShovel", "toolHeadAxe", "toolHeadHoe", "toolHeadHammer", "toolHeadFile", "toolHeadSaw", "toolHeadDrill", "toolHeadChainsaw", "toolHeadWrench", "toolHeadUniversalSpade", "toolHeadSense", "toolHeadPlow", "toolHeadArrow", "toolHeadBuzzSaw", "turbineBlade", null, null, "wireFine", "gearGtSmall", "rotor", "stickLong", "springSmall", "spring", "arrowGtWood", "arrowGtPlastic", "gemChipped", "gemFlawed", "gemFlawless", "gemExquisite", "gearGt"};
-                                    if (mIt == 3) tags = new String[]{"crateGtDust", "crateGtIngot", "crateGtGem", "crateGtPlate"};
+                                        tags = new String[]{"toolHeadSword", "toolHeadPickaxe", "toolHeadShovel", "toolHeadAxe", "toolHeadHoe", "toolHeadHammer", "toolHeadFile", "toolHeadSaw", "toolHeadDrill", "toolHeadChainsaw", "toolHeadWrench", "toolHeadUniversalSpade", "toolHeadSense", "toolHeadPlow", "toolHeadBuzzSaw", "turbineBlade", "wireFine", "gearGtSmall", "rotor", "stickLong", "springSmall", "spring", "gemFlawed", "gemFlawless", "gemExquisite", "gearGt"};
                                     if (tags.length > prefix) tag = tags[prefix];
                                     if (GregTech_API.sGeneratedMaterials[material] != null) {
                                         tag += GregTech_API.sGeneratedMaterials[material].mName;
@@ -481,7 +480,7 @@ public class GT_Mod implements IGT_Mod {
                 }
             }
         }
-        String[] preS = new String[]{"dustTiny", "dustSmall", "dust", "dustImpure", "dustPure", "crushed", "crushedPurified", "crushedCentrifuged", "gem", "nugget", "ingot", "ingotHot", "ingotDouble", "ingotTriple", "ingotQuadruple", "ingotQuintuple", "plate", "plateDouble", "plateTriple", "plateQuadruple", "plateQuintuple", "plateDense", "stick", "lens", "round", "bolt", "screw", "ring", "foil", "cell", "cellPlasma", "toolHeadSword", "toolHeadPickaxe", "toolHeadShovel", "toolHeadAxe", "toolHeadHoe", "toolHeadHammer", "toolHeadFile", "toolHeadSaw", "toolHeadDrill", "toolHeadChainsaw", "toolHeadWrench", "toolHeadUniversalSpade", "toolHeadSense", "toolHeadPlow", "toolHeadArrow", "toolHeadBuzzSaw", "turbineBlade", "wireFine", "gearGtSmall", "rotor", "stickLong", "springSmall", "spring", "arrowGtWood", "arrowGtPlastic", "gemChipped", "gemFlawed", "gemFlawless", "gemExquisite", "gearGt", "crateGtDust", "crateGtIngot", "crateGtGem", "crateGtPlate"};
+        String[] preS = new String[]{"dust", "dustImpure", "dustPure", "crushed", "crushedPurified", "crushedCentrifuged", "gem", "ingot", "ingotHot", "ingotDouble", "ingotTriple", "plate", "plateDouble", "plateTriple", "plateDense", "stick", "lens", "bolt", "screw", "ring", "foil", "cell", "toolHeadSword", "toolHeadPickaxe", "toolHeadShovel", "toolHeadAxe", "toolHeadHoe", "toolHeadHammer", "toolHeadFile", "toolHeadSaw", "toolHeadDrill", "toolHeadChainsaw", "toolHeadWrench", "toolHeadUniversalSpade", "toolHeadSense", "toolHeadPlow", "toolHeadBuzzSaw", "turbineBlade", "wireFine", "gearGtSmall", "rotor", "stickLong", "springSmall", "spring", "gemFlawed", "gemFlawless", "gemExquisite"};
 
         List<String> mMTTags = new ArrayList<>();
         for (String test : oreTags) {

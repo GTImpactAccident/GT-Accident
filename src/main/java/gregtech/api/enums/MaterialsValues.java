@@ -4,6 +4,7 @@ public enum MaterialsValues {
 	
 	NULL,
 	NOT_MATERIAL,
+	ALL,
 	
 	//Fluids
 	FLUID,
@@ -24,17 +25,8 @@ public enum MaterialsValues {
 	GEM_FLAWLESS,
 	GEM_EXQUISITE,
 	INGOT,
-	INGOT_X2,
-	INGOT_X3,
-	INGOT_X4,
-	INGOT_X5,
-	INGOT_HOT,
 	BLOCK,
 	PLATE,
-	PLATE_X2,
-	PLATE_X3,
-	PLATE_X4,
-	PLATE_X5,
 	PLATE_DENSE,
 	FOIL,
 	GEAR_SMALL,

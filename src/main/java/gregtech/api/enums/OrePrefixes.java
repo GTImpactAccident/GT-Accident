@@ -21,25 +21,16 @@ public enum OrePrefixes {
     crushedCentrifuged("Centrifuged Ores", "Centrifuged ", " Ore", true, true, false, false, false, false, false, true, false, true, MaterialsValues.CRUSHED_CENTRIFUGE, -1, 64, 7),
     crushedPurified("Purified Ores", "Purified ", " Ore", true, true, false, false, false, false, false, true, false, true, MaterialsValues.CRUSHED_PURE, -1, 64, 6),
     crushed("Crushed Ores", "Crushed ", " Ore", true, true, false, false, false, false, false, true, false, true, MaterialsValues.CRUSHED, -1, 64, 5),
-    ingotQuintuple("5x Ingots", "Quintuple ", " Ingot", true, true, false, false, false, false, true, true, false, false, MaterialsValues.INGOT_X5, M * 5, 12, 16), // A quintuple Ingot.
-    ingotQuadruple("4x Ingots", "Quadruple ", " Ingot", true, true, false, false, false, false, true, true, false, false, MaterialsValues.INGOT_X4, M * 4, 16, 15), // A quadruple Ingot.
-    ingotTriple("3x Ingots", "Triple ", " Ingot", true, true, false, false, false, false, true, false, false, false, MaterialsValues.INGOT_X3, M * 3, 21, 14), // A triple Ingot.
-    ingotDouble("2x Ingots", "Double ", " Ingot", true, true, false, false, false, false, true, true, false, false, MaterialsValues.INGOT_X2, M * 2, 32, 13), // A double Ingot. Introduced by TerraFirmaCraft
-    ingotHot("Hot Ingots", "Hot ", " Ingot", true, true, false, false, false, false, false, true, false, false, MaterialsValues.INGOT_HOT, M, 16, 12), // A hot Ingot, which has to be cooled down by a Vacuum Freezer.
-    ingot("Ingots", "", " Ingot", true, true, false, false, false, false, false, true, false, false, MaterialsValues.INGOT, M, 64, 11), // A regular Ingot. Introduced by Eloraam
+    ingot("Ingots", "", " Ingots", true, true, false, false, false, false, false, true, false, false, MaterialsValues.INGOT, M, 16, 11), // A regular Ingot. Introduced by Eloraam
     gemFlawed("Flawed Gemstones", "Flawed ", "", true, true, true, false, false, false, true, true, false, false, MaterialsValues.GEM_FAWED, M / 2, 64, 60), // A regular Gem worth two small Dusts. Introduced by TerraFirmaCraft
     gemFlawless("Flawless Gemstones", "Flawless ", "", true, true, true, false, false, false, true, true, false, false, MaterialsValues.GEM_FLAWLESS, M * 2, 32, 61), // A regular Gem worth two Dusts. Introduced by TerraFirmaCraft
     gemExquisite("Exquisite Gemstones", "Exquisite ", "", true, true, true, false, false, false, true, true, false, false, MaterialsValues.GEM_EXQUISITE, M * 4, 16, 62), // A regular Gem worth four Dusts. Introduced by TerraFirmaCraft
     gem("Gemstones", "", "", true, true, true, false, false, false, true, true, false, false, MaterialsValues.GEM, M, 64, 8), // A regular Gem worth one Dust. Introduced by Eloraam
     dustImpure("Impure Dusts", "Impure Pile of ", " Dust", true, true, false, false, false, false, false, true, false, true, MaterialsValues.DUST_IMPURE, M, 64, 3), // Dust with impurities. 1 Unit of Main Material and 1/9 - 1/4 Unit of secondary Material
     dustPure("Purified Dusts", "Purified Pile of ", " Dust", true, true, false, false, false, false, false, true, false, true, MaterialsValues.DUST_PURE, M, 64, 4),
-    dust("Dusts", "", " Dust", true, true, false, false, false, false, false, true, false, false, MaterialsValues.DUST, M, 64, 2), // Pure Dust worth of one Ingot or Gem. Introduced by Alblaka.
+    dust("Dusts", "", " Dusts", true, true, false, false, false, false, false, true, false, false, MaterialsValues.DUST, M, 16, 2), // Pure Dust worth of one Ingot or Gem. Introduced by Alblaka.
     plateDense("Dense Plates", "Dense ", " Plate", true, true, false, false, false, false, true, true, false, false, MaterialsValues.PLATE_DENSE, M * 9, 8, 22), // 9 Plates combined in one Item.
-    plateQuintuple("5x Plates", "Quintuple ", " Plate", true, true, false, false, false, false, true, true, false, false, MaterialsValues.PLATE_X5, M * 5, 12, 21),
-    plateQuadruple("4x Plates", "Quadruple ", " Plate", true, true, false, false, false, false, true, true, false, false, MaterialsValues.PLATE_X4, M * 4, 16, 20),
-    plateTriple("3x Plates", "Triple ", " Plate", true, true, false, false, false, false, true, true, false, false, MaterialsValues.PLATE_X3, M * 3, 21, 19),
-    plateDouble("2x Plates", "Double ", " Plate", true, true, false, false, false, false, true, true, false, false, MaterialsValues.PLATE_X2, M * 2, 32, 18),
-    plate("Plates", "", " Plate", true, true, false, false, false, false, true, true, false, false, MaterialsValues.PLATE, M, 64, 17), // Regular Plate made of one Ingot/Dust. Introduced by Calclavia
+    plate("Plates", "", " Plates", true, true, false, false, false, false, true, true, false, false, MaterialsValues.PLATE, M, 8, 17), // Regular Plate made of one Ingot/Dust. Introduced by Calclavia
     foil("Foils", "", " Foil", true, true, false, false, false, false, true, true, false, false, MaterialsValues.FOIL, M / 4, 64, 29), // Foil made of 1/4 Ingot/Dust.
     stickLong("Long Sticks/Rods", "Long ", " Rod", true, true, false, false, false, false, true, true, false, false, MaterialsValues.ROD_LONG, M, 64, 54), // Stick made of an Ingot.
     stick("Sticks/Rods", "", " Rod", true, true, false, false, false, false, true, true, false, false, MaterialsValues.ROD, M / 2, 64, 23), // Stick made of half an Ingot. Introduced by Eloraam
@@ -144,7 +135,6 @@ public enum OrePrefixes {
 	
     public static volatile int VERSION = 509;
     static {
-        ingotHot.mHeatDamage = 3.0F;
 
         block.ignoreMaterials(Materials.Ice, Materials.Snow, Materials.Concrete, Materials.Glass, Materials.Glowstone, Materials.DarkIron, Materials.Marble, Materials.Quartz, Materials.CertusQuartz, Materials.Limestone);
         ingot.ignoreMaterials(Materials.Brick, Materials.NetherBrick);
@@ -180,18 +170,7 @@ public enum OrePrefixes {
         gemExquisite.mCondition = new ICondition.And<>(SubTag.TRANSPARENT, SubTag.CRYSTAL, new ICondition.Not<>(SubTag.QUARTZ), new ICondition.Not<>(SubTag.PEARL), new ICondition.Not<>(SubTag.MAGICAL));
 
         lens.mCondition = new ICondition.Or<>(SubTag.MAGICAL, new ICondition.And<>(SubTag.TRANSPARENT, SubTag.HAS_COLOR));
-
-        plateDouble.mCondition = new ICondition.Or<>(SubTag.PAPER, new ICondition.Not<>(SubTag.NO_SMASHING));
-        plateTriple.mCondition = new ICondition.Or<>(SubTag.PAPER, new ICondition.Not<>(SubTag.NO_SMASHING));
-        plateQuadruple.mCondition = new ICondition.Or<>(SubTag.PAPER, new ICondition.Not<>(SubTag.NO_SMASHING));
-        plateQuintuple.mCondition = new ICondition.Or<>(SubTag.PAPER, new ICondition.Not<>(SubTag.NO_SMASHING));
-
         plateDense.mCondition = new ICondition.Not<>(SubTag.NO_SMASHING);
-
-        ingotDouble.mCondition = new ICondition.Not<>(SubTag.NO_SMASHING);
-        ingotTriple.mCondition = new ICondition.Not<>(SubTag.NO_SMASHING);
-        ingotQuadruple.mCondition = new ICondition.Not<>(SubTag.NO_SMASHING);
-        ingotQuintuple.mCondition = new ICondition.Not<>(SubTag.NO_SMASHING);
 
         wireFine.mCondition = SubTag.METAL;
 
@@ -217,7 +196,7 @@ public enum OrePrefixes {
     public MaterialStack mSecondaryMaterial = null;
     public OrePrefixes mPrefixInto = this;
     public float mHeatDamage = 0.0F; // Negative for Frost Damage
-    public static List<OrePrefixes> mPreventableComponents = new LinkedList<>(Arrays.asList(OrePrefixes.gem, OrePrefixes.ingotHot, OrePrefixes.ingotDouble, OrePrefixes.ingotTriple, OrePrefixes.ingotQuadruple, OrePrefixes.ingotQuintuple, OrePrefixes.plate, OrePrefixes.plateDouble, OrePrefixes.plateTriple, OrePrefixes.plateQuadruple, OrePrefixes.plateQuintuple, OrePrefixes.plateDense, OrePrefixes.stick, OrePrefixes.bolt, OrePrefixes.screw, OrePrefixes.ring, OrePrefixes.foil, OrePrefixes.toolHeadSword, OrePrefixes.toolHeadPickaxe, OrePrefixes.toolHeadShovel, OrePrefixes.toolHeadAxe, OrePrefixes.toolHeadHoe, OrePrefixes.toolHeadHammer, OrePrefixes.toolHeadFile, OrePrefixes.toolHeadSaw, OrePrefixes.toolHeadDrill, OrePrefixes.toolHeadChainsaw, OrePrefixes.toolHeadWrench, OrePrefixes.toolHeadUniversalSpade, OrePrefixes.toolHeadSense, OrePrefixes.toolHeadPlow, OrePrefixes.toolHeadBuzzSaw, OrePrefixes.turbineBlade, OrePrefixes.wireFine, OrePrefixes.gearGtSmall, OrePrefixes.rotor, OrePrefixes.stickLong, OrePrefixes.springSmall, OrePrefixes.spring, OrePrefixes.gemFlawed, OrePrefixes.gemFlawless, OrePrefixes.gemExquisite, OrePrefixes.gearGt));
+    public static List<OrePrefixes> mPreventableComponents = new LinkedList<>(Arrays.asList(OrePrefixes.gem, OrePrefixes.plate, OrePrefixes.plateDense, OrePrefixes.stick, OrePrefixes.bolt, OrePrefixes.screw, OrePrefixes.ring, OrePrefixes.foil, OrePrefixes.toolHeadSword, OrePrefixes.toolHeadPickaxe, OrePrefixes.toolHeadShovel, OrePrefixes.toolHeadAxe, OrePrefixes.toolHeadHoe, OrePrefixes.toolHeadHammer, OrePrefixes.toolHeadFile, OrePrefixes.toolHeadSaw, OrePrefixes.toolHeadDrill, OrePrefixes.toolHeadChainsaw, OrePrefixes.toolHeadWrench, OrePrefixes.toolHeadUniversalSpade, OrePrefixes.toolHeadSense, OrePrefixes.toolHeadPlow, OrePrefixes.toolHeadBuzzSaw, OrePrefixes.turbineBlade, OrePrefixes.wireFine, OrePrefixes.gearGtSmall, OrePrefixes.rotor, OrePrefixes.stickLong, OrePrefixes.springSmall, OrePrefixes.spring, OrePrefixes.gemFlawed, OrePrefixes.gemFlawless, OrePrefixes.gemExquisite, OrePrefixes.gearGt));
     public MaterialsValues materialsValues;
     /**
      * Yes this Value can be changed to add Bits for the MetaGenerated-Item-Check.
@@ -268,18 +247,41 @@ public enum OrePrefixes {
                 if (!aMaterial.materialsValues.contains(MaterialsValues.INGOT)) {
                     ingot.mDisabledItems.add(aMaterial);
                 }
-                if (!aMaterial.materialsValues.contains(MaterialsValues.INGOT_HOT)) {
-                    ingotHot.mDisabledItems.add(aMaterial);
-                }
                 if (!aMaterial.materialsValues.contains(MaterialsValues.PLATE)) {
                     plate.mDisabledItems.add(aMaterial);
                 }
                 if (!aMaterial.materialsValues.contains(MaterialsValues.FOIL)) {
                     foil.mDisabledItems.add(aMaterial);
                 }
-    
                 if (!aMaterial.materialsValues.contains(MaterialsValues.CELL)) {
                     cell.mDisabledItems.add(aMaterial);
+                }
+                if (!aMaterial.materialsValues.contains(MaterialsValues.TOOL_TURBINE)) {
+                    turbineBlade.mDisabledItems.add(aMaterial);
+                }
+                if (!aMaterial.materialsValues.contains(MaterialsValues.TOOL_HEAD)) {
+                    toolHeadSword.mDisabledItems.add(aMaterial);
+                    toolHeadPickaxe.mDisabledItems.add(aMaterial);
+                    toolHeadShovel.mDisabledItems.add(aMaterial);
+                    toolHeadUniversalSpade.mDisabledItems.add(aMaterial);
+                    toolHeadAxe.mDisabledItems.add(aMaterial);
+                    toolHeadHoe.mDisabledItems.add(aMaterial);
+                    toolHeadSense.mDisabledItems.add(aMaterial);
+                    toolHeadFile.mDisabledItems.add(aMaterial);
+                    toolHeadHammer.mDisabledItems.add(aMaterial);
+                    toolHeadPlow.mDisabledItems.add(aMaterial);
+                    toolHeadSaw.mDisabledItems.add(aMaterial);
+                    toolHeadBuzzSaw.mDisabledItems.add(aMaterial);
+                    toolHeadScrewdriver.mDisabledItems.add(aMaterial);
+                    toolHeadDrill.mDisabledItems.add(aMaterial);
+                    toolHeadChainsaw.mDisabledItems.add(aMaterial);
+                    toolHeadWrench.mDisabledItems.add(aMaterial);
+                    toolSword.mDisabledItems.add(aMaterial);
+                    toolPickaxe.mDisabledItems.add(aMaterial);
+                    toolShovel.mDisabledItems.add(aMaterial);
+                    toolAxe.mDisabledItems.add(aMaterial);
+                    toolHoe.mDisabledItems.add(aMaterial);
+                    toolShears.mDisabledItems.add(aMaterial);
                 }
             }
         }
@@ -487,11 +489,6 @@ public enum OrePrefixes {
                 if (name().startsWith("dust")) return mLocalizedMaterialPre + "Chad";
                 switch (this) {
                     case plate: return "Sheet of Paper";
-                    case plateDouble: return "Paperboard";
-                    case plateTriple: return "Carton";
-                    case plateQuadruple: return "Cardboard";
-                    case plateQuintuple: return "Thick Cardboard";
-                    case plateDense: return "Strong Cardboard";
                 }
                 break;
             case "MeatRaw":
